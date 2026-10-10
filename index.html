@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mirador</title>
+<style>
+  :root { --fondo: #0b0f14; --panel: #121821; --borde: #1f2a37; --texto: #d7dee8; --tenue: #7d8a9a; --acento: #3fb6ff; --aviso: #ffb547; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font: 14px/1.4 system-ui, sans-serif; }
+  header { display: flex; align-items: baseline; gap: 1rem; padding: .6rem 1rem; border-bottom: 1px solid var(--borde); }
+  h1 { margin: 0; font-size: 1rem; letter-spacing: .15em; text-transform: uppercase; color: var(--acento); }
+  #actualizado { color: var(--tenue); font-size: .8rem; }
+  #caidas { padding: .4rem 1rem; color: var(--aviso); font-size: .8rem; border-bottom: 1px solid var(--borde); }
+  #caidas:empty { display: none; }
+  nav { display: none; }
+  main { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--borde); height: calc(100vh - 2.6rem); }
+  .col { background: var(--panel); display: flex; flex-direction: column; min-height: 0; }
+  .col h2 { margin: 0; padding: .5rem .8rem; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tenue); border-bottom: 1px solid var(--borde); }
+  .col ol { list-style: none; margin: 0; padding: 0; overflow-y: auto; }
+  li { padding: .5rem .8rem; border-bottom: 1px solid var(--borde); }
+  .meta { color: var(--tenue); font-size: .75rem; }
+  .muro { margin-left: .4rem; padding: 0 .3rem; border: 1px solid var(--aviso); border-radius: 3px; color: var(--aviso); font-size: .65rem; }
+  li a { color: var(--texto); text-decoration: none; display: block; }
+  li a:hover, li a:focus { color: var(--acento); text-decoration: underline; }
+  @media (max-width: 700px) {
+    nav { display: flex; overflow-x: auto; border-bottom: 1px solid var(--borde); }
+    nav button { flex: 1; padding: .6rem; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--tenue); font: inherit; }
+    nav button[aria-selected="true"] { color: var(--acento); border-bottom-color: var(--acento); }
+    main { display: block; height: auto; }
+    .col { display: none; }
+    .col.activa { display: flex; }
+    .col h2 { display: none; }
+  }
+</style>
+</head>
+<body>
+<header><h1>Mirador</h1><span id="actualizado">Cargando…</span></header>
+<div id="caidas" role="status"></div>
+<nav role="tablist"></nav>
+<main></main>
+<script>
+const ZONAS = [["girona", "Girona"], ["cataluna", "Cataluña"], ["espana", "España"], ["europa", "Europa"], ["mundo", "Mundo"]];
+const TZ = "Europe/Madrid";
+const hoy = new Date().toLocaleDateString("es-ES", { timeZone: TZ });
+
+function hora(iso) {
+  const d = new Date(iso);
+  const hm = d.toLocaleTimeString("es-ES", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
+  return d.toLocaleDateString("es-ES", { timeZone: TZ }) === hoy ? hm
+    : d.toLocaleDateString("es-ES", { timeZone: TZ, day: "2-digit", month: "2-digit" }) + " " + hm;
+}
+
+function el(tag, props = {}, ...hijos) {
+  const e = Object.assign(document.createElement(tag), props);
+  e.append(...hijos);
+  return e;
+}
+
+function activar(zona) {
+  document.querySelectorAll(".col").forEach(c => c.classList.toggle("activa", c.dataset.zona === zona));
+  document.querySelectorAll("nav button").forEach(b => b.setAttribute("aria-selected", b.dataset.zona === zona));
+}
+
+fetch("datos.json", { cache: "no-store" }).then(r => r.json()).then(datos => {
+  document.getElementById("actualizado").textContent = "Actualizado " + hora(datos.actualizado);
+  if (datos.fuentes_caidas.length)
+    document.getElementById("caidas").textContent = "Sin respuesta: " + datos.fuentes_caidas.map(c => c.medio).join(", ");
+
+  const nav = document.querySelector("nav"), main = document.querySelector("main");
+  for (const [zona, nombre] of ZONAS) {
+    const lista = el("ol");
+    for (const n of datos.noticias.filter(n => n.zona === zona)) {
+      if (!/^https?:\/\//.test(n.enlace)) continue;
+      const meta = el("div", { className: "meta" }, hora(n.hora) + " · " + n.medio);
+      if (n.muro !== "no") meta.append(el("span", { className: "muro", title: "Puede tener muro de pago" }, "muro"));
+      lista.append(el("li", {}, meta, el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo)));
+    }
+    main.append(el("section", { className: "col" }, el("h2", {}, nombre), lista));
+    main.lastChild.dataset.zona = zona;
+    const b = el("button", { role: "tab", onclick: () => activar(zona) }, nombre);
+    b.dataset.zona = zona;
+    nav.append(b);
+  }
+  activar("girona");
+}).catch(e => {
+  document.getElementById("actualizado").textContent = "No se pudo cargar datos.json (" + e.message + ")";
+});
+</script>
+</body>
+</html>

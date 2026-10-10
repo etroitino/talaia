@@ -1,0 +1,154 @@
+# Fuentes de Mirador. Comprobar con: uv run comprobar_rss.py
+# muro: si | parcial | no (orientativo, hay que comprobarlo)
+# orientacion: la rellena Enrique; no la decide la IA.
+# zona: girona | cataluna | espana | europa | mundo | verificadores
+
+fuentes:
+  # --- Girona ---
+  - nombre: Diari de Girona
+    zona: girona
+    rss: https://www.diaridegirona.cat/rss/
+    idioma: ca
+    muro: parcial
+    orientacion:
+    ua_navegador: true  # su cortafuegos bloquea lectores RSS (406)
+  - nombre: El Punt Avui (Girona)
+    zona: girona
+    rss: https://www.elpuntavui.cat/girona.feed?type=rss
+    idioma: ca
+    muro: parcial
+    orientacion:
+  - nombre: Girona Notícies
+    zona: girona
+    rss: https://www.gironanoticies.com/notix/rss/rss-27.htm  # canal general; rss-1..47 son secciones
+    tz: Europe/Madrid  # su RSS dice -0300 pero es hora de Madrid
+    idioma: ca
+    muro: "no"
+    orientacion:
+
+  # --- Cataluña ---
+  - nombre: 3Cat / 324
+    zona: cataluna
+    rss: https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0
+    idioma: ca
+    muro: "no"
+    orientacion:
+  - nombre: La Vanguardia
+    zona: cataluna
+    rss: https://www.lavanguardia.com/rss/home.xml
+    idioma: es
+    muro: parcial
+    orientacion:
+  - nombre: Ara
+    zona: cataluna
+    rss: https://www.ara.cat/rss/
+    idioma: ca
+    muro: parcial
+    orientacion:
+  - nombre: El Periódico
+    zona: cataluna
+    rss: https://www.elperiodico.com/es/rss/barcelona/rss.xml  # el de portada está vacío
+    idioma: es
+    muro: parcial
+    orientacion:
+    ua_navegador: true  # su cortafuegos bloquea lectores RSS (406)
+  - nombre: El Nacional
+    zona: cataluna
+    rss: https://www.elnacional.cat/ca/feed
+    idioma: ca
+    muro: "no"
+    orientacion:
+
+  # --- España ---
+  - nombre: El País
+    zona: espana
+    rss: https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada
+    idioma: es
+    muro: parcial
+    orientacion:
+  - nombre: El Mundo
+    zona: espana
+    rss: https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml
+    idioma: es
+    muro: parcial
+    orientacion:
+  - nombre: ABC
+    zona: espana
+    rss: https://www.abc.es/rss/2.0/portada/
+    idioma: es
+    muro: parcial
+    orientacion:
+  - nombre: elDiario.es
+    zona: espana
+    rss: https://www.eldiario.es/rss/
+    idioma: es
+    muro: "no"
+    orientacion:
+  - nombre: El Confidencial
+    zona: espana
+    rss: https://rss.elconfidencial.com/espana/
+    idioma: es
+    muro: parcial
+    orientacion:
+  - nombre: RTVE
+    zona: espana
+    rss: https://api2.rtve.es/rss/temas_noticias.xml
+    idioma: es
+    muro: "no"
+    orientacion:
+
+  # --- Europa ---
+  - nombre: Politico Europe
+    zona: europa
+    rss: https://www.politico.eu/feed/
+    idioma: en
+    muro: "no"
+    orientacion:
+  - nombre: Euronews
+    zona: europa
+    rss: https://es.euronews.com/rss
+    idioma: es
+    muro: "no"
+    orientacion:
+
+  # --- Mundo ---
+  - nombre: BBC News
+    zona: mundo
+    rss: https://feeds.bbci.co.uk/news/world/rss.xml
+    idioma: en
+    muro: "no"
+    orientacion:
+  - nombre: The Guardian
+    zona: mundo
+    rss: https://www.theguardian.com/world/rss
+    idioma: en
+    muro: "no"
+    orientacion:
+  - nombre: France 24
+    zona: mundo
+    rss: https://www.france24.com/es/rss
+    idioma: es
+    muro: "no"
+    orientacion:
+
+  # --- Verificadores (F5, no salen en columnas) ---
+  - nombre: Maldita
+    zona: verificadores
+    rss: https://maldita.es/feed/
+    idioma: es
+    muro: "no"
+  - nombre: Newtral
+    zona: verificadores
+    rss: https://www.newtral.es/feed/
+    idioma: es
+    muro: "no"
+  - nombre: EFE Verifica
+    zona: verificadores
+    rss: https://verifica.efe.com/feed/
+    idioma: es
+    muro: "no"
+  - nombre: Verificat
+    zona: verificadores
+    rss: https://www.verificat.cat/feed/
+    idioma: ca
+    muro: "no"
