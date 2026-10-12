@@ -1,0 +1,4 @@
+__pycache__/
+datos.json
+*.tmp
+.claude/settings.local.json

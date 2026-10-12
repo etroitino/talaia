@@ -1,0 +1,50 @@
+name: Recoger titulares
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"  # GitHub puede retrasarlo en horas punta
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  recoger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.publicar.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+
+      # Sin commits: se parte del datos.json ya publicado (el ?t= evita la caché de Pages)
+      - name: Descargar datos publicados
+        run: |
+          url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/datos.json?t=$(date +%s)"
+          if curl -fsSL "$url" -o datos.json && python3 -c "import json; json.load(open('datos.json'))['noticias']"; then
+            echo "Partiendo de $(python3 -c "import json; print(len(json.load(open('datos.json'))['noticias']))") noticias"
+          else
+            echo "Sin datos previos válidos: se empieza de cero"; rm -f datos.json
+          fi
+
+      - run: uv run recoger.py
+
+      - name: Preparar sitio
+        run: mkdir _site && cp index.html datos.json _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: publicar
+        uses: actions/deploy-pages@v4
