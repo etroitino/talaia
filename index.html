@@ -46,6 +46,35 @@
   .estado b { color: var(--texto); font-weight: 600; }
   #reloj { color: var(--texto); font-size: .95rem; letter-spacing: .05em; }
 
+  .refrescar {
+    display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; padding: 0;
+    background: none; border: 1px solid var(--borde-2); border-radius: 6px; color: var(--tenue); cursor: pointer;
+  }
+  .refrescar:hover { color: var(--acento); border-color: var(--acento); }
+  .refrescar:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+  .refrescar.girando svg { animation: girar .8s linear infinite; }
+
+  /* Última hora */
+  #ultima { display: flex; align-items: stretch; border-bottom: 1px solid var(--borde-2); background: rgba(13, 18, 26, .95); }
+  #ultima[hidden] { display: none; }
+  #ultima > h2 {
+    display: flex; align-items: center; gap: .45rem; flex: none; margin: 0; padding: 0 1rem;
+    font: 600 .68rem/1 var(--mono); letter-spacing: .14em; color: var(--peligro); white-space: nowrap;
+    border-right: 1px solid var(--borde-2); background: rgba(255, 107, 107, .07);
+  }
+  #ultima > h2::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; animation: latido 1.2s infinite; }
+  #ultima ol { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--borde-2) transparent; }
+  #ultima li { flex: 0 0 19rem; padding: .55rem .9rem; border-bottom: 0; border-right: 1px solid var(--borde); }
+  #ultima li::before { opacity: 1; top: .55rem; bottom: .55rem; }
+  #ultima .medio { color: var(--zona); }
+  #ultima a { font-size: .85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .nuevo {
+    padding: .1rem .35rem; border-radius: 3px; flex: none;
+    background: color-mix(in srgb, var(--acento) 16%, transparent); color: var(--acento);
+    font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  }
+
   #caidas {
     padding: .45rem 1.1rem; font: .75rem/1.3 var(--mono); color: var(--aviso);
     background: rgba(245, 184, 75, .06); border-bottom: 1px solid rgba(245, 184, 75, .25);
@@ -88,6 +117,7 @@
   li a:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 2px; }
   .vacio { padding: 1.5rem .85rem; color: var(--muy-tenue); font: .75rem var(--mono); }
 
+  @keyframes girar { to { transform: rotate(360deg); } }
   @keyframes latido { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
   @keyframes llega { from { background: color-mix(in srgb, var(--acento) 18%, transparent); } to { background: transparent; } }
   @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
@@ -96,6 +126,9 @@
   @media (max-width: 700px) {
     header { gap: .75rem; padding: .6rem .9rem; }
     .estado { gap: .9rem; }
+    #ultima > h2 { padding: 0 .7rem; }
+    #ultima > h2 span { display: none; }
+    #ultima li { flex-basis: 15rem; }
     nav { display: flex; overflow-x: auto; background: var(--panel); border-bottom: 1px solid var(--borde-2); scrollbar-width: none; }
     nav button {
       flex: 1; padding: .7rem .5rem; background: none; border: 0; border-bottom: 2px solid transparent;
@@ -123,8 +156,12 @@
     <span class="opcional"><b id="total">–</b> titulares</span>
     <span class="opcional">act. <b id="hace">–</b></span>
     <span id="reloj" aria-label="Hora de Madrid">--:--</span>
+    <button class="refrescar" id="refrescar" type="button" title="Recargar titulares" aria-label="Recargar titulares">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+    </button>
   </div>
 </header>
+<section id="ultima" aria-label="Última hora" hidden><h2>ÚLTIMA<span>HORA</span></h2><ol></ol></section>
 <div id="caidas" role="status"></div>
 <nav role="tablist" aria-label="Zonas"></nav>
 <main></main>
@@ -133,6 +170,9 @@ const ZONAS = [["girona", "Girona"], ["cataluna", "Cataluña"], ["espana", "Espa
 const TZ = "Europe/Madrid";
 const RECARGA_MIN = 5;          // datos.json se regenera cada ~15 min
 const VIEJO_MIN = 45;           // más de esto sin actualizar = aviso
+const VENTANA_H = 24;           // las columnas solo muestran las últimas 24 h (datos.json guarda 7 días)
+const NUEVO_MIN = 60;           // "nuevo" y franja de última hora
+const MAX_ULTIMA = 15;
 const CANDADO = '<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
 
 let activa = "girona", actualizado = null, vistos = null;
@@ -156,9 +196,34 @@ function activar(zona) {
   document.querySelectorAll("nav button").forEach(b => b.setAttribute("aria-selected", b.dataset.zona === zona));
 }
 
+function noticia(n, ahora) {
+  const meta = el("div", { className: "meta" },
+    el("time", { dateTime: n.hora }, hora(n.hora)),
+    el("span", { className: "medio", title: n.medio }, n.medio));
+  if (ahora - new Date(n.hora) < NUEVO_MIN * 60000) meta.insertBefore(el("span", { className: "nuevo" }, "nuevo"), meta.children[1]);
+  if (n.muro === true) {
+    const m = el("span", { className: "muro", title: "Artículo con muro de pago" });
+    m.innerHTML = CANDADO;
+    m.append("muro");
+    meta.append(m);
+  }
+  const li = el("li", {}, meta, el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo));
+  li.style.setProperty("--zona", `var(--${n.zona})`);
+  return li;
+}
+
 function pintar(datos) {
   actualizado = new Date(datos.actualizado);
-  document.getElementById("total").textContent = datos.noticias.filter(n => n.zona !== "verificadores").length;
+  const ahora = new Date();
+  const zonas = new Set(ZONAS.map(z => z[0]));
+  const visibles = datos.noticias.filter(n =>
+    zonas.has(n.zona) && /^https?:\/\//.test(n.enlace) && ahora - new Date(n.hora) < VENTANA_H * 3600000);
+  document.getElementById("total").textContent = visibles.length;
+
+  const recientes = visibles.filter(n => ahora - new Date(n.hora) < NUEVO_MIN * 60000).slice(0, MAX_ULTIMA);
+  const ultima = document.getElementById("ultima");
+  ultima.hidden = !recientes.length;
+  ultima.querySelector("ol").replaceChildren(...recientes.map(n => noticia(n, ahora)));
   document.getElementById("caidas").textContent = datos.fuentes_caidas.length
     ? "⚠ Sin respuesta: " + datos.fuentes_caidas.map(c => c.medio).join(" · ") : "";
 
@@ -170,24 +235,15 @@ function pintar(datos) {
 
   const nuevos = new Set();
   for (const [zona, nombre] of ZONAS) {
-    const noticias = datos.noticias.filter(n => n.zona === zona && /^https?:\/\//.test(n.enlace));
+    const noticias = visibles.filter(n => n.zona === zona);
     const lista = el("ol");
     for (const n of noticias) {
-      const meta = el("div", { className: "meta" },
-        el("time", { dateTime: n.hora }, hora(n.hora)),
-        el("span", { className: "medio", title: n.medio }, n.medio));
-      if (n.muro === true) {
-        const m = el("span", { className: "muro", title: "Artículo con muro de pago" });
-        m.innerHTML = CANDADO;
-        m.append("muro");
-        meta.append(m);
-      }
-      const li = el("li", {}, meta, el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo));
+      const li = noticia(n, ahora);
       if (vistos && !vistos.has(n.enlace)) li.classList.add("llega");
       nuevos.add(n.enlace);
       lista.append(li);
     }
-    if (!noticias.length) lista.append(el("li", { className: "vacio" }, "Sin titulares"));
+    if (!noticias.length) lista.append(el("li", { className: "vacio" }, `Sin titulares en las últimas ${VENTANA_H} h`));
 
     const col = el("section", { className: "col" },
       el("h2", {}, nombre, el("span", { className: "cuenta" }, String(noticias.length))), lista);
@@ -220,10 +276,15 @@ function reloj() {
 let ultimaCarga = 0;
 function cargar() {
   ultimaCarga = Date.now();
-  return fetch("datos.json", { cache: "no-store" }).then(r => r.json()).then(pintar).catch(e => {
+  const boton = document.getElementById("refrescar");
+  boton.classList.add("girando");
+  // ?t= para saltarse la caché de GitHub Pages (10 min); no-store solo evita la del navegador
+  return fetch("datos.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).then(pintar).catch(e => {
     document.getElementById("caidas").textContent = "⚠ No se pudo cargar datos.json (" + e.message + "). Se reintentará.";
-  });
+  }).finally(() => boton.classList.remove("girando"));
 }
+
+document.getElementById("refrescar").addEventListener("click", cargar);
 
 cargar();
 setInterval(cargar, RECARGA_MIN * 60000);

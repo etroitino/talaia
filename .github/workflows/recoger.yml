@@ -2,7 +2,7 @@ name: Recoger titulares
 
 on:
   schedule:
-    - cron: "*/15 * * * *"  # GitHub puede retrasarlo en horas punta
+    - cron: "7,22,37,52 * * * *"  # cada 15 min, fuera de los minutos en punto (los más saturados en GitHub)
   workflow_dispatch:
   push:
     branches: [main]
