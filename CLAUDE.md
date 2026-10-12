@@ -14,7 +14,7 @@ Panel personal de titulares de última hora por zona (Girona, Cataluña, España
 - Nunca copiar texto de los medios: solo titular, resumen propio y enlace al original. La entradilla no se guarda en `datos.json` (es público); la IA la lee del RSS al vuelo.
 - La clave de la IA solo en GitHub Secrets. Nunca en el código, la config ni la página.
 - Si una fuente falla, el programa sigue y la página avisa.
-- Etiqueta "muro" solo en artículos con muro comprobado uno a uno (métodos en `fuentes.yaml`), nunca por medio.
+- Etiqueta "premium" (campo `muro` en `datos.json`) solo en artículos que el medio declara de pago, comprobados uno a uno (métodos en `fuentes.yaml`), nunca por medio. Muchos tienen muro medido: se leen gratis unos cuantos al mes.
 - La orientación de cada medio la decide Enrique, no la IA.
 
 ## Fases (no empezar una sin cerrar la anterior)

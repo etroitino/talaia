@@ -202,9 +202,9 @@ function noticia(n, ahora) {
     el("span", { className: "medio", title: n.medio }, n.medio));
   if (ahora - new Date(n.hora) < NUEVO_MIN * 60000) meta.insertBefore(el("span", { className: "nuevo" }, "nuevo"), meta.children[1]);
   if (n.muro === true) {
-    const m = el("span", { className: "muro", title: "Artículo con muro de pago" });
+    const m = el("span", { className: "muro", title: "Artículo para suscriptores. Puede que puedas leer algunos gratis al mes." });
     m.innerHTML = CANDADO;
-    m.append("muro");
+    m.append("premium");
     meta.append(m);
   }
   const li = el("li", {}, meta, el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo));
