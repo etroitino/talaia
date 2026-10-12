@@ -5,6 +5,7 @@ Panel personal de titulares de última hora por zona (Girona, Cataluña, España
 ## Stack
 - Python (scripts con dependencias inline, se ejecutan con `uv run`).
 - GitHub Actions (`.github/workflows/recoger.yml`) cada 15 min: descarga el `datos.json` publicado, ejecuta `recoger.py` y publica en Pages. Sin commits de datos, sin servidor ni base de datos.
+- El horario de GitHub no es fiable: la tarea la lanza cron-job.org cada 15 min vía API (`workflow_dispatch`) con un token fine-grained (solo repo talaia, solo Actions: write). El `schedule` del workflow queda como respaldo.
 - GitHub Pages sirve `index.html` (un solo archivo HTML+CSS+JS) que lee `datos.json`.
 - Fuentes en `fuentes.yaml`; ajustes en `config.yaml` (desde la fase 3).
 
