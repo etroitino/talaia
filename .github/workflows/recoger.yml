@@ -39,6 +39,15 @@ jobs:
 
       - run: uv run recoger.py
 
+      # Modelo de embeddings (~240 MB): en caché para no descargarlo cada 15 min
+      - uses: actions/cache@v4
+        with:
+          path: .modelos
+          key: modelos-${{ hashFiles('agrupar.py') }}
+          restore-keys: modelos-
+
+      - run: uv run agrupar.py
+
       - name: Preparar sitio
         run: mkdir _site && cp index.html datos.json _site/
 

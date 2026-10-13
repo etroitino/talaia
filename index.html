@@ -75,6 +75,25 @@
     font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
   }
 
+  /* Grupos: otros medios y alternativas al premium */
+  .tambien { margin-top: .35rem; font: .7rem/1.4 var(--mono); color: var(--tenue); }
+  .tambien a { display: inline; font: inherit; color: var(--mundo); text-decoration: underline; text-underline-offset: 2px; }
+  details.grupo { margin-top: .35rem; }
+  details.grupo summary {
+    display: inline-flex; align-items: center; gap: .3rem; cursor: pointer; list-style: none;
+    padding: .12rem .45rem; border: 1px solid var(--borde-2); border-radius: 999px;
+    font: 600 .64rem/1.2 var(--mono); letter-spacing: .06em; color: var(--tenue);
+  }
+  details.grupo summary::-webkit-details-marker { display: none; }
+  details.grupo summary::before { content: "+"; color: var(--zona); }
+  details.grupo[open] summary::before { content: "−"; }
+  details.grupo summary:hover { color: var(--texto); border-color: var(--zona); }
+  details.grupo summary:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
+  details.grupo ul { list-style: none; margin: .45rem 0 0; padding: 0 0 0 .6rem; border-left: 1px solid var(--borde-2); }
+  details.grupo ul li { padding: .3rem 0 .35rem .2rem; border: 0; }
+  details.grupo ul li::before { display: none; }
+  details.grupo ul a { font-size: .82rem; font-weight: 400; color: var(--texto); opacity: .9; }
+
   #caidas {
     padding: .45rem 1.1rem; font: .75rem/1.3 var(--mono); color: var(--aviso);
     background: rgba(245, 184, 75, .06); border-bottom: 1px solid rgba(245, 184, 75, .25);
@@ -196,20 +215,58 @@ function activar(zona) {
   document.querySelectorAll("nav button").forEach(b => b.setAttribute("aria-selected", b.dataset.zona === zona));
 }
 
-function noticia(n, ahora) {
+const PREMIUM_TXT = "Artículo para suscriptores. Puede que puedas leer algunos gratis al mes.";
+const enlace = n => el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo);
+
+function noticia(n, ahora, otras = [], abiertos = new Set()) {
   const meta = el("div", { className: "meta" },
     el("time", { dateTime: n.hora }, hora(n.hora)),
     el("span", { className: "medio", title: n.medio }, n.medio));
   if (ahora - new Date(n.hora) < NUEVO_MIN * 60000) meta.insertBefore(el("span", { className: "nuevo" }, "nuevo"), meta.children[1]);
   if (n.muro === true) {
-    const m = el("span", { className: "muro", title: "Artículo para suscriptores. Puede que puedas leer algunos gratis al mes." });
+    const m = el("span", { className: "muro", title: PREMIUM_TXT });
     m.innerHTML = CANDADO;
     m.append("premium");
     meta.append(m);
   }
-  const li = el("li", {}, meta, el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo));
+  const li = el("li", {}, meta, enlace(n));
   li.style.setProperty("--zona", `var(--${n.zona})`);
+
+  // F6: si es premium y el mismo hecho está en medios sin muro, ofrecerlos (uno por medio)
+  if (n.muro === true) {
+    const libres = [...new Map(otras.filter(o => o.muro !== true && o.medio !== n.medio).map(o => [o.medio, o])).values()];
+    if (libres.length) {
+      const p = el("div", { className: "tambien" }, "Léelo también en: ");
+      libres.forEach((o, i) => p.append(i ? " · " : "", el("a", { href: o.enlace, target: "_blank", rel: "noopener noreferrer" }, o.medio)));
+      li.append(p);
+    }
+  }
+  // F2: el resto de medios que cuentan el mismo hecho
+  if (otras.length) {
+    const medios = new Set([n.medio, ...otras.map(o => o.medio)]).size;
+    const d = el("details", { className: "grupo", open: abiertos.has(n.grupo) },
+      el("summary", {}, medios > 1 ? `${medios} medios` : `${otras.length + 1} noticias`),
+      el("ul", {}, ...otras.map(o => {
+        const m = el("div", { className: "meta" }, el("time", { dateTime: o.hora }, hora(o.hora)), el("span", { className: "medio" }, o.medio));
+        if (o.muro === true) m.append(el("span", { className: "muro", title: PREMIUM_TXT }, "premium"));
+        return el("li", {}, m, enlace(o));
+      })));
+    d.dataset.grupo = n.grupo;
+    li.append(d);
+  }
   return li;
+}
+
+// Una entrada por grupo: la noticia más reciente (visibles ya viene de más nueva a más vieja) y el resto
+function porGrupo(noticias, todas) {
+  const vistos = new Set(), salida = [];
+  for (const n of noticias) {
+    const g = n.grupo || n.enlace;
+    if (vistos.has(g)) continue;
+    vistos.add(g);
+    salida.push([n, n.grupo ? todas.get(n.grupo).filter(o => o !== n) : []]);
+  }
+  return salida;
 }
 
 function pintar(datos) {
@@ -219,11 +276,15 @@ function pintar(datos) {
   const visibles = datos.noticias.filter(n =>
     zonas.has(n.zona) && /^https?:\/\//.test(n.enlace) && ahora - new Date(n.hora) < VENTANA_H * 3600000);
   document.getElementById("total").textContent = visibles.length;
+  const todas = new Map();
+  for (const n of visibles) if (n.grupo) (todas.get(n.grupo) || todas.set(n.grupo, []).get(n.grupo)).push(n);
+  // Desplegables abiertos: se mantienen abiertos tras una recarga
+  const abiertos = new Set([...document.querySelectorAll("details.grupo[open]")].map(d => d.dataset.grupo));
 
-  const recientes = visibles.filter(n => ahora - new Date(n.hora) < NUEVO_MIN * 60000).slice(0, MAX_ULTIMA);
+  const recientes = porGrupo(visibles.filter(n => ahora - new Date(n.hora) < NUEVO_MIN * 60000), todas).slice(0, MAX_ULTIMA);
   const ultima = document.getElementById("ultima");
   ultima.hidden = !recientes.length;
-  ultima.querySelector("ol").replaceChildren(...recientes.map(n => noticia(n, ahora)));
+  ultima.querySelector("ol").replaceChildren(...recientes.map(([n]) => noticia(n, ahora)));
   document.getElementById("caidas").textContent = datos.fuentes_caidas.length
     ? "⚠ Sin respuesta: " + datos.fuentes_caidas.map(c => c.medio).join(" · ") : "";
 
@@ -235,10 +296,10 @@ function pintar(datos) {
 
   const nuevos = new Set();
   for (const [zona, nombre] of ZONAS) {
-    const noticias = visibles.filter(n => n.zona === zona);
+    const noticias = porGrupo(visibles.filter(n => n.zona === zona), todas);
     const lista = el("ol");
-    for (const n of noticias) {
-      const li = noticia(n, ahora);
+    for (const [n, otras] of noticias) {
+      const li = noticia(n, ahora, otras, abiertos);
       if (vistos && !vistos.has(n.enlace)) li.classList.add("llega");
       nuevos.add(n.enlace);
       lista.append(li);

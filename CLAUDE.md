@@ -27,5 +27,7 @@ Panel personal de titulares de última hora por zona (Girona, Cataluña, España
 ## Local
 - `uv run comprobar_rss.py` — estado de cada RSS de `fuentes.yaml`.
 - `uv run recoger.py` — actualiza `datos.json`.
-- `uv run test_recoger.py` — prueba de repetidas, borrado a 7 días y horas.
+- `uv run agrupar.py` — F2: añade `grupo` a cada noticia de las últimas 48 h (modelo en `.modelos/`, ~240 MB).
+- `uv run agrupar.py --revisar` — genera `revisar_grupos.html` para revisar grupos y parejas dudosas a ojo.
+- `uv run test_recoger.py` y `uv run test_agrupar.py` — pruebas.
 - `python3 -m http.server` y abrir http://localhost:8000 — la página (abrir el archivo directamente no carga `datos.json`).
