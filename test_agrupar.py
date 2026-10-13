@@ -23,5 +23,12 @@ assert agrupar(vec(0, 39, 90, 180), ["Girona hoy", "Girona mañana", "Girona y m
 # Sin encadenar: B se une a A (cos 31° = 0,86), pero C, a 31° de B, queda lejos del centro de A+B
 assert agrupar(vec(0, 31, 62), ["x", "y", "z"]) == [0, 0, 2]
 
+# Repaso final: el orden de llegada parte un hecho en dos y se fusiona.
+# A (0°) y B (37°, cos 0,80) no comparten palabras: B abre grupo. C (30°) se va con B, el más parecido.
+# El centro de B+C (33,5°, cos 0,83 con A) comparte dos palabras raras con A, así que se fusionan.
+assert agrupar(vec(0, 37, 30), ["Fórmula Ruanda", "otra cosa", "Ruanda Fórmula"]) == [0, 0, 0]
+# ...con una sola palabra compartida no basta en el repaso (evita grupos que lo enganchan todo)
+assert agrupar(vec(0, 37, 30), ["Caos Kigali", "otra cosa", "llega caos"]) == [0, 1, 1]
+
 assert palabras("Lleó XIV, operat") == {"lleo", "operat"}
 print("OK")
