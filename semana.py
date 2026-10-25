@@ -27,6 +27,7 @@ from pathlib import Path
 import yaml
 
 import archivo
+from ia import PeticionGrande
 from archivo import TZ, escribir, hora_utc, limites, semana_anterior, semana_de
 from evidencias import canon, omision_valida, validar_articulo
 
@@ -157,6 +158,23 @@ def mensajes_articulo(conf, suceso, art, fuente, texto):
         {"role": "user", "content": f"Suceso de referencia: {suceso}\nMedio: {fuente['nombre']} (país de la sede: {fuente['pais']}); idioma: {art['language']}; "
                                     f"publicado: {art['published_at']}; titular: {art['title']}\nFormato:\n{FORMATO_ARTICULO}\n<articulo>\n{texto}\n</articulo>"},
     ]
+
+
+def compactar(material, conf_ia):
+    """Recorta el material de la síntesis hasta que quepa en el tope por petición, quitando primero lo
+    menos necesario (traducciones, actores, fuentes citadas, lenguaje). Nunca recorta las citas."""
+    limite = int((conf_ia["limites"]["tokens_peticion"] - conf_ia["max_tokens_respuesta"]) * conf_ia["caracteres_por_token"]
+                 / conf_ia["margen_estimacion"]) - len(SISTEMA) - 1500  # instrucciones de la síntesis
+    m = json.loads(json.dumps(material))
+    pasos = [lambda: [e.pop("traduccion", None) for e in m["evidencias"]],
+             lambda: [a.pop("actor_claims", None) for a in m["afirmaciones"]],
+             lambda: [a.pop("cited_source_claims", None) for a in m["afirmaciones"]],
+             lambda: [a.pop("language_claims", None) for a in m["afirmaciones"]]]
+    for paso in pasos:
+        if len(json.dumps(m, ensure_ascii=False)) <= limite:
+            break
+        paso()
+    return m
 
 
 def mensajes_sintesis(material):
@@ -345,14 +363,21 @@ def generar(semana, ahora, carpeta, conf, fuentes, opciones, lector=None, client
             modelo = conf["ia"]["modelo"]
         except Exception as e:
             nota_ia = str(e)
+    grandes = []
     for ev in eventos:
         if nota_ia is None:
             try:
                 analizar_suceso(ev, textos, por_id, conf, cliente)
+            except PeticionGrande as e:  # solo este suceso: los demás siguen
+                grandes.append(ev["title"][:60])
+                ev["analysis_status"] = "parcial" if ev["evidence"] else "sin_ia"
             except Exception as e:  # cuota, errores repetidos...: lo pendiente queda sin análisis y se dice
                 nota_ia = f"análisis interrumpido: {e}"
                 ev["analysis_status"] = "parcial" if ev["evidence"] else "sin_ia"
         ev["temporal_notes"] = notas_temporales(ev["articles"], por_id)
+    if grandes:
+        nota = "análisis incompleto en " + "; ".join(f"«{t}»" for t in grandes) + " (material demasiado grande para el tope por petición)"
+        nota_ia = f"{nota_ia}; {nota}" if nota_ia else nota
 
     cobertura = cobertura_fuentes(fuentes, arts, ejec, ini, corte, [a for ev in eventos for a in ev["articles"]])
     por_cob = {c["source_id"]: c for c in cobertura}
@@ -433,6 +458,7 @@ def analizar_suceso(ev, textos, por_id, conf, cliente):
                         "afirmaciones": [{"articulo": aid, **{k: r[k] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims", "figures")}}
                                          for aid, r in resultados.items()],
                         "hechos": [{"id": hid, "articulo": aid, "texto": h["texto"], "evidencias": h["evidence_ids"]} for hid, (h, aid) in hechos.items()]}
+            material = compactar(material, conf["ia"])
             clave = json.dumps(["sintesis", conf["ia"]["modelo"], PROMPT_VERSION, SCHEMA_VERSION, hashlib.sha256(json.dumps(material, sort_keys=True).encode()).hexdigest()])
             s = cliente.pedir(clave, mensajes_sintesis(material), lambda obj: validar_sintesis(obj, set(evid), set(hechos), set(arts)))
             if s["title"]:

@@ -24,6 +24,10 @@ class SinIA(Exception):
     """No se puede usar la IA (sin clave, modelo no disponible, sin cuota...). El motivo va en el mensaje."""
 
 
+class PeticionGrande(ValueError):
+    """Esta petición no cabe en el tope por petición. Solo afecta a ella: el resto puede seguir."""
+
+
 def ahora_utc():
     return datetime.now(timezone.utc).replace(microsecond=0)
 
@@ -100,7 +104,7 @@ class Cliente:
 
     def _reservar(self, estimado):
         if estimado > self.lim["tokens_peticion"]:
-            raise SinIA(f"petición estimada en {estimado} tokens, por encima del tope por petición")
+            raise PeticionGrande(f"petición estimada en {estimado} tokens, por encima del tope por petición")
         if self.peticiones >= self.lim["peticiones_ejecucion"]:
             raise SinIA("tope de peticiones de esta ejecución alcanzado")
         if self.gastado + estimado > self.lim["tokens_ejecucion"]:
