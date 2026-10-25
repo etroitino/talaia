@@ -4,356 +4,81 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Talaia</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23070a0f'/%3E%3Cg fill='none' stroke='%2338d6c4' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 21l1.6-11h4.8L16 21M7 10h10M9 10V6h6v4M12 6V3.5M6.5 21h11'/%3E%3Cpath d='M5 4.5a5.5 5.5 0 0 0 0 5M19 4.5a5.5 5.5 0 0 1 0 5'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --fondo: #070a0f; --panel: #0d121a; --panel-2: #111824; --borde: #1b2533; --borde-2: #263346;
-    --texto: #dce4ee; --tenue: #7e8ca0; --muy-tenue: #4f5d70;
-    --acento: #38d6c4; --aviso: #f5b84b; --peligro: #ff6b6b;
-    --girona: #ff8a5b; --cataluna: #f5d04b; --espana: #ff5d7a; --europa: #5b9dff; --mundo: #4be3a0;
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0; display: flex; flex-direction: column;
-    background: var(--fondo); color: var(--texto);
-    font: 14px/1.45 "IBM Plex Sans", system-ui, sans-serif;
-    background-image: linear-gradient(var(--borde) 1px, transparent 1px), linear-gradient(90deg, var(--borde) 1px, transparent 1px);
-    background-size: 48px 48px; background-position: -1px -1px;
-  }
-
-  /* Cabecera */
-  header {
-    display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
-    padding: .7rem 1.1rem; background: rgba(7, 10, 15, .92); border-bottom: 1px solid var(--borde-2);
-  }
-  .marca { display: flex; align-items: center; gap: .6rem; }
-  .marca svg { color: var(--acento); }
-  h1 { margin: 0; font: 600 .95rem/1 var(--mono); letter-spacing: .35em; }
-  .directo {
-    display: inline-flex; align-items: center; gap: .45rem; padding: .2rem .55rem;
-    border: 1px solid var(--borde-2); border-radius: 999px;
-    font: 600 .68rem/1 var(--mono); letter-spacing: .12em; color: var(--acento);
-  }
-  .directo::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; animation: latido 2s infinite; }
-  .directo.viejo { color: var(--aviso); }
-  .estado { display: flex; gap: 1.25rem; margin-left: auto; font: .78rem/1 var(--mono); color: var(--tenue); }
-  .estado b { color: var(--texto); font-weight: 600; }
-  #reloj { color: var(--texto); font-size: .95rem; letter-spacing: .05em; }
-
-  .refrescar {
-    display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; padding: 0;
-    background: none; border: 1px solid var(--borde-2); border-radius: 6px; color: var(--tenue); cursor: pointer;
-  }
-  .refrescar:hover { color: var(--acento); border-color: var(--acento); }
-  .refrescar:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
-  .refrescar.girando svg { animation: girar .8s linear infinite; }
-
-  /* Última hora */
-  #ultima { display: flex; align-items: stretch; border-bottom: 1px solid var(--borde-2); background: rgba(13, 18, 26, .95); }
-  #ultima[hidden] { display: none; }
-  #ultima > h2 {
-    display: flex; align-items: center; gap: .45rem; flex: none; margin: 0; padding: 0 1rem;
-    font: 600 .68rem/1 var(--mono); letter-spacing: .14em; color: var(--peligro); white-space: nowrap;
-    border-right: 1px solid var(--borde-2); background: rgba(255, 107, 107, .07);
-  }
-  #ultima > h2::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; animation: latido 1.2s infinite; }
-  #ultima ol { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--borde-2) transparent; }
-  #ultima li { flex: 0 0 19rem; padding: .55rem .9rem; border-bottom: 0; border-right: 1px solid var(--borde); }
-  #ultima li::before { opacity: 1; top: .55rem; bottom: .55rem; }
-  #ultima .medio { color: var(--zona); }
-  #ultima a { font-size: .85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-  .nuevo {
-    padding: .1rem .35rem; border-radius: 3px; flex: none;
-    background: color-mix(in srgb, var(--acento) 16%, transparent); color: var(--acento);
-    font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-  }
-
-  /* Grupos: otros medios y alternativas al premium */
-  .tambien { margin-top: .35rem; font: .7rem/1.4 var(--mono); color: var(--tenue); }
-  .tambien a { display: inline; font: inherit; color: var(--mundo); text-decoration: underline; text-underline-offset: 2px; }
-  details.grupo { margin-top: .35rem; }
-  details.grupo summary {
-    display: inline-flex; align-items: center; gap: .3rem; cursor: pointer; list-style: none;
-    padding: .12rem .45rem; border: 1px solid var(--borde-2); border-radius: 999px;
-    font: 600 .64rem/1.2 var(--mono); letter-spacing: .06em; color: var(--tenue);
-  }
-  details.grupo summary::-webkit-details-marker { display: none; }
-  details.grupo summary::before { content: "+"; color: var(--zona); }
-  details.grupo[open] summary::before { content: "−"; }
-  details.grupo summary:hover { color: var(--texto); border-color: var(--zona); }
-  details.grupo summary:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
-  details.grupo ul { list-style: none; margin: .45rem 0 0; padding: 0 0 0 .6rem; border-left: 1px solid var(--borde-2); }
-  details.grupo ul li { padding: .3rem 0 .35rem .2rem; border: 0; }
-  details.grupo ul li::before { display: none; }
-  details.grupo ul a { font-size: .82rem; font-weight: 400; color: var(--texto); opacity: .9; }
-
-  #caidas {
-    padding: .45rem 1.1rem; font: .75rem/1.3 var(--mono); color: var(--aviso);
-    background: rgba(245, 184, 75, .06); border-bottom: 1px solid rgba(245, 184, 75, .25);
-  }
-  #caidas:empty { display: none; }
-
-  /* Columnas */
-  nav { display: none; }
-  main { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .6rem; padding: .6rem; }
-  .col {
-    --zona: var(--acento);
-    display: flex; flex-direction: column; min-height: 0;
-    background: var(--panel); border: 1px solid var(--borde); border-top: 2px solid var(--zona); border-radius: 6px;
-    box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.8);
-  }
-  .col h2 {
-    display: flex; align-items: center; justify-content: space-between; margin: 0;
-    padding: .6rem .85rem; border-bottom: 1px solid var(--borde);
-    font: 600 .72rem/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--zona);
-    background: linear-gradient(180deg, color-mix(in srgb, var(--zona) 9%, transparent), transparent);
-  }
-  .cuenta { color: var(--tenue); letter-spacing: .05em; font-weight: 400; }
-  .col ol { list-style: none; margin: 0; padding: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--borde-2) transparent; }
-
-  li { position: relative; padding: .6rem .85rem .65rem; border-bottom: 1px solid var(--borde); transition: background .15s; }
-  li:hover { background: var(--panel-2); }
-  li::before { content: ""; position: absolute; left: 0; top: .7rem; bottom: .7rem; width: 2px; background: var(--zona); opacity: 0; transition: opacity .15s; }
-  li:hover::before, li:focus-within::before { opacity: 1; }
-  li.llega { animation: llega 6s ease-out; }
-  .meta { display: flex; align-items: center; gap: .5rem; margin-bottom: .2rem; font: .7rem/1.2 var(--mono); color: var(--tenue); }
-  .meta time { color: var(--texto); opacity: .75; }
-  .medio { text-transform: uppercase; letter-spacing: .06em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .muro {
-    display: inline-flex; align-items: center; gap: .25rem; margin-left: auto; flex: none;
-    padding: .12rem .4rem; border: 1px solid rgba(245, 184, 75, .45); border-radius: 3px;
-    color: var(--aviso); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
-  }
-  li a { display: block; color: var(--texto); text-decoration: none; font-weight: 500; }
-  li a:hover { color: #fff; }
-  li a:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 2px; }
-  .vacio { padding: 1.5rem .85rem; color: var(--muy-tenue); font: .75rem var(--mono); }
-
-  @keyframes girar { to { transform: rotate(360deg); } }
-  @keyframes latido { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
-  @keyframes llega { from { background: color-mix(in srgb, var(--acento) 18%, transparent); } to { background: transparent; } }
-  @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
-
-  @media (max-width: 1100px) { .estado .opcional { display: none; } }
-  @media (max-width: 700px) {
-    header { gap: .75rem; padding: .6rem .9rem; }
-    .estado { gap: .9rem; }
-    #ultima > h2 { padding: 0 .7rem; }
-    #ultima > h2 span { display: none; }
-    #ultima li { flex-basis: 15rem; }
-    nav { display: flex; overflow-x: auto; background: var(--panel); border-bottom: 1px solid var(--borde-2); scrollbar-width: none; }
-    nav button {
-      flex: 1; padding: .7rem .5rem; background: none; border: 0; border-bottom: 2px solid transparent;
-      color: var(--tenue); font: 600 .7rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap;
-    }
-    nav button[aria-selected="true"] { color: var(--zona); border-bottom-color: var(--zona); }
-    main { display: block; padding: 0; overflow-y: auto; }
-    .col { display: none; border: 0; border-radius: 0; box-shadow: none; }
-    .col.activa { display: flex; }
-    .col h2 { display: none; }
-    .col ol { overflow: visible; }
-  }
-</style>
+<link rel="stylesheet" href="estilo.css">
+<script src="app.js" defer></script>
+<script src="semana.js" defer></script>
 </head>
 <body>
-<header>
+<a class="saltar" href="#contenido" id="saltar">Saltar al contenido</a>
+<header class="cabecera">
   <div class="marca">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M8 22l1.6-12h4.8L16 22M7 10h10M9 10V6h6v4M12 6V3M9.2 15.5h5.6M6 22h12"/><path d="M5 4a6 6 0 0 0 0 6M19 4a6 6 0 0 1 0 6"/>
     </svg>
     <h1>TALAIA</h1>
   </div>
-  <span class="directo" id="directo">EN DIRECTO</span>
+  <nav class="secciones" aria-label="Secciones">
+    <a href="#/directo" data-seccion="directo">Directo</a>
+    <a href="#/semana" data-seccion="semana">Semana</a>
+    <a href="#/fuentes" data-seccion="fuentes">Fuentes</a>
+  </nav>
   <div class="estado">
-    <span class="opcional"><b id="total">–</b> titulares</span>
-    <span class="opcional">act. <b id="hace">–</b></span>
-    <span id="reloj" aria-label="Hora de Madrid">--:--</span>
-    <button class="refrescar" id="refrescar" type="button" title="Recargar titulares" aria-label="Recargar titulares">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+    <span class="directo" id="directo">EN DIRECTO</span>
+    <span><b id="total">–</b> titulares</span>
+    <span>act. <b id="hace">–</b></span>
+    <span id="reloj" class="reloj" aria-hidden="true">--:--</span>
+    <button class="refrescar" id="refrescar" type="button" aria-label="Recargar titulares" title="Recargar titulares">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
     </button>
   </div>
 </header>
-<section id="ultima" aria-label="Última hora" hidden><h2>ÚLTIMA<span>HORA</span></h2><ol></ol></section>
-<div id="caidas" role="status"></div>
-<nav role="tablist" aria-label="Zonas"></nav>
-<main></main>
-<script>
-const ZONAS = [["girona", "Girona"], ["cataluna", "Cataluña"], ["espana", "España"], ["europa", "Europa"], ["mundo", "Mundo"]];
-const TZ = "Europe/Madrid";
-const RECARGA_MIN = 5;          // datos.json se regenera cada ~15 min
-const VIEJO_MIN = 45;           // más de esto sin actualizar = aviso
-const VENTANA_H = 24;           // las columnas solo muestran las últimas 24 h (datos.json guarda 7 días)
-const NUEVO_MIN = 60;           // "nuevo" y franja de última hora
-const MAX_ULTIMA = 15;
-const CANDADO = '<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
-
-let activa = "girona", actualizado = null, vistos = null;
-
-const fecha = d => d.toLocaleDateString("es-ES", { timeZone: TZ });
-function hora(iso) {
-  const d = new Date(iso);
-  const hm = d.toLocaleTimeString("es-ES", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
-  return fecha(d) === fecha(new Date()) ? hm : d.toLocaleDateString("es-ES", { timeZone: TZ, day: "2-digit", month: "2-digit" }) + " " + hm;
-}
-
-function el(tag, props = {}, ...hijos) {
-  const e = Object.assign(document.createElement(tag), props);
-  e.append(...hijos);
-  return e;
-}
-
-function activar(zona) {
-  activa = zona;
-  document.querySelectorAll(".col").forEach(c => c.classList.toggle("activa", c.dataset.zona === zona));
-  document.querySelectorAll("nav button").forEach(b => b.setAttribute("aria-selected", b.dataset.zona === zona));
-}
-
-const PREMIUM_TXT = "Artículo para suscriptores. Puede que puedas leer algunos gratis al mes.";
-const enlace = n => el("a", { href: n.enlace, target: "_blank", rel: "noopener noreferrer" }, n.titulo);
-
-function noticia(n, ahora, otras = [], abiertos = new Set()) {
-  const meta = el("div", { className: "meta" },
-    el("time", { dateTime: n.hora }, hora(n.hora)),
-    el("span", { className: "medio", title: n.medio }, n.medio));
-  if (ahora - new Date(n.hora) < NUEVO_MIN * 60000) meta.insertBefore(el("span", { className: "nuevo" }, "nuevo"), meta.children[1]);
-  if (n.muro === true) {
-    const m = el("span", { className: "muro", title: PREMIUM_TXT });
-    m.innerHTML = CANDADO;
-    m.append("premium");
-    meta.append(m);
-  }
-  const li = el("li", {}, meta, enlace(n));
-  li.style.setProperty("--zona", `var(--${n.zona})`);
-
-  // F6: si es premium y el mismo hecho está en medios sin muro, ofrecerlos (uno por medio)
-  if (n.muro === true) {
-    const libres = [...new Map(otras.filter(o => o.muro !== true && o.medio !== n.medio).map(o => [o.medio, o])).values()];
-    if (libres.length) {
-      const p = el("div", { className: "tambien" }, "Léelo también en: ");
-      libres.forEach((o, i) => p.append(i ? " · " : "", el("a", { href: o.enlace, target: "_blank", rel: "noopener noreferrer" }, o.medio)));
-      li.append(p);
-    }
-  }
-  // F2: el resto de medios que cuentan el mismo hecho
-  if (otras.length) {
-    const medios = new Set([n.medio, ...otras.map(o => o.medio)]).size;
-    const d = el("details", { className: "grupo", open: abiertos.has(n.grupo) },
-      el("summary", {}, medios > 1 ? `${medios} medios` : `${otras.length + 1} noticias`),
-      el("ul", {}, ...otras.map(o => {
-        const m = el("div", { className: "meta" }, el("time", { dateTime: o.hora }, hora(o.hora)), el("span", { className: "medio" }, o.medio));
-        if (o.muro === true) m.append(el("span", { className: "muro", title: PREMIUM_TXT }, "premium"));
-        return el("li", {}, m, enlace(o));
-      })));
-    d.dataset.grupo = n.grupo;
-    li.append(d);
-  }
-  return li;
-}
-
-// Una entrada por grupo: la noticia más reciente (visibles ya viene de más nueva a más vieja) y el resto
-function porGrupo(noticias, todas) {
-  const vistos = new Set(), salida = [];
-  for (const n of noticias) {
-    const g = n.grupo || n.enlace;
-    if (vistos.has(g)) continue;
-    vistos.add(g);
-    salida.push([n, n.grupo ? todas.get(n.grupo).filter(o => o !== n) : []]);
-  }
-  return salida;
-}
-
-function pintar(datos) {
-  actualizado = new Date(datos.actualizado);
-  const ahora = new Date();
-  const zonas = new Set(ZONAS.map(z => z[0]));
-  const visibles = datos.noticias.filter(n =>
-    zonas.has(n.zona) && /^https?:\/\//.test(n.enlace) && ahora - new Date(n.hora) < VENTANA_H * 3600000);
-  document.getElementById("total").textContent = visibles.length;
-  const todas = new Map();
-  for (const n of visibles) if (n.grupo) (todas.get(n.grupo) || todas.set(n.grupo, []).get(n.grupo)).push(n);
-  // Desplegables abiertos: se mantienen abiertos tras una recarga
-  const abiertos = new Set([...document.querySelectorAll("details.grupo[open]")].map(d => d.dataset.grupo));
-
-  const recientes = porGrupo(visibles.filter(n => ahora - new Date(n.hora) < NUEVO_MIN * 60000), todas).slice(0, MAX_ULTIMA);
-  const ultima = document.getElementById("ultima");
-  ultima.hidden = !recientes.length;
-  ultima.querySelector("ol").replaceChildren(...recientes.map(([n]) => noticia(n, ahora)));
-  document.getElementById("caidas").textContent = datos.fuentes_caidas.length
-    ? "⚠ Sin respuesta: " + datos.fuentes_caidas.map(c => c.medio).join(" · ") : "";
-
-  // Conservar el scroll de cada columna entre recargas
-  const scroll = {};
-  document.querySelectorAll(".col ol").forEach(ol => scroll[ol.parentElement.dataset.zona] = ol.scrollTop);
-  const nav = document.querySelector("nav"), main = document.querySelector("main");
-  nav.replaceChildren(); main.replaceChildren();
-
-  const nuevos = new Set();
-  for (const [zona, nombre] of ZONAS) {
-    const noticias = porGrupo(visibles.filter(n => n.zona === zona), todas);
-    const lista = el("ol");
-    for (const [n, otras] of noticias) {
-      const li = noticia(n, ahora, otras, abiertos);
-      if (vistos && !vistos.has(n.enlace)) li.classList.add("llega");
-      nuevos.add(n.enlace);
-      lista.append(li);
-    }
-    if (!noticias.length) lista.append(el("li", { className: "vacio" }, `Sin titulares en las últimas ${VENTANA_H} h`));
-
-    const col = el("section", { className: "col" },
-      el("h2", {}, nombre, el("span", { className: "cuenta" }, String(noticias.length))), lista);
-    col.dataset.zona = zona;
-    col.style.setProperty("--zona", `var(--${zona})`);
-    main.append(col);
-    lista.scrollTop = scroll[zona] || 0;
-
-    const b = el("button", { role: "tab", onclick: () => activar(zona) }, nombre);
-    b.dataset.zona = zona;
-    b.style.setProperty("--zona", `var(--${zona})`);
-    nav.append(b);
-  }
-  vistos = nuevos;
-  activar(activa);
-  reloj();
-}
-
-function reloj() {
-  const ahora = new Date();
-  document.getElementById("reloj").textContent = ahora.toLocaleTimeString("es-ES", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
-  if (!actualizado) return;
-  const min = Math.max(0, Math.round((ahora - actualizado) / 60000));
-  document.getElementById("hace").textContent = min < 1 ? "ahora" : min < 60 ? `hace ${min} min` : `hace ${Math.floor(min / 60)} h`;
-  const directo = document.getElementById("directo");
-  directo.classList.toggle("viejo", min > VIEJO_MIN);
-  directo.textContent = min > VIEJO_MIN ? "DATOS ANTIGUOS" : "EN DIRECTO";
-}
-
-let ultimaCarga = 0;
-function cargar() {
-  ultimaCarga = Date.now();
-  const boton = document.getElementById("refrescar");
-  boton.classList.add("girando");
-  // ?t= para saltarse la caché de GitHub Pages (10 min); no-store solo evita la del navegador
-  return fetch("datos.json?t=" + Date.now(), { cache: "no-store" }).then(r => r.json()).then(pintar).catch(e => {
-    document.getElementById("caidas").textContent = "⚠ No se pudo cargar datos.json (" + e.message + "). Se reintentará.";
-  }).finally(() => boton.classList.remove("girando"));
-}
-
-document.getElementById("refrescar").addEventListener("click", cargar);
-
-cargar();
-setInterval(cargar, RECARGA_MIN * 60000);
-setInterval(reloj, 15000);
-// Al volver a la pestaña tras un rato, recargar sin esperar al siguiente turno
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden && Date.now() - ultimaCarga > 60000) cargar();
-});
-</script>
+<div id="avisos" class="avisos"></div>
+<div id="anuncio" class="solo-lector" aria-live="polite"></div>
+<main id="contenido" tabindex="-1">
+  <section id="vista-directo" class="vista" aria-labelledby="titulo-directo" hidden>
+    <h2 id="titulo-directo" class="solo-lector" tabindex="-1">Directo</h2>
+    <nav class="zonas" aria-label="Zonas y vistas de Directo">
+      <ul id="zonas"></ul>
+    </nav>
+    <form class="filtros" id="filtros" role="search" onsubmit="return false">
+      <label class="buscar"><span class="solo-lector">Buscar en titulares y medios</span>
+        <input type="search" id="q" placeholder="Buscar titulares o medios" autocomplete="off">
+      </label>
+      <details class="medios" id="filtro-medios">
+        <summary>Medios <span id="n-medios"></span></summary>
+        <fieldset><legend class="solo-lector">Mostrar solo estos medios</legend><div id="lista-medios"></div></fieldset>
+      </details>
+      <label class="casilla"><input type="checkbox" id="sin-premium"> Ocultar premium</label>
+      <label class="orden">Orden
+        <select id="orden">
+          <option value="recientes">Recientes</option>
+          <option value="contrastadas">Más contrastadas</option>
+          <option value="diversidad">Diversidad de medios</option>
+        </select>
+      </label>
+      <p class="resumen-filtros" id="resumen-filtros" aria-live="off"></p>
+      <button type="button" class="limpiar" id="limpiar" hidden>Limpiar</button>
+    </form>
+    <section class="destacadas" id="destacadas" aria-labelledby="titulo-destacadas" hidden>
+      <div class="destacadas-cab">
+        <h3 id="titulo-destacadas">Más cubiertas</h3>
+        <p class="nota">Hechos contados por más medios distintos en 24 h. No mide importancia.</p>
+        <button type="button" class="plegar" id="plegar-destacadas" aria-expanded="true" aria-controls="lista-destacadas">Plegar</button>
+      </div>
+      <ol id="lista-destacadas" data-lista="destacadas"></ol>
+    </section>
+    <div class="columnas" id="columnas"></div>
+    <button type="button" class="nuevas" id="nuevas" hidden></button>
+  </section>
+  <section id="vista-semana" class="vista" aria-labelledby="titulo-semana" hidden></section>
+  <section id="vista-fuentes" class="vista" aria-labelledby="titulo-fuentes" hidden></section>
+  <noscript><p class="vacio">Talaia necesita JavaScript para mostrar los titulares.</p></noscript>
+</main>
 </body>
 </html>
