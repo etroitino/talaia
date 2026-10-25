@@ -110,6 +110,10 @@ class GroqFalso:
             f = self.fallos.pop(0)
             if f == 429:
                 return 429, {"retry-after": "1"}, b"{}"
+            if f == "cortado":
+                return 400, {}, json.dumps({"error": {"message": "Failed to generate JSON", "code": "json_validate_failed", "failed_generation": '{"evidencias": ['}}).encode()
+            if f == "malformada":
+                return 400, {}, json.dumps({"error": {"message": "parámetro desconocido", "type": "invalid_request_error"}}).encode()
             if f == "basura":
                 return 200, {}, json.dumps({"choices": [{"message": {"content": "esto no es JSON"}}], "usage": {"total_tokens": 50}}).encode()
         msgs = json.loads(cuerpo)["messages"]

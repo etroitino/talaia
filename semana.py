@@ -27,6 +27,7 @@ from pathlib import Path
 import yaml
 
 import archivo
+from ia import PeticionGrande
 from archivo import TZ, escribir, hora_utc, limites, semana_anterior, semana_de
 from evidencias import canon, omision_valida, validar_articulo
 
@@ -157,6 +158,23 @@ def mensajes_articulo(conf, suceso, art, fuente, texto):
         {"role": "user", "content": f"Suceso de referencia: {suceso}\nMedio: {fuente['nombre']} (país de la sede: {fuente['pais']}); idioma: {art['language']}; "
                                     f"publicado: {art['published_at']}; titular: {art['title']}\nFormato:\n{FORMATO_ARTICULO}\n<articulo>\n{texto}\n</articulo>"},
     ]
+
+
+def compactar(material, conf_ia):
+    """Recorta el material de la síntesis hasta que quepa en el tope por petición, quitando primero lo
+    menos necesario (traducciones, actores, fuentes citadas, lenguaje). Nunca recorta las citas."""
+    limite = int((conf_ia["limites"]["tokens_peticion"] - conf_ia["max_tokens_respuesta"]) * conf_ia["caracteres_por_token"]
+                 / conf_ia["margen_estimacion"]) - len(SISTEMA) - 1500  # instrucciones de la síntesis
+    m = json.loads(json.dumps(material))
+    pasos = [lambda: [e.pop("traduccion", None) for e in m["evidencias"]],
+             lambda: [a.pop("actor_claims", None) for a in m["afirmaciones"]],
+             lambda: [a.pop("cited_source_claims", None) for a in m["afirmaciones"]],
+             lambda: [a.pop("language_claims", None) for a in m["afirmaciones"]]]
+    for paso in pasos:
+        if len(json.dumps(m, ensure_ascii=False)) <= limite:
+            break
+        paso()
+    return m
 
 
 def mensajes_sintesis(material):
@@ -345,14 +363,21 @@ def generar(semana, ahora, carpeta, conf, fuentes, opciones, lector=None, client
             modelo = conf["ia"]["modelo"]
         except Exception as e:
             nota_ia = str(e)
+    grandes = []
     for ev in eventos:
         if nota_ia is None:
             try:
                 analizar_suceso(ev, textos, por_id, conf, cliente)
+            except PeticionGrande as e:  # solo este suceso: los demás siguen
+                grandes.append(ev["title"][:60])
+                ev["analysis_status"] = "parcial" if ev["evidence"] else "sin_ia"
             except Exception as e:  # cuota, errores repetidos...: lo pendiente queda sin análisis y se dice
                 nota_ia = f"análisis interrumpido: {e}"
                 ev["analysis_status"] = "parcial" if ev["evidence"] else "sin_ia"
         ev["temporal_notes"] = notas_temporales(ev["articles"], por_id)
+    if grandes:
+        nota = "análisis incompleto en " + "; ".join(f"«{t}»" for t in grandes) + " (material demasiado grande para el tope por petición)"
+        nota_ia = f"{nota_ia}; {nota}" if nota_ia else nota
 
     cobertura = cobertura_fuentes(fuentes, arts, ejec, ini, corte, [a for ev in eventos for a in ev["articles"]])
     por_cob = {c["source_id"]: c for c in cobertura}
@@ -424,48 +449,51 @@ def analizar_suceso(ev, textos, por_id, conf, cliente):
         if rs:
             ev["comparisons"].append({"source_id": sid, "article_ids": [a["id"] for a in ev["articles"] if a["source_id"] == sid and a["id"] in resultados],
                                       **{k: [c for r in rs for c in r[k]] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims")}})
-    if len(resultados) >= 2:
-        material = {"articulos": [{"id": a["id"], "medio": por_id[a["source_id"]]["nombre"], "pais": por_id[a["source_id"]]["pais"],
-                                   "publicado": a["published_at"], "genero": a["genre"], "acceso": a["access_status"], "titular": a["title"]}
-                                  for a in ev["articles"] if a["id"] in resultados],
-                    "evidencias": [{"id": e["id"], "articulo": e["article_id"], "cita": e["exact_quote"], "traduccion": e["translation_es"]} for e in evid.values()],
-                    "afirmaciones": [{"articulo": aid, **{k: r[k] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims", "figures")}}
-                                     for aid, r in resultados.items()],
-                    "hechos": [{"id": hid, "articulo": aid, "texto": h["texto"], "evidencias": h["evidence_ids"]} for hid, (h, aid) in hechos.items()]}
-        clave = json.dumps(["sintesis", conf["ia"]["modelo"], PROMPT_VERSION, SCHEMA_VERSION, hashlib.sha256(json.dumps(material, sort_keys=True).encode()).hexdigest()])
-        s = cliente.pedir(clave, mensajes_sintesis(material), lambda obj: validar_sintesis(obj, set(evid), set(hechos), set(arts)))
-        if s["title"]:
-            ev.update(title=s["title"], title_is_headline=False)
-            ev.pop("title_source_id", None)
-        ev["summary_claims"] = [{"id": f"{ev['id']}-c{i + 1}", **c} for i, c in enumerate(s["summary"])]
-        ev["highlight_claims"] = [{"id": f"{ev['id']}-l{i + 1}", **c} for i, c in enumerate(s["highlights"])]
-        for o in s["omissions"]:
-            h, aid = hechos[o["hecho"]]
-            comparados = [b for b in o["articulos"] if omision_valida(h, arts[aid], arts[b], textos.get(b))]
-            if comparados:
-                ev["omissions"].append({"id": f"{ev['id']}-o{len(ev['omissions']) + 1}", "fact": h["texto"], "supporting_evidence_ids": h["evidence_ids"],
-                                        "compared_article_ids": comparados,
-                                        "scope": f"Texto completo extraído de los artículos comparados, publicados después de {arts[aid]['published_at']}; "
-                                                 f"no contienen: {', '.join(h['claves'])}."})
-        for f in s["figures"]:
-            valores = [{"evidence_id": i, "value": cifras_por_ev[i], "article_id": evid[i]["article_id"],
-                        "published_at": arts[evid[i]["article_id"]]["published_at"]} for i in f["evidence_ids"] if i in cifras_por_ev]
-            if len({canon(v["value"]) for v in valores}) >= 2 and len({arts[v["article_id"]]["source_id"] for v in valores}) >= 2:
-                ev["figure_differences"].append({"id": f"{ev['id']}-f{len(ev['figure_differences']) + 1}", "topic": f["tema"], "values": valores})
-    # Solo se publican las evidencias referenciadas por alguna afirmación visible
-    usadas = set()
-    for c in ev["summary_claims"] + ev["highlight_claims"]:
-        usadas |= set(c["evidence_ids"])
-    for comp in ev["comparisons"]:
-        for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims"):
-            for c in comp[k]:
-                usadas |= set(c["evidence_ids"])
-    for o in ev["omissions"]:
-        usadas |= set(o["supporting_evidence_ids"])
-    for f in ev["figure_differences"]:
-        usadas |= {v["evidence_id"] for v in f["values"]}
-    ev["evidence"] = [e for e in evid.values() if e["id"] in usadas]
-    ev["analysis_status"] = "completo" if resultados and len(resultados) == len(pendientes) and len(resultados) >= 2 else "parcial" if resultados else "sin_ia"
+    try:
+        if len(resultados) >= 2:
+            material = {"articulos": [{"id": a["id"], "medio": por_id[a["source_id"]]["nombre"], "pais": por_id[a["source_id"]]["pais"],
+                                       "publicado": a["published_at"], "genero": a["genre"], "acceso": a["access_status"], "titular": a["title"]}
+                                      for a in ev["articles"] if a["id"] in resultados],
+                        "evidencias": [{"id": e["id"], "articulo": e["article_id"], "cita": e["exact_quote"], "traduccion": e["translation_es"]} for e in evid.values()],
+                        "afirmaciones": [{"articulo": aid, **{k: r[k] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims", "figures")}}
+                                         for aid, r in resultados.items()],
+                        "hechos": [{"id": hid, "articulo": aid, "texto": h["texto"], "evidencias": h["evidence_ids"]} for hid, (h, aid) in hechos.items()]}
+            material = compactar(material, conf["ia"])
+            clave = json.dumps(["sintesis", conf["ia"]["modelo"], PROMPT_VERSION, SCHEMA_VERSION, hashlib.sha256(json.dumps(material, sort_keys=True).encode()).hexdigest()])
+            s = cliente.pedir(clave, mensajes_sintesis(material), lambda obj: validar_sintesis(obj, set(evid), set(hechos), set(arts)))
+            if s["title"]:
+                ev.update(title=s["title"], title_is_headline=False)
+                ev.pop("title_source_id", None)
+            ev["summary_claims"] = [{"id": f"{ev['id']}-c{i + 1}", **c} for i, c in enumerate(s["summary"])]
+            ev["highlight_claims"] = [{"id": f"{ev['id']}-l{i + 1}", **c} for i, c in enumerate(s["highlights"])]
+            for o in s["omissions"]:
+                h, aid = hechos[o["hecho"]]
+                comparados = [b for b in o["articulos"] if omision_valida(h, arts[aid], arts[b], textos.get(b))]
+                if comparados:
+                    ev["omissions"].append({"id": f"{ev['id']}-o{len(ev['omissions']) + 1}", "fact": h["texto"], "supporting_evidence_ids": h["evidence_ids"],
+                                            "compared_article_ids": comparados,
+                                            "scope": f"Texto completo extraído de los artículos comparados, publicados después de {arts[aid]['published_at']}; "
+                                                     f"no contienen: {', '.join(h['claves'])}."})
+            for f in s["figures"]:
+                valores = [{"evidence_id": i, "value": cifras_por_ev[i], "article_id": evid[i]["article_id"],
+                            "published_at": arts[evid[i]["article_id"]]["published_at"]} for i in f["evidence_ids"] if i in cifras_por_ev]
+                if len({canon(v["value"]) for v in valores}) >= 2 and len({arts[v["article_id"]]["source_id"] for v in valores}) >= 2:
+                    ev["figure_differences"].append({"id": f"{ev['id']}-f{len(ev['figure_differences']) + 1}", "topic": f["tema"], "values": valores})
+    finally:  # aunque la síntesis falle, el suceso queda coherente: cada afirmación con su evidencia
+        # Solo se publican las evidencias referenciadas por alguna afirmación visible
+        usadas = set()
+        for c in ev["summary_claims"] + ev["highlight_claims"]:
+            usadas |= set(c["evidence_ids"])
+        for comp in ev["comparisons"]:
+            for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims"):
+                for c in comp[k]:
+                    usadas |= set(c["evidence_ids"])
+        for o in ev["omissions"]:
+            usadas |= set(o["supporting_evidence_ids"])
+        for f in ev["figure_differences"]:
+            usadas |= {v["evidence_id"] for v in f["values"]}
+        ev["evidence"] = [e for e in evid.values() if e["id"] in usadas]
+        ev["analysis_status"] = "completo" if resultados and len(resultados) == len(pendientes) and len(resultados) >= 2 else "parcial" if resultados else "sin_ia"
 
 
 def _validar_o_reparar(obj, art, texto, lim):
@@ -694,8 +722,8 @@ def main(argv=None):
     a = p.parse_args(argv)
     conf, fuentes = cargar_config()
     ahora = datetime.fromisoformat(a.as_of).astimezone(timezone.utc) if a.as_of else datetime.now(timezone.utc).replace(microsecond=0)
-    if not a.local and not a.dry_run:
-        archivo.preparar(a.archivo)
+    if not a.local:
+        archivo.preparar(a.archivo)  # solo lee: con --dry-run tampoco se sube nada
     if a.auto:
         tareas = tareas_auto(ahora, a.archivo, conf, fuentes)
     elif a.week:
@@ -734,6 +762,10 @@ def main(argv=None):
             inf = generar(semana, ahora, a.archivo, conf, fuentes, {"no_llm": a.no_llm}, lector=lector, cliente=cliente, vectorizar=vectores)
             validar_informe(inf)
             resumen = f"{semana}: {inf['status']}, {len(inf['events'])} sucesos, análisis {inf['analysis_status']}" + (f" ({inf['analysis_note']})" if inf.get("analysis_note") else "")
+            if inf.get("token_usage"):
+                u = inf["token_usage"]
+                resumen += f" · IA: {u['tokens']} tokens, {u['requests']} peticiones, {u['cache_hits']} de caché"
+                resumen += f" · sucesos analizados: {sum(e['analysis_status'] == 'completo' for e in inf['events'])}/{len(inf['events'])}"
             if a.dry_run:
                 if a.salida:
                     guardar(a.salida, inf)

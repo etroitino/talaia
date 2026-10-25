@@ -8,11 +8,13 @@ ia:
   # Topes propios, más bajos que el plan gratuito. Comprobar los límites reales de la cuenta en
   # https://console.groq.com/settings/limits: cambian y no se dan por buenos los de la documentación antigua.
   limites:
-    tokens_peticion: 7000    # entrada estimada + max_tokens_respuesta
+    tokens_peticion: 9000    # entrada estimada + max_tokens_respuesta
     tokens_ejecucion: 60000
     tokens_24h: 90000        # ventana móvil de 24 h, compartida por todas las ejecuciones (uso/ en la rama archivo)
     peticiones_ejecucion: 60
-  max_tokens_respuesta: 1500
+  max_tokens_respuesta: 3000  # en modelos de razonamiento incluye el razonamiento: si se queda corto, el JSON sale cortado
+  parametros:                # se añaden tal cual a cada petición (dependen del modelo; ver docs de Groq)
+    reasoning_effort: low    # gpt-oss: menos razonamiento = menos tokens y menos respuestas cortadas
   # Estimación previa: caracteres / caracteres_por_token * margen (aproximada; el consumo real
   # lo da la API en "usage" y es el que se registra).
   caracteres_por_token: 3
