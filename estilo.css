@@ -194,12 +194,12 @@ details.grupo ul a.titular { font-size: .9rem; font-weight: 400; }
 .etiqueta.provisional, .etiqueta.parcial { border-color: var(--aviso); color: var(--aviso); }
 .etiqueta.cerrado { border-color: var(--mundo); color: var(--mundo); }
 .etiqueta.no_disponible, .etiqueta.sintetico { border-color: var(--peligro); color: #ffb3b3; }
-.datos-informe { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .5rem 1rem; margin: .6rem 0; font: .8rem/1.4 var(--mono); }
+.datos-informe { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .5rem 1rem; margin: .6rem 0; font: .8rem/1.4 var(--mono); }
 .datos-informe dt { color: var(--tenue); }
 .datos-informe dd { margin: 0; color: var(--texto); }
 .advertencias { border-color: rgba(245, 184, 75, .5); }
 .advertencias li { color: #ffd88f; }
-.tabla-scroll { overflow-x: auto; max-width: 100%; border: 1px solid var(--borde); border-radius: 6px; background: var(--panel); }
+.tabla-scroll { position: relative; overflow-x: auto; max-width: 100%; border: 1px solid var(--borde); border-radius: 6px; background: var(--panel); }
 .tabla-scroll:focus-visible { outline: 2px solid var(--acento); }
 table { border-collapse: collapse; font: .8rem/1.3 var(--mono); }
 th, td { padding: .4rem .55rem; border-bottom: 1px solid var(--borde); text-align: left; vertical-align: top; }
@@ -211,7 +211,9 @@ th[scope="row"] { min-width: 14rem; max-width: 22rem; font-family: "IBM Plex San
 .celda.sin_coincidencias { color: var(--tenue); }
 .celda.no_evaluable { color: #ffb3b3; }
 .leyenda { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; margin: .5rem 0; padding: 0; list-style: none; font: .78rem var(--mono); }
+.leyenda li { white-space: normal; }
 .selector-semana { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .6rem; font: .8rem var(--mono); }
+.selector-semana select { max-width: 100%; }
 .selector-semana select, .boton { min-height: var(--tactil); padding: 0 .7rem; background: var(--panel); border: 1px solid var(--borde-2); border-radius: 6px; color: var(--texto); text-decoration: none; display: inline-flex; align-items: center; font: .8rem var(--mono); }
 .boton:hover { border-color: var(--acento); color: var(--acento); }
 .suceso h4 a { color: var(--texto); }
@@ -237,8 +239,8 @@ th[scope="row"] { min-width: 14rem; max-width: 22rem; font-family: "IBM Plex San
 @media (min-width: 701px) {
   html, body { height: 100%; }
   body { display: flex; flex-direction: column; }
-  main { flex: 1; min-height: 0; overflow: auto; }
-  #vista-directo { display: flex; flex-direction: column; height: 100%; }
+  main { flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; }
+  #vista-directo { display: flex; flex-direction: column; flex: 1; min-height: 0; }
   .columnas { flex: 1; min-height: 0; }
 }
 @media (max-width: 1100px) and (min-width: 701px) { .reloj { display: none; } }

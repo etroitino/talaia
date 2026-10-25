@@ -36,6 +36,10 @@ CAMPOS_FUENTE = ("id", "nombre", "zona", "pais", "idioma")
 def directo(datos, fuentes, semana_idx):
     """Contenido de ultimas24h.json. Las horas futuras ya vienen recortadas por recoger.py; aquí se
     descarta además lo que quede fuera de [actualizado - 24 h, actualizado + 5 min]."""
+    por_nombre = {f["nombre"]: f["id"] for f in fuentes}  # datos de versiones anteriores, sin "fuente"
+    for n in datos["noticias"]:
+        n.setdefault("fuente", por_nombre.get(n.get("medio")))
+        n.setdefault("id", hashlib.sha1(n["enlace"].encode()).hexdigest()[:12])
     fin = hora_utc(datos["actualizado"])
     ini = fin - timedelta(hours=HORAS_DIRECTO)
     noticias = [{k: n[k] for k in CAMPOS_DIRECTO if n.get(k) is not None}

@@ -94,7 +94,7 @@ const Semana = {
     const paises = new Set([...ids].map(id => fuentes.get(id)?.country).filter(Boolean));
     const [anio, sem] = inf.week_id.split("-W");
     const selector = el("select", { id: "elegir-semana", onchange: e => { location.hash = `#/semana/${e.target.value}`; } },
-      idx.informes.map(i => el("option", { value: i.week_id, selected: i.week_id === inf.week_id }, `${i.week_id} · ${ESTADO_INFORME[i.status] || i.status}`)));
+      idx.informes.map(i => el("option", { value: i.week_id, selected: i.week_id === inf.week_id }, `${i.week_id} · ${i.status.replace("_", " ")}`)));
     const avisos = [
       ...(inf.synthetic ? ["DEMOSTRACIÓN SINTÉTICA: datos inventados para probar la página; no son noticias reales."] : []),
       ...(entrada?.ultimo_error ? [`La última generación falló el ${fechaHora(entrada.ultimo_error.at)} (${entrada.ultimo_error.message}). Se muestra el último informe válido.`] : []),
@@ -257,7 +257,8 @@ function tarjetaSuceso(inf, ev, fuentes) {
   return el("li", { className: "tarjeta suceso" },
     el("h4", {}, el("a", { href: `#/semana/${inf.week_id}/${ev.id}` }, ev.title)),
     el("p", { className: "cifras-suceso" }, `${ev.country_ids.length} países · ${ev.source_ids.length} medios: ${ev.source_ids.map(id => fuentes.get(id)?.name || id).join(", ")}`),
-    ev.summary_claims.length ? el("p", {}, ev.summary_claims.map(c => c.text).join(" ")) : el("p", { className: "vacio" }, ESTADO_ANALISIS[ev.analysis_status]),
+    ev.summary_claims.length ? el("p", {}, ev.summary_claims.map(c => c.text).join(" "))
+      : el("p", { className: "vacio" }, ev.analysis_status === "sin_ia" ? ESTADO_ANALISIS.sin_ia : "Sin resumen: ninguna frase tenía evidencia suficiente."),
     ev.highlight_claims.length ? el("p", {}, el("b", {}, "Lo más llamativo: "), ev.highlight_claims[0].text) : null);
 }
 

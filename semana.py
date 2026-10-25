@@ -667,7 +667,8 @@ def tareas_auto(ahora, carpeta, conf, fuentes):
     m = ahora.astimezone(TZ)
     t = []
     previa = idx.get(anterior)
-    capturada = (Path(carpeta) / "capturas" / f"{anterior}.jsonl").exists()
+    # solo semanas con recogidas registradas: una semana anterior a las capturas no se cierra sola (sí con --week)
+    capturada = bool(archivo.ejecuciones_semana(carpeta, anterior)["horas"])
     if ahora >= ini_actual + timedelta(minutes=30) and (previa or capturada):
         if not previa or previa["status"] not in ESTADOS_CERRADOS:
             t.append((anterior, "cierre"))

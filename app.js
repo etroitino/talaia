@@ -25,7 +25,7 @@ function el(tag, props = {}, ...hijos) {
     else if (k.startsWith("aria-") || ["role", "for", "tabindex", "scope", "lang"].includes(k)) e.setAttribute(k, v);
     else e[k] = v;
   }
-  e.append(...hijos.flat().filter(h => h != null && h !== false));
+  e.append(...hijos.flat(Infinity).filter(h => h != null && h !== false));
   return e;
 }
 const almacen = {  // localStorage puede estar bloqueado: nunca debe romper la página
@@ -329,7 +329,6 @@ function pintarDirecto() {
   $("plegar-destacadas").setAttribute("aria-expanded", String(!plegada));
   $("plegar-destacadas").textContent = plegada ? `Mostrar (${dest.length})` : "Plegar";
 
-  $("total").textContent = D.noticias.filter(n => NOMBRE_ZONA[n.zona] && n.zona !== "verificadores").length;
   restaurarPosicion(anclas);
 }
 
@@ -453,7 +452,12 @@ function aplicarPendiente(arriba = false) {
   aplicar(estado.pendiente);
   if (arriba) for (const l of document.querySelectorAll("#vista-directo [data-lista]")) contenedorScroll(l).scrollTop = 0;
 }
-function pintarCabeceraDatos(D) { estado.actualizado = new Date(D.actualizado); reloj(); pintarAvisos(D); }
+function pintarCabeceraDatos(D) {
+  estado.actualizado = new Date(D.actualizado);
+  $("total").textContent = D.noticias.filter(n => NOMBRE_ZONA[n.zona] && n.zona !== "verificadores").length;
+  reloj();
+  pintarAvisos(D);
+}
 
 function pintarAvisos(D = estado.pendiente || estado.D) {
   const avisos = [];

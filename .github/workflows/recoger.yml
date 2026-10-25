@@ -1,5 +1,8 @@
 name: Recoger titulares
 
+# La lanza cron-job.org cada 15 min (workflow_dispatch); el schedule es solo respaldo.
+# Es el ÚNICO workflow que publica Pages: monta el sitio entero (Directo + semana/ de la rama archivo)
+# con montar_sitio.py, así ninguna publicación borra lo de otra.
 on:
   schedule:
     - cron: "7,22,37,52 * * * *"  # cada 15 min, fuera de los minutos en punto (los más saturados en GitHub)
@@ -8,10 +11,12 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write   # solo para subir capturas a la rama archivo (nunca a main)
   pages: write
   id-token: write
+  actions: write    # para lanzar semana.yml cuando toca
 
+# Toda la ejecución (leer, fusionar y publicar) va en serie: dos recogidas nunca se pisan
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -19,7 +24,7 @@ concurrency:
 jobs:
   recoger:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.publicar.outputs.page_url }}
@@ -27,14 +32,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
 
-      # Sin commits: se parte del datos.json ya publicado (el ?t= evita la caché de Pages)
+      # Sin commits en main: se parte del datos.json publicado (el ?t= evita la caché de Pages).
+      # Si no está, se reconstruye desde las capturas de la rama archivo.
       - name: Descargar datos publicados
         run: |
           url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/datos.json?t=$(date +%s)"
           if curl -fsSL "$url" -o datos.json && python3 -c "import json; json.load(open('datos.json'))['noticias']"; then
             echo "Partiendo de $(python3 -c "import json; print(len(json.load(open('datos.json'))['noticias']))") noticias"
           else
-            echo "Sin datos previos válidos: se empieza de cero"; rm -f datos.json
+            rm -f datos.json
+            uv run archivo.py restaurar datos.json || echo "Sin datos previos válidos: se empieza de cero"
           fi
 
       - run: uv run recoger.py
@@ -48,8 +55,15 @@ jobs:
 
       - run: uv run agrupar.py
 
-      - name: Preparar sitio
-        run: mkdir _site && cp index.html datos.json _site/
+      # Capturas incrementales de metadatos (sin textos) por semana ISO. Si falla, Directo se publica igual.
+      - name: Guardar capturas en la rama archivo
+        continue-on-error: true
+        run: uv run archivo.py capturar datos.json
+
+      # Si la rama archivo no está disponible, montar_sitio.py copia semana/ de lo publicado;
+      # y no publica si lo publicado es más reciente que estos datos.
+      - name: Montar sitio
+        run: uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -57,3 +71,13 @@ jobs:
 
       - id: publicar
         uses: actions/deploy-pages@v4
+
+      # Calendario semanal en hora de Madrid (semana.py decide; nada de desfases UTC fijos)
+      - name: ¿Toca el informe semanal?
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if uv run --with pyyaml python semana.py --auto --solo-comprobar --local; then
+            gh workflow run semana.yml --ref "$GITHUB_REF_NAME"
+          fi
