@@ -694,8 +694,8 @@ def main(argv=None):
     a = p.parse_args(argv)
     conf, fuentes = cargar_config()
     ahora = datetime.fromisoformat(a.as_of).astimezone(timezone.utc) if a.as_of else datetime.now(timezone.utc).replace(microsecond=0)
-    if not a.local and not a.dry_run:
-        archivo.preparar(a.archivo)
+    if not a.local:
+        archivo.preparar(a.archivo)  # solo lee: con --dry-run tampoco se sube nada
     if a.auto:
         tareas = tareas_auto(ahora, a.archivo, conf, fuentes)
     elif a.week:

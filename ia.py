@@ -37,6 +37,15 @@ def _transporte(metodo, url, cabeceras, cuerpo, timeout):
         return e.code, dict(e.headers or {}), e.read()
 
 
+def _error(cuerpo):
+    """{"message", "code", "failed_generation"} del error de la API (nunca contiene la clave)."""
+    try:
+        e = json.loads(cuerpo).get("error") or {}
+        return e if isinstance(e, dict) else {"message": str(e)}
+    except (ValueError, AttributeError):
+        return {"message": cuerpo[:200].decode("utf-8", "replace") if isinstance(cuerpo, bytes) else str(cuerpo)[:200]}
+
+
 class Uso:
     """Registro compartido de tokens (ventana móvil). Se guarda en uso/ia.json de la rama archivo."""
 
@@ -119,7 +128,8 @@ class Cliente:
                 self.dormir(espera)
             self.ultima = time.monotonic()
             cuerpo = json.dumps({"model": self.conf["modelo"], "messages": mensajes, "temperature": 0,
-                                 "max_tokens": self.conf["max_tokens_respuesta"], "response_format": {"type": "json_object"}}).encode()
+                                 "max_tokens": self.conf["max_tokens_respuesta"], "response_format": {"type": "json_object"},
+                                 **(self.conf.get("parametros") or {})}).encode()
             try:
                 estado, cab, resp = self.transporte("POST", self.conf["url"] + "/chat/completions", self._cabeceras(), cuerpo, self.conf["timeout_s"])
             except (urllib.error.URLError, TimeoutError, OSError) as e:
@@ -127,12 +137,15 @@ class Cliente:
             self.peticiones += 1
             cab = {k.lower(): v for k, v in cab.items()}
             self.limites_api.update({k: v for k, v in cab.items() if k.startswith("x-ratelimit-")})
-            if estado == 200:
-                datos = json.loads(resp)
+            error = _error(resp) if estado != 200 else {}
+            if estado == 200 or error.get("code") == "json_validate_failed":
+                # json_validate_failed: el modelo generó algo que no es JSON (p. ej. cortado). Ha gastado tokens
+                # (sin "usage": se anota lo estimado) y se trata igual que un JSON inválido: se pide reparar.
+                datos = json.loads(resp) if estado == 200 else {}
                 usados = (datos.get("usage") or {}).get("total_tokens") or estimado  # sin dato: se anota lo estimado
                 self.gastado += usados
                 self.uso.anotar(self.reloj(), usados, self.ejecucion)
-                contenido = datos["choices"][0]["message"].get("content") or ""
+                contenido = datos["choices"][0]["message"].get("content") or "" if datos else (error.get("failed_generation") or "")
                 try:
                     obj = json.loads(contenido)
                 except ValueError:
@@ -159,6 +172,8 @@ class Cliente:
                 continue
             if estado in (401, 403):
                 raise SinIA(f"clave rechazada por Groq (HTTP {estado})")
+            if 400 <= estado < 500:  # petición rechazada: repetirla igual no sirve
+                raise ValueError(f"Groq rechazó la petición (HTTP {estado}: {error.get('message', '')[:200]})")
             if intentos > self.conf["reintentos"]:
-                raise ValueError(f"Groq no responde bien (HTTP {estado})")
+                raise ValueError(f"Groq no responde bien (HTTP {estado}: {error.get('message', '')[:200]})")
             self.dormir(2 ** intentos)

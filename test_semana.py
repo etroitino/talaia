@@ -153,6 +153,15 @@ with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as trabaj
     groq = GroqFalso(fallos=[429, "basura"])
     inf = semana.generar("2026-W43", lunes, d, conf, fuentes, {}, lector=lector, cliente=Cliente(conf["ia"], trabajo, "t5", transporte=groq, dormir=lambda s: None), vectorizar=vectorizar)
     assert inf["events"][0]["analysis_status"] == "completo", inf["analysis_note"]
+    # 11b) JSON cortado (400 json_validate_failed): se repara y se anota el gasto; otro 400: se para con el motivo de Groq
+    with tempfile.TemporaryDirectory() as t5:
+        cli = Cliente(conf["ia"], t5, "t5b", transporte=GroqFalso(fallos=["cortado"]), dormir=lambda s: None)
+        inf = semana.generar("2026-W43", lunes, d, conf, fuentes, {}, lector=lector, cliente=cli, vectorizar=vectorizar)
+        assert inf["events"][0]["analysis_status"] == "completo" and cli.uso.en_24h(datetime.now(U)) > 0, inf["analysis_note"]
+    with tempfile.TemporaryDirectory() as t5:
+        groq = GroqFalso(fallos=["malformada"])
+        inf = semana.generar("2026-W43", lunes, d, conf, fuentes, {}, lector=lector, cliente=Cliente(conf["ia"], t5, "t5c", transporte=groq, dormir=lambda s: None), vectorizar=vectorizar)
+        assert "parámetro desconocido" in inf["analysis_note"] and groq.peticiones == 1, inf["analysis_note"]
     # 12) Presupuesto de 24 h: se para antes del límite y lo pendiente queda marcado
     c2 = copy.deepcopy(conf); c2["ia"]["limites"]["tokens_24h"] = 4000
     with tempfile.TemporaryDirectory() as t2:
