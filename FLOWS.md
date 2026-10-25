@@ -24,6 +24,37 @@ Estado observado antes de esta evolución (rama `main`, commit `e52a4fe`), con l
 
 Consola sin errores en ambos anchos.
 
-## Después
+## Después (rama `semana-y-directo`)
 
-Ver la sección «Recorridos actuales» al final de este archivo (se rellena con las pruebas de navegador).
+Comprobado con `uv run test_navegador.py` (datos sintéticos, 375/390/768/1440 px) y con la misma
+muestra publicada del 25/10 07:45 UTC para las medidas.
+
+| Recorrido | Resultado |
+| --- | --- |
+| Zonas (escritorio) | Vista general con las cinco columnas; «General», zonas, Miradas y Verificadores como enlaces con `aria-current`. `#/directo/espana` resalta la columna. |
+| Zonas (móvil) | Barra desplazable con nombres completos y conteo; solo se pinta la zona visible. Recargar mantiene `#/directo/espana`; Atrás/Adelante funcionan. |
+| Miradas / Verificadores | Vista propia de ancho completo con nota explicativa; Miradas no aparece en Mundo. |
+| Desplegar grupo | «N medios» de 44 px en móvil; abierto tras la recarga; con «Comparar enfoques» solo si un artículo exacto está en un informe. |
+| Premium | «Ocultar premium» quita los premium y, si el grupo tiene alternativa abierta, la muestra como representante. |
+| Recarga | Solo se pide `version.json` (100 B); si cambia, `ultimas24h.json?v=…`. Si se lee abajo, aviso «N noticias nuevas · ver» sin mover nada; se incorporan al volver arriba o al pulsar. Recarga manual: misma entrada visible a la misma altura (±2 px), en `main`/columna o documento. |
+| Foco | Se conserva en el mismo elemento lógico tras recargar; los cambios de ruta llevan el foco al título y se anuncian en `aria-live`. |
+| Filtros | Búsqueda sin acentos, medios, ocultar premium, orden Recientes / Más contrastadas / Diversidad, «Cargar más»; conteos sobre el total filtrado; «Limpiar». |
+| Más cubiertas | Hasta 5 grupos sin repetir, ordenados por medios distintos; plegada en móvil. |
+| Semana | Portada con intervalo, estado, corte, cobertura, advertencias arriba, matriz con scroll propio, sucesos, silencios y notas. Detalle con filtro por medio y comparación de dos, guardados en la URL; «Volver» recupera la posición. |
+| Fuentes | Estado por fuente (incluido «responde pero sin entradas recientes»), titulares excluidos y borrado del historial local. |
+| Enlaces externos | `target=_blank rel="noopener noreferrer"` y solo http(s). |
+| Accesibilidad | «Saltar al contenido», axe-core sin violaciones en 10 vistas (390/1440), metadatos ≥12 px y titulares 16 px en móvil, `prefers-reduced-motion`. Falta probar con un lector de pantalla real. |
+| Errores | Consola sin errores ni peticiones fallidas; sin `version.json`, aviso legible y la copia anterior sigue a la vista. |
+
+### Medidas con la misma muestra (datos.json publicado el 25/10/2026 07:45 UTC)
+
+| | Antes | Después |
+| --- | --- | --- |
+| Descarga en cada recarga sin cambios | 3 431 770 B (879 178 gzip) | 100 B (`version.json`) |
+| Descarga cuando hay cambios | 3 431 770 B | 271 710 B (79 449 gzip) |
+| DOM inicial 1440 px | 7 459 nodos | 3 894 nodos |
+| DOM inicial 390 px | 7 459 nodos | 1 230 nodos |
+| Scroll móvil tras recargar | 1500 → 0 | se conserva |
+| Scroll de columna tras recargar | 800 → 0 | se conserva |
+
+Caché real de Pages: `Cache-Control: max-age=600` con ETag/Last-Modified. `no-store` solo afecta al navegador, no al CDN: por eso `version.json` lleva `?t=` y `ultimas24h.json` va versionado en la URL.
