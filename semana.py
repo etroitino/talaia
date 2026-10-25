@@ -762,6 +762,10 @@ def main(argv=None):
             inf = generar(semana, ahora, a.archivo, conf, fuentes, {"no_llm": a.no_llm}, lector=lector, cliente=cliente, vectorizar=vectores)
             validar_informe(inf)
             resumen = f"{semana}: {inf['status']}, {len(inf['events'])} sucesos, análisis {inf['analysis_status']}" + (f" ({inf['analysis_note']})" if inf.get("analysis_note") else "")
+            if inf.get("token_usage"):
+                u = inf["token_usage"]
+                resumen += f" · IA: {u['tokens']} tokens, {u['requests']} peticiones, {u['cache_hits']} de caché"
+                resumen += f" · sucesos analizados: {sum(e['analysis_status'] == 'completo' for e in inf['events'])}/{len(inf['events'])}"
             if a.dry_run:
                 if a.salida:
                     guardar(a.salida, inf)
