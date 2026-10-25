@@ -162,6 +162,12 @@ with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as trabaj
         groq = GroqFalso(fallos=["malformada"])
         inf = semana.generar("2026-W43", lunes, d, conf, fuentes, {}, lector=lector, cliente=Cliente(conf["ia"], t5, "t5c", transporte=groq, dormir=lambda s: None), vectorizar=vectorizar)
         assert "parámetro desconocido" in inf["analysis_note"] and groq.peticiones == 1, inf["analysis_note"]
+    # 11c) La síntesis falla tras analizar los artículos: el informe sigue siendo válido (cada afirmación con su evidencia)
+    with tempfile.TemporaryDirectory() as t5:
+        groq = GroqFalso(fallos=[None, None, None, "malformada"])  # 3 artículos con texto y luego la síntesis
+        inf = semana.generar("2026-W43", lunes, d, conf, fuentes, {}, lector=lector, cliente=Cliente(conf["ia"], t5, "t5d", transporte=groq, dormir=lambda s: None), vectorizar=vectorizar)
+        semana.validar_informe(inf)
+        assert inf["events"][0]["analysis_status"] == "parcial" and inf["events"][0]["evidence"] and "parámetro desconocido" in inf["analysis_note"]
     # 12) Presupuesto de 24 h: se para antes del límite y lo pendiente queda marcado
     c2 = copy.deepcopy(conf); c2["ia"]["limites"]["tokens_24h"] = 4000
     with tempfile.TemporaryDirectory() as t2:

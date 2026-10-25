@@ -424,48 +424,50 @@ def analizar_suceso(ev, textos, por_id, conf, cliente):
         if rs:
             ev["comparisons"].append({"source_id": sid, "article_ids": [a["id"] for a in ev["articles"] if a["source_id"] == sid and a["id"] in resultados],
                                       **{k: [c for r in rs for c in r[k]] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims")}})
-    if len(resultados) >= 2:
-        material = {"articulos": [{"id": a["id"], "medio": por_id[a["source_id"]]["nombre"], "pais": por_id[a["source_id"]]["pais"],
-                                   "publicado": a["published_at"], "genero": a["genre"], "acceso": a["access_status"], "titular": a["title"]}
-                                  for a in ev["articles"] if a["id"] in resultados],
-                    "evidencias": [{"id": e["id"], "articulo": e["article_id"], "cita": e["exact_quote"], "traduccion": e["translation_es"]} for e in evid.values()],
-                    "afirmaciones": [{"articulo": aid, **{k: r[k] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims", "figures")}}
-                                     for aid, r in resultados.items()],
-                    "hechos": [{"id": hid, "articulo": aid, "texto": h["texto"], "evidencias": h["evidence_ids"]} for hid, (h, aid) in hechos.items()]}
-        clave = json.dumps(["sintesis", conf["ia"]["modelo"], PROMPT_VERSION, SCHEMA_VERSION, hashlib.sha256(json.dumps(material, sort_keys=True).encode()).hexdigest()])
-        s = cliente.pedir(clave, mensajes_sintesis(material), lambda obj: validar_sintesis(obj, set(evid), set(hechos), set(arts)))
-        if s["title"]:
-            ev.update(title=s["title"], title_is_headline=False)
-            ev.pop("title_source_id", None)
-        ev["summary_claims"] = [{"id": f"{ev['id']}-c{i + 1}", **c} for i, c in enumerate(s["summary"])]
-        ev["highlight_claims"] = [{"id": f"{ev['id']}-l{i + 1}", **c} for i, c in enumerate(s["highlights"])]
-        for o in s["omissions"]:
-            h, aid = hechos[o["hecho"]]
-            comparados = [b for b in o["articulos"] if omision_valida(h, arts[aid], arts[b], textos.get(b))]
-            if comparados:
-                ev["omissions"].append({"id": f"{ev['id']}-o{len(ev['omissions']) + 1}", "fact": h["texto"], "supporting_evidence_ids": h["evidence_ids"],
-                                        "compared_article_ids": comparados,
-                                        "scope": f"Texto completo extraído de los artículos comparados, publicados después de {arts[aid]['published_at']}; "
-                                                 f"no contienen: {', '.join(h['claves'])}."})
-        for f in s["figures"]:
-            valores = [{"evidence_id": i, "value": cifras_por_ev[i], "article_id": evid[i]["article_id"],
-                        "published_at": arts[evid[i]["article_id"]]["published_at"]} for i in f["evidence_ids"] if i in cifras_por_ev]
-            if len({canon(v["value"]) for v in valores}) >= 2 and len({arts[v["article_id"]]["source_id"] for v in valores}) >= 2:
-                ev["figure_differences"].append({"id": f"{ev['id']}-f{len(ev['figure_differences']) + 1}", "topic": f["tema"], "values": valores})
-    # Solo se publican las evidencias referenciadas por alguna afirmación visible
-    usadas = set()
-    for c in ev["summary_claims"] + ev["highlight_claims"]:
-        usadas |= set(c["evidence_ids"])
-    for comp in ev["comparisons"]:
-        for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims"):
-            for c in comp[k]:
-                usadas |= set(c["evidence_ids"])
-    for o in ev["omissions"]:
-        usadas |= set(o["supporting_evidence_ids"])
-    for f in ev["figure_differences"]:
-        usadas |= {v["evidence_id"] for v in f["values"]}
-    ev["evidence"] = [e for e in evid.values() if e["id"] in usadas]
-    ev["analysis_status"] = "completo" if resultados and len(resultados) == len(pendientes) and len(resultados) >= 2 else "parcial" if resultados else "sin_ia"
+    try:
+        if len(resultados) >= 2:
+            material = {"articulos": [{"id": a["id"], "medio": por_id[a["source_id"]]["nombre"], "pais": por_id[a["source_id"]]["pais"],
+                                       "publicado": a["published_at"], "genero": a["genre"], "acceso": a["access_status"], "titular": a["title"]}
+                                      for a in ev["articles"] if a["id"] in resultados],
+                        "evidencias": [{"id": e["id"], "articulo": e["article_id"], "cita": e["exact_quote"], "traduccion": e["translation_es"]} for e in evid.values()],
+                        "afirmaciones": [{"articulo": aid, **{k: r[k] for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims", "figures")}}
+                                         for aid, r in resultados.items()],
+                        "hechos": [{"id": hid, "articulo": aid, "texto": h["texto"], "evidencias": h["evidence_ids"]} for hid, (h, aid) in hechos.items()]}
+            clave = json.dumps(["sintesis", conf["ia"]["modelo"], PROMPT_VERSION, SCHEMA_VERSION, hashlib.sha256(json.dumps(material, sort_keys=True).encode()).hexdigest()])
+            s = cliente.pedir(clave, mensajes_sintesis(material), lambda obj: validar_sintesis(obj, set(evid), set(hechos), set(arts)))
+            if s["title"]:
+                ev.update(title=s["title"], title_is_headline=False)
+                ev.pop("title_source_id", None)
+            ev["summary_claims"] = [{"id": f"{ev['id']}-c{i + 1}", **c} for i, c in enumerate(s["summary"])]
+            ev["highlight_claims"] = [{"id": f"{ev['id']}-l{i + 1}", **c} for i, c in enumerate(s["highlights"])]
+            for o in s["omissions"]:
+                h, aid = hechos[o["hecho"]]
+                comparados = [b for b in o["articulos"] if omision_valida(h, arts[aid], arts[b], textos.get(b))]
+                if comparados:
+                    ev["omissions"].append({"id": f"{ev['id']}-o{len(ev['omissions']) + 1}", "fact": h["texto"], "supporting_evidence_ids": h["evidence_ids"],
+                                            "compared_article_ids": comparados,
+                                            "scope": f"Texto completo extraído de los artículos comparados, publicados después de {arts[aid]['published_at']}; "
+                                                     f"no contienen: {', '.join(h['claves'])}."})
+            for f in s["figures"]:
+                valores = [{"evidence_id": i, "value": cifras_por_ev[i], "article_id": evid[i]["article_id"],
+                            "published_at": arts[evid[i]["article_id"]]["published_at"]} for i in f["evidence_ids"] if i in cifras_por_ev]
+                if len({canon(v["value"]) for v in valores}) >= 2 and len({arts[v["article_id"]]["source_id"] for v in valores}) >= 2:
+                    ev["figure_differences"].append({"id": f"{ev['id']}-f{len(ev['figure_differences']) + 1}", "topic": f["tema"], "values": valores})
+    finally:  # aunque la síntesis falle, el suceso queda coherente: cada afirmación con su evidencia
+        # Solo se publican las evidencias referenciadas por alguna afirmación visible
+        usadas = set()
+        for c in ev["summary_claims"] + ev["highlight_claims"]:
+            usadas |= set(c["evidence_ids"])
+        for comp in ev["comparisons"]:
+            for k in ("framing_claims", "language_claims", "actor_claims", "cited_source_claims"):
+                for c in comp[k]:
+                    usadas |= set(c["evidence_ids"])
+        for o in ev["omissions"]:
+            usadas |= set(o["supporting_evidence_ids"])
+        for f in ev["figure_differences"]:
+            usadas |= {v["evidence_id"] for v in f["values"]}
+        ev["evidence"] = [e for e in evid.values() if e["id"] in usadas]
+        ev["analysis_status"] = "completo" if resultados and len(resultados) == len(pendientes) and len(resultados) >= 2 else "parcial" if resultados else "sin_ia"
 
 
 def _validar_o_reparar(obj, art, texto, lim):
