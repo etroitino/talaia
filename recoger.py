@@ -4,6 +4,7 @@
 # ///
 """F1: lee los RSS de fuentes.yaml y actualiza datos.json (sin repetidas, últimos 7 días)."""
 import calendar
+import hashlib
 import json
 import re
 import sys
@@ -19,6 +20,7 @@ import yaml
 UA = "Mozilla/5.0 (Talaia; lector RSS personal) feedparser"
 UA_NAVEGADOR = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
 DIAS = 7
+MAX_EXCLUIDAS = 200  # ejemplos de titulares excluidos que se guardan para revisar las reglas
 
 
 def descargar(fuente):
@@ -39,9 +41,17 @@ def limpiar_enlace(url):
     return urlunsplit((p.scheme, p.netloc, p.path, urlencode(q), ""))
 
 
-def a_noticias(fuente, feed, ahora):
+def id_articulo(enlace):
+    return hashlib.sha1(enlace.encode()).hexdigest()[:12]
+
+
+def regla_excluir(fuente, titulo):
+    """Primera regla de `excluir` que casa con el titular completo, o None."""
+    return next((r for r in fuente.get("excluir") or [] if re.fullmatch(r, titulo, re.I)), None)
+
+
+def a_noticias(fuente, feed, ahora, excluidas=None):
     # ponytail: no se guarda la entradilla — datos.json es público y sería copiar texto del medio.
-    # La fase 3 la leerá del RSS al vuelo para la IA.
     noticias = []
     for e in feed.entries:
         enlace, titulo = e.get("link", "").strip(), " ".join(e.get("title", "").split())
@@ -49,6 +59,10 @@ def a_noticias(fuente, feed, ahora):
         if not enlace.startswith(("http://", "https://")) or "://" in enlace[8:] or not titulo:
             continue
         enlace = limpiar_enlace(enlace)
+        if regla := regla_excluir(fuente, titulo):
+            if excluidas is not None:
+                excluidas.append({"fuente": fuente.get("id"), "titulo": titulo, "regla": regla, "visto": ahora.isoformat(timespec="seconds")})
+            continue
         metodo = str(fuente.get("muro", "no"))
         if metodo.startswith("rss:"):
             muro = any(t.get("term") == metodo[4:] for t in e.get("tags", []))
@@ -56,14 +70,20 @@ def a_noticias(fuente, feed, ahora):
             muro = False if metodo == "no" else None  # None: hay que mirar la página del artículo
         t = e.get("published_parsed") or e.get("updated_parsed")
         hora = datetime.fromtimestamp(calendar.timegm(t), timezone.utc) if t else ahora
-        noticias.append({
+        n = {
+            "id": id_articulo(enlace),
             "titulo": titulo,
             "enlace": enlace,
+            "fuente": fuente.get("id"),
             "medio": fuente["nombre"],
             "zona": fuente["zona"],
             "muro": muro,
-            "hora": min(hora, ahora).isoformat(timespec="seconds"),  # algunos RSS fechan en el futuro
-        })
+            "hora": min(hora, ahora).isoformat(timespec="seconds"),
+            "visto": ahora.isoformat(timespec="seconds"),
+        }
+        if hora > ahora + timedelta(minutes=5):  # algunos RSS fechan en el futuro: se recorta a ahora y se marca
+            n["hora_rss_futura"] = hora.isoformat(timespec="seconds")
+        noticias.append(n)
     return noticias
 
 
@@ -112,6 +132,34 @@ def fusionar(viejas, nuevas, ahora):
     return sorted((n for n in por_enlace.values() if n["hora"] >= limite), key=lambda n: n["hora"], reverse=True)
 
 
+def actualizar_estado(estado, fuente, feed, error, ahora):
+    """Estado persistente de una fuente: última comprobación, último éxito y último error."""
+    e = dict(estado or {})
+    t = ahora.isoformat(timespec="seconds")
+    e["comprobado"] = t
+    if error:
+        e["error"], e["error_hora"] = error, t
+    else:
+        e["exito"], e["entradas"] = t, len(feed.entries)
+        e.pop("error", None)
+        fechas = [x.get("published_parsed") or x.get("updated_parsed") for x in feed.entries]
+        fechas = [datetime.fromtimestamp(calendar.timegm(f), timezone.utc) for f in fechas if f]
+        if fechas:
+            e["entrada_mas_antigua"] = min(fechas).isoformat(timespec="seconds")
+            e["entrada_mas_reciente"] = min(max(fechas), ahora).isoformat(timespec="seconds")
+    return e
+
+
+def completar(noticias, fuentes):
+    """Datos de versiones anteriores: añade id y fuente si faltan."""
+    por_nombre = {f["nombre"]: f.get("id") for f in fuentes}
+    for n in noticias:
+        n.setdefault("id", id_articulo(n["enlace"]))
+        n.setdefault("fuente", por_nombre.get(n["medio"]))
+        n.setdefault("visto", n["hora"])
+    return noticias
+
+
 def main(ruta_fuentes="fuentes.yaml", ruta_datos="datos.json"):
     fuentes = yaml.safe_load(Path(ruta_fuentes).read_text(encoding="utf-8"))["fuentes"]
     ahora = datetime.now(timezone.utc).replace(microsecond=0)
@@ -122,24 +170,33 @@ def main(ruta_fuentes="fuentes.yaml", ruta_datos="datos.json"):
         except Exception as e:
             return f, None, str(e)
 
-    nuevas, caidas = [], []
+    datos = Path(ruta_datos)
+    previo = json.loads(datos.read_text(encoding="utf-8")) if datos.exists() else {}
+    estado = previo.get("fuentes_estado", {})
+    nuevas, caidas, excluidas = [], [], []
     with ThreadPoolExecutor(8) as ex:
         for f, feed, error in ex.map(leer, fuentes):
+            estado[f["id"]] = actualizar_estado(estado.get(f["id"]), f, feed, error, ahora)
             if error:
-                caidas.append({"medio": f["nombre"], "error": error})
+                caidas.append({"medio": f["nombre"], "fuente": f["id"], "error": error})
             else:
-                nuevas += a_noticias(f, feed, ahora)
+                nuevas += a_noticias(f, feed, ahora, excluidas)
 
-    datos = Path(ruta_datos)
-    viejas = json.loads(datos.read_text(encoding="utf-8"))["noticias"] if datos.exists() else []
+    por_id = {f["id"]: f for f in fuentes}
+    viejas = [n for n in completar(previo.get("noticias", []), fuentes) if not regla_excluir(por_id.get(n["fuente"], {}), n["titulo"])]
     noticias = fusionar(viejas, nuevas, ahora)
     sin_mirar = comprobar_muros(noticias, fuentes)
+    # Ejemplos de excluidas para revisar las reglas: los más recientes, sin repetir titular
+    vistas = {(x["fuente"], x["titulo"]) for x in excluidas}
+    excluidas += [x for x in previo.get("excluidas", []) if (x["fuente"], x["titulo"]) not in vistas]
     tmp = datos.with_suffix(".tmp")  # escribir aparte y sustituir: nunca queda un datos.json a medias
     tmp.write_text(json.dumps({
         "actualizado": ahora.isoformat(timespec="seconds"),
         "fuentes_caidas": caidas,
+        "fuentes_estado": {f["id"]: estado[f["id"]] for f in fuentes},
+        "excluidas": excluidas[:MAX_EXCLUIDAS],
         "noticias": noticias,
-    }, ensure_ascii=False, indent=1), encoding="utf-8")
+    }, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     tmp.replace(datos)
     print(f"{len(noticias)} noticias ({sum(n['muro'] is True for n in noticias)} con muro, {sin_mirar} sin poder mirar), "
           f"{len(fuentes) - len(caidas)}/{len(fuentes)} fuentes OK", file=sys.stderr)

@@ -6,7 +6,11 @@
 import time
 from datetime import datetime, timezone
 
-from recoger import a_noticias, fusionar, limpiar_enlace, tiene_muro
+from pathlib import Path
+
+import yaml
+
+from recoger import a_noticias, actualizar_estado, fusionar, limpiar_enlace, regla_excluir, tiene_muro
 
 assert limpiar_enlace("https://b.co/a?at_medium=RSS&at_campaign=rss") == "https://b.co/a"
 assert limpiar_enlace("https://e.com/x.html?utm_source=rss&id=7#top") == "https://e.com/x.html?id=7"
@@ -29,7 +33,9 @@ class Feed:
     ]
 r = a_noticias({"nombre": "M", "zona": "girona"}, Feed, ahora)
 assert len(r) == 1 and r[0]["titulo"] == "dos espacios", r
-assert r[0]["hora"] == ahora.isoformat(timespec="seconds")  # fecha futura recortada a ahora
+assert r[0]["hora"] == ahora.isoformat(timespec="seconds")  # fecha futura recortada a ahora...
+assert r[0]["hora_rss_futura"].startswith("2033")              # ...y marcada, no escondida
+assert r[0]["id"] == a_noticias({"nombre": "M", "zona": "mundo"}, Feed, ahora)[0]["id"]  # id estable por enlace
 
 # Muro por artículo
 class FeedRss:
@@ -48,4 +54,30 @@ assert not tiene_muro(abierto, "ld") and not tiene_muro(medido, "ld")
 assert tiene_muro(medido + "Exclusiva para socios", "texto:exclusiva para socios")
 assert not tiene_muro(medido, "texto:exclusiva para socios")
 assert not tiene_muro(abierto + "exclusiva para socios", "texto:exclusiva para socios")
+
+# Reglas de exclusión reales de fuentes.yaml: positivos y negativos
+F = {f["id"]: f for f in yaml.safe_load(Path("fuentes.yaml").read_text(encoding="utf-8"))["fuentes"]}
+fuera = [("euronews", "Últimas noticias | 25 octubre 2026 - Mañana"), ("euronews", "Últimas noticias | 3 marzo 2027"),
+         ("ara", "A la contra"), ("ara", "De fit a fit"), ("el-pais", "‘El Pulso’ de ‘Hoy por Hoy’, en directo, en EL PAÍS"),
+         ("el-pais", "‘La Mesa de Hora 25’ | Programa del 22 de octubre de 2026"), ("tehran-times", "15455")]
+dentro = [("euronews", "EURONEWS HOY | Las noticias del 23 de octubre de 2026: Francia se prepara para otro fin de semana de protestas"),
+          ("euronews", "Últimas noticias sobre la DANA: tres muertos en Valencia"),
+          ("el-pais", "Última hora de la actualidad política, en directo | Feijóo advierte al PSOE"),
+          ("ara", "A la contra de tothom, el Govern aprova el pressupost"), ("tehran-times", "15 killed in Gaza strike"),
+          ("la-vanguardia", "Última hora de los disturbios en Barcelona, en directo | 100 detenidos")]
+for fid, t in fuera:
+    assert regla_excluir(F[fid], t), (fid, t)
+for fid, t in dentro:
+    assert not regla_excluir(F[fid], t), (fid, t)
+class FeedEx:
+    entries = [{"link": "https://e/1", "title": "Últimas noticias | 25 octubre 2026 - Mañana"}, {"link": "https://e/2", "title": "Otra"}]
+ex = []
+assert [x["titulo"] for x in a_noticias(F["euronews"], FeedEx, ahora, ex)] == ["Otra"]
+assert ex[0]["fuente"] == "euronews" and ex[0]["regla"]  # la exclusión queda registrada para revisarla
+
+# Estado de fuente: el error no borra el último éxito
+e = actualizar_estado(None, {}, FeedRss, None, ahora)
+e = actualizar_estado(e, {}, None, "HTTP 403", ahora)
+assert e["exito"] == ahora.isoformat(timespec="seconds") and e["error"] == "HTTP 403" and e["entradas"] == 2
+assert "error" not in actualizar_estado(e, {}, FeedRss, None, ahora)
 print("OK")

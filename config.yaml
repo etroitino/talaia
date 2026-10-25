@@ -1,0 +1,48 @@
+# Ajustes de Talaia. Las fuentes están en fuentes.yaml.
+
+ia:
+  proveedor: groq            # único proveedor admitido en esta versión; no hay respaldo de pago
+  url: https://api.groq.com/openai/v1
+  modelo: openai/gpt-oss-120b   # se comprueba en /models al empezar: si no está disponible, no se analiza
+  secreto: GROQ_API_KEY      # nombre de la variable de entorno (GitHub Secret); nunca el valor
+  # Topes propios, más bajos que el plan gratuito. Comprobar los límites reales de la cuenta en
+  # https://console.groq.com/settings/limits: cambian y no se dan por buenos los de la documentación antigua.
+  limites:
+    tokens_peticion: 7000    # entrada estimada + max_tokens_respuesta
+    tokens_ejecucion: 60000
+    tokens_24h: 90000        # ventana móvil de 24 h, compartida por todas las ejecuciones (uso/ en la rama archivo)
+    peticiones_ejecucion: 60
+  max_tokens_respuesta: 1500
+  # Estimación previa: caracteres / caracteres_por_token * margen (aproximada; el consumo real
+  # lo da la API en "usage" y es el que se registra).
+  caracteres_por_token: 3
+  margen_estimacion: 1.25
+  reintentos: 3              # 429, 5xx, timeout o JSON inválido
+  reparaciones: 1            # intentos de corregir un JSON que no cumple el esquema
+  timeout_s: 60
+  pausa_minima_s: 2          # entre peticiones
+
+semana:
+  sucesos_min: 5             # menos de esto: se publica lo que haya y se explica por qué
+  sucesos_max: 8
+  paises_min: 2              # un suceso sin al menos dos países no es comparable
+  articulos_por_suceso: 6    # uno por medio como mucho
+  max_caracteres_texto: 6000 # lo que se envía a la IA por artículo; si se recorta, el alcance pasa a parcial
+  min_caracteres_completo: 1200
+  cita_max_caracteres: 280
+  citas_max_por_articulo: 4
+  citas_max_proporcion: 0.15 # del texto del artículo
+  retener_semanas_capturas: 12
+  reintentar_dias: 3         # tras el cierre, reintentar el análisis incompleto durante estos días
+  agrupacion:
+    alto: 0.85
+    bajo: 0.72
+    max_horas_hueco: 36      # una noticia no se une a un grupo cuya última noticia es más antigua que esto
+
+extraccion:
+  timeout_s: 15
+  max_bytes: 3000000
+  max_redirecciones: 5
+  intervalo_dominio_s: 2
+  reintentos: 1
+  user_agent: "Talaia/1.0 (panel personal de titulares; +https://etroitino.github.io/talaia/)"

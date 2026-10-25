@@ -30,5 +30,11 @@ assert agrupar(vec(0, 37, 30), ["Fórmula Ruanda", "otra cosa", "Ruanda Fórmula
 # ...con una sola palabra compartida no basta en el repaso (evita grupos que lo enganchan todo)
 assert agrupar(vec(0, 37, 30), ["Caos Kigali", "otra cosa", "llega caos"]) == [0, 1, 1]
 
+# Hueco temporal (semana): mismo titular parecido con 3 días de diferencia no es el mismo hecho
+assert agrupar(vec(0, 5), ["Ataque en Gaza", "Ataque en Gaza"], horas=[0, 72], max_hueco_h=36) == [0, 1]
+assert agrupar(vec(0, 5), ["Ataque en Gaza", "Ataque en Gaza"], horas=[0, 20], max_hueco_h=36) == [0, 0]
+# ...ni por el repaso final (A y C abren grupos separados por el orden, B a 37° no les une con 80 h de distancia)
+assert agrupar(vec(0, 37, 30), ["Fórmula Ruanda", "otra cosa", "Ruanda Fórmula"], horas=[0, 80, 80], max_hueco_h=36) == [0, 1, 1]
+
 assert palabras("Lleó XIV, operat") == {"lleo", "operat"}
 print("OK")
