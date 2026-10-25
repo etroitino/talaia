@@ -534,11 +534,13 @@ const Fuentes = {
     const filas = this.datos.fuentes.map(f => {
       const e = f.estado || {};
       const ok = e.exito && (!e.error || e.exito > e.error_hora);
+      const antiguo = ok && e.entrada_mas_reciente && Date.now() - Date.parse(e.entrada_mas_reciente) > 7 * 86400000;
       return el("tr", {},
         el("th", { scope: "row" }, f.nombre, f.sustituye ? el("div", { className: "cifras-suceso" }, `Sustituye a ${f.sustituye}`) : null),
         el("td", {}, NOMBRE_ZONA[f.zona] || f.zona),
         el("td", {}, f.pais || "—"), el("td", {}, f.idioma || "—"),
-        el("td", { className: "celda " + (ok ? "encontrada" : "no_evaluable") }, ok ? "✔ responde" : "✘ " + (e.error || "sin datos")),
+        el("td", { className: "celda " + (antiguo ? "parcial" : ok ? "encontrada" : "no_evaluable") },
+          antiguo ? `⚠ responde, pero sin entradas recientes (última: ${fechaHora(e.entrada_mas_reciente)})` : ok ? "✔ responde" : "✘ " + (e.error || "sin datos")),
         el("td", {}, fechaHora(e.comprobado)), el("td", {}, fechaHora(e.exito)),
         el("td", {}, e.entradas != null ? `${e.entradas} entradas · ${fechaHora(e.entrada_mas_antigua)} → ${fechaHora(e.entrada_mas_reciente)}` : "—"),
         el("td", {}, f.muro === "no" ? "no se comprueba" : `por artículo (${f.muro})`),

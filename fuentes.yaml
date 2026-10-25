@@ -132,6 +132,7 @@ fuentes:
     idioma: es
     muro: "no"
     orientacion:
+    nota: "El RSS responde pero sus entradas son de 2022 (comprobado el 25/10/2026; temas_espana y temas_politica, igual). Pendiente de decidir sustituto."
 
   # --- Europa ---
   - id: politico-europe
