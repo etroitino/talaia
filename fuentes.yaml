@@ -5,18 +5,28 @@
 #   texto:X     -> isAccessibleForFree:false y la página dice X
 #   "no"        -> no se comprueba (medio gratuito o sin forma de saberlo)
 # orientacion: la rellena Enrique; no la decide la IA.
-# zona: girona | cataluna | espana | europa | mundo | verificadores
+# zona: girona | cataluna | espana | europa | mundo | miradas | verificadores
+#   miradas: medios de otros países para la comparación semanal; no entran en la columna Mundo.
+# id: identificador estable (no cambiarlo: lo usan los informes semanales).
+# pais: código ISO 3166 del país donde está la redacción/sede del medio. NO es su orientación.
+# excluir: expresiones regulares (titular completo, sin distinguir mayúsculas) de titulares genéricos
+#   o boletines repetitivos. Ser conservador: cada regla lleva su prueba en test_recoger.py.
+# sustituye: id de otra fuente que esta reemplaza en la comparación semanal (y nota con el motivo).
 
 fuentes:
   # --- Girona ---
-  - nombre: Diari de Girona
+  - id: diari-de-girona
+    nombre: Diari de Girona
+    pais: ES
     zona: girona
     rss: https://www.diaridegirona.cat/rss/
     idioma: ca
     muro: ld
     orientacion:
     ua_navegador: true  # su cortafuegos bloquea lectores RSS (406)
-  - nombre: El Punt Avui (Girona)
+  - id: el-punt-avui-girona
+    nombre: El Punt Avui (Girona)
+    pais: ES
     zona: girona
     rss: https://www.elpuntavui.cat/girona.feed?type=rss
     idioma: ca
@@ -24,32 +34,45 @@ fuentes:
     orientacion:
 
   # --- Cataluña ---
-  - nombre: 3Cat / 324
+  - id: 3cat-324
+    nombre: 3Cat / 324
+    pais: ES
     zona: cataluna
     rss: https://api.3cat.cat/noticies?_format=rss&origen=frontal&frontal=n324-portada-noticia&version=2.0
     idioma: ca
     muro: "no"
     orientacion:
-  - nombre: La Vanguardia
+  - id: la-vanguardia
+    nombre: La Vanguardia
+    pais: ES
     zona: cataluna
     rss: https://www.lavanguardia.com/rss/home.xml
     idioma: es
     muro: ld
     orientacion:
-  - nombre: Ara
+  - id: ara
+    nombre: Ara
+    pais: ES
     zona: cataluna
     rss: https://www.ara.cat/rss/
     idioma: ca
     muro: ld
     orientacion:
-  - nombre: El Periódico
+    excluir:  # títulos de sección sin contenido, repetidos con distinto enlace
+      - '^A la contra$'
+      - '^De fit a fit$'
+  - id: el-periodico
+    nombre: El Periódico
+    pais: ES
     zona: cataluna
     rss: https://www.elperiodico.com/es/rss/barcelona/rss.xml  # el de portada está vacío
     idioma: es
     muro: ld
     orientacion:
     ua_navegador: true  # su cortafuegos bloquea lectores RSS (406)
-  - nombre: El Nacional
+  - id: el-nacional
+    nombre: El Nacional
+    pais: ES
     zona: cataluna
     rss: https://www.elnacional.cat/ca/feed
     idioma: ca
@@ -57,95 +80,212 @@ fuentes:
     orientacion:
 
   # --- España ---
-  - nombre: El País
+  - id: el-pais
+    nombre: El País
+    pais: ES
     zona: espana
     rss: https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/portada
     idioma: es
     muro: ld
     orientacion:
-  - nombre: El Mundo
+    excluir:  # programas de radio, no noticias
+      - '^‘El Pulso’ de ‘Hoy por Hoy’, en directo, en EL PAÍS$'
+      - '^‘La Mesa de Hora 25’ \| Programa del .*'
+  - id: el-mundo
+    nombre: El Mundo
+    pais: ES
     zona: espana
     rss: https://e00-elmundo.uecdn.es/elmundo/rss/portada.xml
     idioma: es
     muro: rss:NLPremium
     orientacion:
-  - nombre: ABC
+  - id: abc
+    nombre: ABC
+    pais: ES
     zona: espana
     rss: https://www.abc.es/rss/2.0/portada/
     idioma: es
     muro: ld
     orientacion:
     ua_navegador: true  # bloquea (403) parte de las páginas de artículo
-  - nombre: elDiario.es
+  - id: eldiario-es
+    nombre: elDiario.es
+    pais: ES
     zona: espana
     rss: https://www.eldiario.es/rss/
     idioma: es
     muro: texto:exclusiva para socios
     orientacion:
-  - nombre: El Confidencial
+  - id: el-confidencial
+    nombre: El Confidencial
+    pais: ES
     zona: espana
     rss: https://rss.elconfidencial.com/espana/
     idioma: es
     muro: ld
     orientacion:
-  - nombre: RTVE
+  - id: rtve
+    nombre: RTVE
+    pais: ES
     zona: espana
     rss: https://api2.rtve.es/rss/temas_noticias.xml
     idioma: es
     muro: "no"
     orientacion:
+    nota: "El RSS responde pero sus entradas son de 2022 (comprobado el 25/10/2026; temas_espana y temas_politica, igual). Pendiente de decidir sustituto."
 
   # --- Europa ---
-  - nombre: Politico Europe
+  - id: politico-europe
+    nombre: Politico Europe
+    pais: BE
     zona: europa
     rss: https://www.politico.eu/feed/
     idioma: en
     muro: "no"
     orientacion:
-  - nombre: Euronews
+  - id: euronews
+    nombre: Euronews
+    pais: FR
     zona: europa
     rss: https://es.euronews.com/rss
     idioma: es
     muro: "no"
     orientacion:
+    excluir:  # boletín sin titular ("Últimas noticias | 25 octubre 2026 - Mañana"); EURONEWS HOY sí lleva titular
+      - '^Últimas noticias \| \d{1,2} \w+ \d{4}( - \w+)?$'
 
   # --- Mundo ---
-  - nombre: BBC News
+  - id: bbc-news
+    nombre: BBC News
+    pais: GB
     zona: mundo
     rss: https://feeds.bbci.co.uk/news/world/rss.xml
     idioma: en
     muro: "no"
     orientacion:
-  - nombre: The Guardian
+  - id: the-guardian
+    nombre: The Guardian
+    pais: GB
     zona: mundo
     rss: https://www.theguardian.com/world/rss
     idioma: en
     muro: "no"
     orientacion:
-  - nombre: France 24
+  - id: france-24
+    nombre: France 24
+    pais: FR
     zona: mundo
     rss: https://www.france24.com/es/rss
     idioma: es
     muro: "no"
     orientacion:
 
+  # --- Miradas (comparación semanal; RSS oficiales comprobados el 25/10/2026) ---
+  - id: tass
+    nombre: TASS
+    pais: RU
+    zona: miradas
+    rss: https://tass.com/rss/v2.xml
+    idioma: en
+    muro: "no"
+    orientacion:
+  - id: rt
+    nombre: RT
+    pais: RU
+    zona: miradas
+    rss: https://www.rt.com/rss/news/
+    idioma: en
+    muro: "no"
+    orientacion:
+    nota: "Desde redes de la UE la conexión se rechaza (sanciones); se evalúa desde GitHub Actions. Si falla, queda como no evaluable."
+  - id: al-jazeera
+    nombre: Al Jazeera
+    pais: QA
+    zona: miradas
+    rss: https://www.aljazeera.com/xml/rss/all.xml
+    idioma: en
+    muro: "no"
+    orientacion:
+  - id: tehran-times
+    nombre: Tehran Times
+    pais: IR
+    zona: miradas
+    rss: https://www.tehrantimes.com/rss
+    idioma: en
+    muro: "no"
+    orientacion:
+    excluir:  # galerías de fotos cuyo titular es solo un número
+      - '^\d+$'
+  - id: global-times
+    nombre: Global Times
+    pais: CN
+    zona: miradas
+    rss: https://www.globaltimes.cn/rss/outbrain.xml
+    idioma: en
+    muro: "no"
+    orientacion:
+    nota: "Único RSS oficial localizado; su última entrada es del 09/10/2026 (otras rutas /rss/ dan 404). Sustituido por CGTN mientras no tenga cobertura."
+  - id: cgtn
+    nombre: CGTN
+    pais: CN
+    zona: miradas
+    rss: https://www.cgtn.com/subscribe/rss/section/world.xml
+    idioma: en
+    muro: "no"
+    orientacion:
+    sustituye: global-times
+    nota: "Mismo país que Global Times; se usa porque el RSS de Global Times no cubre el periodo."
+  - id: haaretz
+    nombre: Haaretz
+    pais: IL
+    zona: miradas
+    rss: https://www.haaretz.com/srv/haaretz-latest-headlines
+    idioma: en
+    muro: ld
+    orientacion:
+  - id: npr
+    nombre: NPR
+    pais: US
+    zona: miradas
+    rss: https://feeds.npr.org/1004/rss.xml
+    idioma: en
+    muro: "no"
+    orientacion:
+    nota: "El RSS trae solo ~10 entradas (unos 2 días): la captura incremental cada 15 min cubre la semana."
+  - id: dw
+    nombre: DW
+    pais: DE
+    zona: miradas
+    rss: https://rss.dw.com/xml/rss-en-all
+    idioma: en
+    muro: "no"
+    orientacion:
+
   # --- Verificadores (F5, no salen en columnas) ---
-  - nombre: Maldita
+  - id: maldita
+    nombre: Maldita
+    pais: ES
     zona: verificadores
     rss: https://maldita.es/feed/
     idioma: es
     muro: "no"
-  - nombre: Newtral
+  - id: newtral
+    nombre: Newtral
+    pais: ES
     zona: verificadores
     rss: https://www.newtral.es/feed/
     idioma: es
     muro: "no"
-  - nombre: EFE Verifica
+  - id: efe-verifica
+    nombre: EFE Verifica
+    pais: ES
     zona: verificadores
     rss: https://verifica.efe.com/feed/
     idioma: es
     muro: "no"
-  - nombre: Verificat
+  - id: verificat
+    nombre: Verificat
+    pais: ES
     zona: verificadores
     rss: https://www.verificat.cat/feed/
     idioma: ca

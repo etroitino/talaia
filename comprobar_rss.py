@@ -3,7 +3,9 @@
 # dependencies = ["feedparser", "pyyaml"]
 # ///
 """Comprueba cada RSS de fuentes.yaml: si responde, si se puede leer y cuántas entradas trae."""
+import calendar
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 import yaml
@@ -11,11 +13,18 @@ import yaml
 from recoger import descargar
 
 
+DIAS_ANTIGUO = 7
+
+
 def comprobar(fuente):
     try:
-        return fuente, "OK", len(descargar(fuente).entries)
+        f = descargar(fuente)
     except Exception as e:
         return fuente, f"ERROR {e}", 0
+    fechas = [calendar.timegm(t) for e in f.entries if (t := e.get("published_parsed") or e.get("updated_parsed"))]
+    if fechas and time.time() - max(fechas) > DIAS_ANTIGUO * 86400:  # responde, pero no se actualiza
+        return fuente, f"ANTIGUO: última entrada {time.strftime('%Y-%m-%d', time.gmtime(max(fechas)))}", len(f.entries)
+    return fuente, "OK", len(f.entries)
 
 
 def main(ruta="fuentes.yaml"):

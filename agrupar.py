@@ -41,8 +41,10 @@ def palabras(titulo):
     return set(re.findall(r"[a-z0-9]{4,}", "".join(c for c in t if not unicodedata.combining(c))))
 
 
-def agrupar(v, titulos, alto=ALTO, bajo=BAJO, raro=RARO):
+def agrupar(v, titulos, alto=ALTO, bajo=BAJO, raro=RARO, horas=None, max_hueco_h=None):
     """v: vectores normalizados, de la noticia más antigua a la más reciente.
+    horas + max_hueco_h (opcional, para la semana): dos grupos solo se unen si sus franjas de tiempo
+    (en horas, mismo orden que v) quedan a menos de max_hueco_h; así no se encadena un conflicto entero.
     1) Cada noticia se une al grupo más parecido que cumpla la regla de dos niveles; si ninguno, abre uno.
     2) Repaso final: se fusionan los grupos cuyos centros cumplan la misma regla, porque en el paso 1
        el orden de llegada puede partir un hecho en dos (F1 en África: El Mundo abrió grupo propio).
@@ -54,6 +56,10 @@ def agrupar(v, titulos, alto=ALTO, bajo=BAJO, raro=RARO):
     # minimo: palabras raras que hay que compartir en la franja media. En el repaso se piden 2, porque
     # un grupo fusionado acumula palabras raras y con 1 engancha cualquier cosa ("caos": Barça, Madrid, tráfico)
     cumple = lambda sim, a, b, minimo=1: sim >= alto or (sim >= bajo and len(a & b) >= minimo)
+    h = np.asarray(horas if horas is not None else np.zeros(len(v)), dtype=float)
+    hueco = np.inf if max_hueco_h is None else max_hueco_h
+    ini, fin = [], []  # franja de horas de cada grupo
+    cerca = lambda k, a, b: max(ini[k], a) - min(fin[k], b) <= hueco
     sumas = np.zeros_like(v)        # suma de vectores de cada grupo
     centros = np.zeros_like(v)      # sumas normalizadas
     primero, raras_grupo, de = [], [], []   # de[i] = grupo de la noticia i
@@ -62,18 +68,20 @@ def agrupar(v, titulos, alto=ALTO, bajo=BAJO, raro=RARO):
         if g:
             sims = centros[:g] @ x
             for k in np.argsort(-sims)[:5]:  # los 5 más parecidos bastan: el resto queda por debajo de BAJO
-                if cumple(sims[k], raras[i], raras_grupo[k]):
+                if cumple(sims[k], raras[i], raras_grupo[k]) and cerca(k, h[i], h[i]):
                     elegido = k
                     break
         if elegido is None:
             sumas[g] = centros[g] = x
             primero.append(i)
+            ini.append(h[i]); fin.append(h[i])
             raras_grupo.append(set(raras[i]))
             de.append(g)
         else:
             sumas[elegido] += x
             centros[elegido] = sumas[elegido] / np.linalg.norm(sumas[elegido])
             raras_grupo[elegido] |= raras[i]
+            fin[elegido] = max(fin[elegido], h[i])
             de.append(elegido)
 
     # 2) Fusionar grupos: siempre la pareja más parecida que cumpla, y recalcular la fila del fusionado
@@ -84,7 +92,8 @@ def agrupar(v, titulos, alto=ALTO, bajo=BAJO, raro=RARO):
     while True:
         a, b = np.nonzero(np.triu(S >= bajo, 1))
         orden = np.argsort(-S[a, b])
-        par = next(((a[k], b[k]) for k in orden if cumple(S[a[k], b[k]], raras_grupo[a[k]], raras_grupo[b[k]], 2)), None)
+        par = next(((a[k], b[k]) for k in orden if cumple(S[a[k], b[k]], raras_grupo[a[k]], raras_grupo[b[k]], 2)
+                    and cerca(a[k], ini[b[k]], fin[b[k]])), None)
         if par is None:
             break
         a, b = par
@@ -92,6 +101,7 @@ def agrupar(v, titulos, alto=ALTO, bajo=BAJO, raro=RARO):
         centros[a] = sumas[a] / np.linalg.norm(sumas[a])
         raras_grupo[a] |= raras_grupo[b]
         primero[a] = min(primero[a], primero[b])
+        ini[a], fin[a] = min(ini[a], ini[b]), max(fin[a], fin[b])
         padre[b] = a
         S[b, :] = S[:, b] = -1
         fila = centros[:G] @ centros[a]

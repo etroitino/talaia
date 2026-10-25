@@ -117,7 +117,7 @@ En la fase 3 se mide cuántos grupos nuevos salen al día y cuántos tokens gast
 
 &#91;embedded content: arquitectura · 6 piezas, todo en GitHub\]
 
-Un programa en Python, guardado en un repositorio de GitHub, hace todo el trabajo. GitHub lo ejecuta solo cada 15 minutos, escribe el resultado en un archivo `datos.json` dentro del mismo repositorio, y GitHub Pages publica la página que lee ese archivo.
+Un programa en Python, guardado en un repositorio de GitHub, hace todo el trabajo. GitHub lo ejecuta cada 15 minutos y publica en GitHub Pages los archivos que lee la página; sin commits de datos en `main` (el archivo duradero vive en la rama `archivo`, ver «Evolución»).
 
 - **Programa:** Python, con un archivo por paso (recoger, agrupar, IA, guardar). Configuración en `fuentes.yaml` y `config.yaml`.
 - **Página:** un solo HTML con su CSS y JavaScript, sin servidor. Lee `datos.json` y pinta columnas, mapa y filtros.
@@ -139,7 +139,7 @@ Cada fase deja algo que funciona. No se empieza la siguiente sin cerrar la anter
 
 - Notificaciones al móvil.
 - Usuarios, contraseñas o cuentas.
-- Leer el artículo entero de cada noticia.
+- Leer el artículo entero de cada noticia en Directo. (El informe semanal sí lee el texto accesible de unos pocos artículos, con las reglas de «Evolución».)
 - App móvil propia (la web en el móvil basta).
 - Evitar muros de pago: solo se ofrecen otras fuentes, nunca se salta el muro.
 
@@ -159,5 +159,59 @@ Cada fase deja algo que funciona. No se empieza la siguiente sin cerrar la anter
 - **Horario de GitHub Actions.** Las tareas programadas pueden ejecutarse con retraso en horas de mucho uso; "cada 15 minutos" es aproximado. Comprobar también si GitHub desactiva tareas programadas en repositorios sin actividad.
 - **RSS que fallan o desaparecen.** El programa debe seguir funcionando aunque un medio falle, y avisar en la página de qué fuente no responde.
 - **Errores de la IA.** Resúmenes o lugares equivocados. Cada resumen lleva siempre los enlaces a los medios originales.
-- **Derechos de autor.** Solo se muestra titular, resumen propio y enlace. Nunca el texto del medio.
+- **Derechos de autor.** Directo: solo titular y enlace. Informe semanal: además, citas breves, literales, atribuidas y enlazadas (excepción limitada; no es una garantía jurídica).
 - **Pendiente de Enrique:** rellenar la orientación de cada medio y confirmar la lista de fuentes.
+
+## Evolución (25/10/2026): vista semanal y mejoras de Directo
+
+Esta sección actualiza las fases y la regla de citas. Lo anterior sigue vigente donde no se contradiga.
+
+### Decisiones
+
+| Tema | Decisión |
+| --- | --- |
+| Navegación | Dos niveles: Directo / Semana / Fuentes; dentro de Directo, cinco zonas + Miradas + Verificadores. Enlaces con `aria-current`, no pestañas ARIA. Rutas hash; la URL manda sobre lo guardado. |
+| Datos de Directo | `ultimas24h.json` (sin cuerpos) + `version.json`; `datos.json` (7 días) solo por compatibilidad. |
+| Miradas | TASS y RT (RU), Al Jazeera (QA), Tehran Times (IR), Global Times → CGTN (CN), Haaretz (IL), NPR (US), DW (DE). No entran en Mundo. |
+| IA | Groq, modelo configurable y comprobado en `/models`. 0 €: topes propios por petición, ejecución y 24 h; sin respaldo de pago. |
+| Citas | Excepción limitada: breves, literales, atribuidas, enlazadas; comprobadas contra el texto; máx. 4 por artículo y 15 % del texto. |
+| Texto completo | Solo el accesible a cualquier visitante y permitido por robots.txt. Sin sortear muros, CAPTCHA ni 403. Sin RemovePaywall. El texto no se guarda. |
+| Orientación | La decide Enrique. El informe compara evidencias de cada artículo; no puntúa ideologías. |
+| Archivo | Rama huérfana `archivo`: capturas por semana ISO (12 semanas), informes, uso de IA y caché. |
+
+### Calendario del informe (hora de Madrid)
+
+- Domingo desde las 09:00: informe **provisional** de la semana en curso, con corte visible.
+- Lunes desde las 00:30: **cierre** con datos hasta el lunes 00:00 (exclusivo). Si faltan capturas, **parcial**.
+- Hasta 3 días después: se regenera si llegan datos tardíos o el análisis quedó incompleto (cada 6 h como mucho). Mismos datos = no se regenera ni se gasta.
+- Actions solo admite cron en UTC: `semana.yml` se programa en las dos horas posibles y `semana.py --auto` decide con `Europe/Madrid`. La recogida (cron-job.org) también lo comprueba cada 15 min.
+
+### Selección
+
+Reagrupación semanal desde cero (no se fía de los ids de Directo), con un hueco máximo de 36 h entre noticias de un grupo. Un suceso necesita al menos 2 países. Orden: países distintos, luego medios distintos (cada medio cuenta una vez), luego recencia. De 5 a 8 sucesos; si hay menos, se dice por qué. Solo artículos del periodo.
+
+### Esquema (`esquema_semana.json`, `schema_version` 1.0)
+
+`week_id`, `timezone`, `period_start`, `period_end_exclusive`, `cutoff_at`, `generated_at`, `status` (provisional/cerrado/parcial/no_disponible), `analysis_status` (completo/parcial/sin_ia), `coverage_warnings`, `observed_coverage`, `model_id`, `prompt_version`, `input_hash`, `synthetic`, `sources`, `source_coverage[]`, `selection`, `events[]` (`articles`, `evidence` con `exact_quote`/`translation_es`/`speaker`/`text_hash`/`extraction_scope`, `comparisons`, `omissions`, `figure_differences`, `temporal_notes`, `highlight_claims`, `matrix`), `silences`, `source_notes`, `limitations`. `semana.py:validar_informe` comprueba además la coherencia (periodo ISO, provisional/cerrado, ids, medios y países calculados, evidencias del artículo correcto y omisiones solo con texto completo).
+
+### Configuración y despliegue
+
+1. Crear el secreto `GROQ_API_KEY` en *Settings → Secrets and variables → Actions* (clave del plan gratuito de Groq). Sin él, el informe sale «sin IA».
+2. Revisar en https://console.groq.com/settings/limits los límites reales de la cuenta y ajustar `ia.limites` y `ia.modelo` en `config.yaml` por debajo de ellos.
+3. Settings → Actions → General → Workflow permissions: «Read and write» (para subir a la rama `archivo` y lanzar workflows). El entorno `github-pages` debe permitir desplegar desde `main`.
+4. La rama `archivo` se crea sola en la primera recogida.
+5. Generación manual: Actions → «Informe semanal» → Run workflow (semana, fecha de corte, sin IA, prueba, forzar).
+
+### Recuperación ante fallos
+
+- Recogida sin `datos.json` publicado: se reconstruye desde las capturas (`archivo.py restaurar`).
+- Rama `archivo` inaccesible: Directo se publica igual y `semana/` se copia de lo publicado. Nunca se publica un sitio sin los informes que ya había.
+- Informe que falla: se conserva el último válido y el error aparece aparte en la página (`ultimo_error` en `semana/index.json`).
+- Escritura atómica (temporal → validar → sustituir) en datos, capturas, informes y sitio.
+
+### Pendiente de Enrique
+
+- RTVE: sus RSS oficiales responden, pero sus entradas son de 2022. Decidir un sustituto.
+- RT: la conexión se rechaza desde la UE. Comprobar en la primera ejecución de Actions; si falla, queda «no evaluable».
+- Global Times: sin RSS oficial al día; se usa CGTN. Confirmar.
+- Euronews: `pais: FR` (Lyon); confirmar sede. Orientaciones: siguen vacías.
