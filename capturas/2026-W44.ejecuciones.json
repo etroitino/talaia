@@ -26,7 +26,7 @@
 "2026-10-26T05"
 ],
 "rss_desde": "2026-10-25T16:01:25+00:00",
-"rss_hasta": "2026-10-26T05:26:13+00:00"
+"rss_hasta": "2026-10-26T05:39:51+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -199,7 +199,8 @@
 "el-punt-avui-girona": {
 "error": {
 "2026-10-26T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-10-26T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-10-26T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-10-26T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-10-25T23",
@@ -384,7 +385,9 @@
 "rss_hasta": "2022-06-09T23:05:00+00:00"
 },
 "tass": {
-"error": {},
+"error": {
+"2026-10-26T05": "<urlopen error timed out>"
+},
 "ok": [
 "2026-10-25T23",
 "2026-10-26T00",
@@ -423,7 +426,7 @@
 "2026-10-26T05"
 ],
 "rss_desde": "2026-10-20T09:53:27+00:00",
-"rss_hasta": "2026-10-26T05:28:02+00:00"
+"rss_hasta": "2026-10-26T05:43:30+00:00"
 },
 "verificat": {
 "error": {
