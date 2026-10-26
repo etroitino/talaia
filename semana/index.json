@@ -8,8 +8,8 @@
    "period_start": "2026-10-19T00:00:00+02:00",
    "period_end_exclusive": "2026-10-26T00:00:00+01:00",
    "cutoff_at": "2026-10-25T23:00:00+00:00",
-   "generated_at": "2026-10-26T01:41:04+00:00",
-   "input_hash": "sha256:e154856abf208e7a1b7595799d51b620506e338e6db4747f7a557cae38dfd64a",
+   "generated_at": "2026-10-26T02:02:02+00:00",
+   "input_hash": "sha256:a594ecdced670a05b1b1c78e05f50a59f64c54c5928596b4adc07bfcf2a36c95",
    "events": 8,
    "json": "semana/2026-W43.json",
    "md": "semana/2026-W43.md",
@@ -114,12 +114,12 @@
     "8564bb783e75": "ev-38e745e673",
     "180743d768ba": "ev-38e745e673",
     "7daa4b9404f5": "ev-38e745e673",
-    "d515ed9554ae": "ev-38e745e673",
+    "361a5eafe0da": "ev-38e745e673",
     "e319c62c31d1": "ev-38e745e673",
     "6f5783564c5f": "ev-38e745e673",
     "a47de1e76b36": "ev-38e745e673",
     "b6fc0429f9db": "ev-38e745e673",
-    "e189f9f1edbd": "ev-38e745e673"
+    "7a695e6a87c7": "ev-38e745e673"
    }
   }
  ]
