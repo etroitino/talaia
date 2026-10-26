@@ -180,7 +180,7 @@
 "2026-10-26T17"
 ],
 "rss_desde": "2026-10-25T16:21:39+00:00",
-"rss_hasta": "2026-10-26T17:31:01+00:00"
+"rss_hasta": "2026-10-26T17:36:28+00:00"
 },
 "dw": {
 "error": {},
@@ -370,7 +370,8 @@
 "2026-10-26T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-10-26T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-10-26T12": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-10-26T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-10-26T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-10-26T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-10-25T23",
