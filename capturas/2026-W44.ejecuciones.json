@@ -154,7 +154,7 @@
 "2026-10-26T03"
 ],
 "rss_desde": "2026-09-30T16:20:15+00:00",
-"rss_hasta": "2026-10-26T03:13:19+00:00"
+"rss_hasta": "2026-10-26T03:27:00+00:00"
 },
 "el-periodico": {
 "error": {},
@@ -170,7 +170,8 @@
 },
 "el-punt-avui-girona": {
 "error": {
-"2026-10-26T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-10-26T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-10-26T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-10-25T23",
