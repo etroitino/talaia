@@ -5,10 +5,10 @@
  "period_start": "2026-10-19T00:00:00+02:00",
  "period_end_exclusive": "2026-10-26T00:00:00+01:00",
  "cutoff_at": "2026-10-25T23:00:00+00:00",
- "generated_at": "2026-10-26T00:22:48+00:00",
+ "generated_at": "2026-10-26T00:27:01+00:00",
  "status": "parcial",
- "analysis_status": "sin_ia",
- "analysis_note": "análisis interrumpido: respuesta inválida tras reparar: e3: la cita no aparece en el texto de este artículo",
+ "analysis_status": "parcial",
+ "analysis_note": "análisis interrumpido: Groq no responde bien (HTTP 400)",
  "coverage_warnings": [
   {
    "code": "capturas_incompletas",
@@ -38,9 +38,9 @@
   "expected_hours": 169,
   "articles": 9629
  },
- "model_id": null,
+ "model_id": "openai/gpt-oss-120b",
  "prompt_version": "2026-10-25.1",
- "input_hash": "sha256:8a4c9b64e7f3c4bb98d4c2ec31f4e50b7f9f718cf7aa9349092393befdb20827",
+ "input_hash": "sha256:a6ee959b4c8d17633b2db6e58f5ad07a3f7b6b7879d831e41ba7bc9f72f473a6",
  "synthetic": false,
  "sources": [
   {
@@ -309,10 +309,10 @@
    "window_start": "2026-10-19T05:00:25+00:00",
    "window_end": "2026-10-25T22:40:41+00:00",
    "articles_in_period": 471,
-   "articles_evaluated": 5,
+   "articles_evaluated": 6,
    "access_counts": {
     "completo": 2,
-    "parcial": 3
+    "parcial": 4
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -361,10 +361,9 @@
    "articles_in_period": 1148,
    "articles_evaluated": 7,
    "access_counts": {
-    "inaccesible": 4,
-    "solo_titular": 1,
-    "completo": 1,
-    "parcial": 1
+    "inaccesible": 5,
+    "parcial": 1,
+    "completo": 1
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -460,9 +459,9 @@
    "window_start": "2026-10-19T02:00:00+00:00",
    "window_end": "2026-10-25T21:18:11+00:00",
    "articles_in_period": 125,
-   "articles_evaluated": 3,
+   "articles_evaluated": 4,
    "access_counts": {
-    "completo": 3
+    "completo": 4
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -479,8 +478,8 @@
    "articles_in_period": 438,
    "articles_evaluated": 7,
    "access_counts": {
-    "completo": 4,
-    "parcial": 3
+    "completo": 5,
+    "parcial": 2
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -495,9 +494,9 @@
    "window_start": "2026-10-18T22:10:45+00:00",
    "window_end": "2026-10-25T22:11:13+00:00",
    "articles_in_period": 197,
-   "articles_evaluated": 6,
+   "articles_evaluated": 7,
    "access_counts": {
-    "completo": 4,
+    "completo": 5,
     "parcial": 2
    },
    "capture_hours_ok": 14,
@@ -532,8 +531,8 @@
    "articles_in_period": 291,
    "articles_evaluated": 7,
    "access_counts": {
-    "parcial": 4,
-    "completo": 3
+    "parcial": 3,
+    "completo": 4
    },
    "capture_hours_ok": 14,
    "errors": [
@@ -551,10 +550,8 @@
    "window_start": "2026-10-24T09:46:39+00:00",
    "window_end": "2026-10-25T22:26:54+00:00",
    "articles_in_period": 79,
-   "articles_evaluated": 1,
-   "access_counts": {
-    "completo": 1
-   },
+   "articles_evaluated": 0,
+   "access_counts": {},
    "capture_hours_ok": 14,
    "errors": [],
    "substitutes": null,
@@ -568,9 +565,9 @@
    "window_start": "2026-10-19T04:32:11+00:00",
    "window_end": "2026-10-25T21:49:04+00:00",
    "articles_in_period": 110,
-   "articles_evaluated": 1,
+   "articles_evaluated": 2,
    "access_counts": {
-    "completo": 1
+    "completo": 2
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -585,11 +582,10 @@
    "window_start": "2026-10-24T21:39:29+00:00",
    "window_end": "2026-10-25T22:57:17+00:00",
    "articles_in_period": 84,
-   "articles_evaluated": 6,
+   "articles_evaluated": 5,
    "access_counts": {
     "completo": 4,
-    "parcial": 1,
-    "solo_titular": 1
+    "parcial": 1
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -689,9 +685,9 @@
    "window_start": "2026-10-19T05:48:00+00:00",
    "window_end": "2026-10-25T21:28:00+00:00",
    "articles_in_period": 67,
-   "articles_evaluated": 6,
+   "articles_evaluated": 5,
    "access_counts": {
-    "completo": 6
+    "completo": 5
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -709,10 +705,26 @@
  "events": [
   {
    "id": "ev-283810dd07",
-   "title": "Uganda orders 21-day Ebola quarantine for citizens returning from DR Congo",
-   "title_is_headline": true,
-   "title_source_id": "al-jazeera",
-   "summary_claims": [],
+   "title": "Segunda muerte por ébola y nueve casos confirmados en Kenia",
+   "title_is_headline": false,
+   "summary_claims": [
+    {
+     "id": "ev-283810dd07-c1",
+     "text": "Kenia ha registrado una segunda muerte por ébola y un total de nueve casos confirmados.",
+     "evidence_ids": [
+      "e-eb55c5b8e859-1",
+      "e-eb55c5b8e859-2",
+      "e-090746fe0056-1"
+     ]
+    },
+    {
+     "id": "ev-283810dd07-c2",
+     "text": "La víctima fue una mujer de 65 años, pariente cercana del primer caso.",
+     "evidence_ids": [
+      "e-090746fe0056-2"
+     ]
+    }
+   ],
    "source_ids": [
     "3cat-324",
     "abc",
@@ -746,7 +758,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/segona-mort-per-ebola-a-kenya-mentre-lepidemia-assola-la-rd-del-congo/noticia/3435888/",
      "title": "Segona mort per Ebola a Kenya mentre l'epidèmia assola la RD del Congo",
      "published_at": "2026-10-24T08:56:58+00:00",
-     "retrieved_at": "2026-10-26T00:24:34+00:00",
+     "retrieved_at": "2026-10-26T00:29:37+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -764,7 +776,7 @@
      "final_url": "https://www.abc.es/sociedad/nigeria-confirma-primer-nuevo-brote-ebola-propaga-20261021121803-nt.html",
      "title": "Nigeria confirma el primer caso de ébola: todos los países africanos contagiados",
      "published_at": "2026-10-21T10:31:08+00:00",
-     "retrieved_at": "2026-10-26T00:24:37+00:00",
+     "retrieved_at": "2026-10-26T00:29:40+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -782,7 +794,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/uganda-orders-21-day-ebola-quarantine-for-citizens-returning-from-dr-congo?traffic_source=rss",
      "title": "Uganda orders 21-day Ebola quarantine for citizens returning from DR Congo",
      "published_at": "2026-10-25T18:20:26+00:00",
-     "retrieved_at": "2026-10-26T00:24:39+00:00",
+     "retrieved_at": "2026-10-26T00:29:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -800,7 +812,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/c6x2355448eyo",
      "title": "Woman, 65, becomes second patient to die of Ebola in Kenya",
      "published_at": "2026-10-24T00:05:43+00:00",
-     "retrieved_at": "2026-10-26T00:24:41+00:00",
+     "retrieved_at": "2026-10-26T00:29:45+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -818,7 +830,7 @@
      "final_url": "https://newsaf.cgtn.com/news/2026-10-24/Kenya-records-second-Ebola-death-as-outbreak-reaches-nine-cases-1RvbXESAfjG/p.html",
      "title": "Kenya records second Ebola death as outbreak reaches nine cases",
      "published_at": "2026-10-24T08:03:46+00:00",
-     "retrieved_at": "2026-10-26T00:24:44+00:00",
+     "retrieved_at": "2026-10-26T00:29:47+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -827,7 +839,7 @@
      "text_chars": 1537,
      "extraction_scope": "cuerpo_completo",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "807ebe49da0e",
@@ -836,16 +848,16 @@
      "final_url": "https://www.dw.com/en/uganda-says-it-has-no-active-ebola-cases-but-infections-in-kenya-and-nigeria-are-prompting-fresh-scrutiny/a-79741580?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Uganda says it has no active Ebola cases, but infections in Kenya and Nigeria are prompting fresh scrutiny",
      "published_at": "2026-10-25T13:41:00+00:00",
-     "retrieved_at": "2026-10-26T00:24:46+00:00",
+     "retrieved_at": "2026-10-26T00:29:50+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
      "access_reason": "párrafos visibles",
      "text_hash": "sha256:8eb3d82f58fc3bed32945f15a35da5b58461de313877898108b4ff45ac5c9526",
      "text_chars": 8388,
-     "extraction_scope": "cuerpo_completo",
+     "extraction_scope": "recortado",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "02026f59ffe5",
@@ -854,7 +866,7 @@
      "final_url": "https://elpais.com/planeta-futuro/2026-10-21/el-brote-de-ebola-se-expande-a-africa-occidental-tras-la-confirmacion-del-primer-caso-en-nigeria.html",
      "title": "El brote de ébola se expande a África Occidental tras la confirmación del primer caso en Nigeria",
      "published_at": "2026-10-21T14:54:30+00:00",
-     "retrieved_at": "2026-10-26T00:24:49+00:00",
+     "retrieved_at": "2026-10-26T00:29:53+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -872,7 +884,7 @@
      "final_url": "https://es.euronews.com/2026/10/21/ministros-de-sanidad-africanos-abordan-la-crisis-del-ebola-tras-el-primer-caso-en-nigeria",
      "title": "Ministros de Sanidad africanos abordan la crisis del ébola tras el primer caso en Nigeria",
      "published_at": "2026-10-21T15:20:19+00:00",
-     "retrieved_at": "2026-10-26T00:24:51+00:00",
+     "retrieved_at": "2026-10-26T00:29:55+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -890,7 +902,7 @@
      "final_url": "https://www.france24.com/es/video/20261021-nigeria-confirma-el-primer-caso-de-%C3%A9bola-en-el-pa%C3%ADs",
      "title": "Nigeria confirma el primer caso de ébola en el país",
      "published_at": "2026-10-21T20:42:37+00:00",
-     "retrieved_at": "2026-10-26T00:24:53+00:00",
+     "retrieved_at": "2026-10-26T00:29:57+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -908,7 +920,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261024/11667067/kenia-confirma-segunda-muerte-ebola-contactos-primer-caso.html",
      "title": "Kenia confirma una segunda muerte por ébola entre los contactos del primer caso",
      "published_at": "2026-10-24T06:35:36+00:00",
-     "retrieved_at": "2026-10-26T00:24:55+00:00",
+     "retrieved_at": "2026-10-26T00:29:59+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -926,7 +938,7 @@
      "final_url": "https://www.politico.eu/article/nigeria-confirms-ebola-case-drc-congo-outbreak-spreads/",
      "title": "Nigeria confirms Ebola case, as Congo outbreak spreads",
      "published_at": "2026-10-21T09:37:53+00:00",
-     "retrieved_at": "2026-10-26T00:24:58+00:00",
+     "retrieved_at": "2026-10-26T00:30:02+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -935,7 +947,7 @@
      "text_chars": 2460,
      "extraction_scope": "cuerpo_completo",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "9cd41a2cc7c2",
@@ -944,7 +956,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/23/ebola-swiss-patient-nigeria-dr-congo-concerns-virus-spread",
      "title": "Mystery over source of Ebola infection in Nigeria fuels concern about spread of virus",
      "published_at": "2026-10-23T13:43:46+00:00",
-     "retrieved_at": "2026-10-26T00:25:00+00:00",
+     "retrieved_at": "2026-10-26T00:30:04+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -953,19 +965,330 @@
      "text_chars": 3974,
      "extraction_scope": "cuerpo_completo",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     }
    ],
-   "evidence": [],
-   "comparisons": [],
+   "evidence": [
+    {
+     "id": "e-eb55c5b8e859-1",
+     "article_id": "eb55c5b8e859",
+     "exact_quote": "El Gobierno de Kenia ha anunciado este sábado la segunda muerte por ébola en el país, una mujer de 65 años que era contacto directo y familiar cercana del primer caso confirmado",
+     "language": "es",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:e0aa165bdcf6eea6fa22dfde9a912b5c526961cec014616397ff4e0b350b8c47",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-eb55c5b8e859-2",
+     "article_id": "eb55c5b8e859",
+     "exact_quote": "Con este fallecimiento, Kenia contabiliza dos muertes entre los nueve casos confirmados de ébola.",
+     "language": "es",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:e0aa165bdcf6eea6fa22dfde9a912b5c526961cec014616397ff4e0b350b8c47",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-be114023f534-1",
+     "article_id": "be114023f534",
+     "exact_quote": "Los Centros Africanos para el Control y la Prevención de Enfermedades (Africa CDC) han pedido una acción urgente para contener el creciente brote de ébola y están reuniendo a los ministros de Sanidad africanos para coordinar la respuesta",
+     "language": "es",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:36ee2a389a72298118371d0d385e4daaac77f1d18e5d15e75cbbdd202a9553ec",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-090746fe0056-1",
+     "article_id": "090746fe0056",
+     "exact_quote": "Kenya has recorded its second death from Ebola, with nine confirmed cases reported in the country, according to the Ministry of Health.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:63f9079d698d730423f76237f79a2fe03b69d820a6f57c8a238e7667edb0da1d",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-090746fe0056-2",
+     "article_id": "090746fe0056",
+     "exact_quote": "The latest victim, a 65-year-old woman and close relative of the first patient, died on Friday while receiving treatment.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:63f9079d698d730423f76237f79a2fe03b69d820a6f57c8a238e7667edb0da1d",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-807ebe49da0e-1",
+     "article_id": "807ebe49da0e",
+     "exact_quote": "Uganda insists that it has no confirmed active cases of the deadly virus.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:8eb3d82f58fc3bed32945f15a35da5b58461de313877898108b4ff45ac5c9526",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-807ebe49da0e-2",
+     "article_id": "807ebe49da0e",
+     "exact_quote": "Travel through Uganda does not establish that infection occurred here. The location of exposure remains under investigation,\" the ministry said in an October 20 statement.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "comunicado",
+      "name": "Uganda's Health Ministry"
+     },
+     "text_hash": "sha256:8eb3d82f58fc3bed32945f15a35da5b58461de313877898108b4ff45ac5c9526",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-807ebe49da0e-3",
+     "article_id": "807ebe49da0e",
+     "exact_quote": "She and her husband did not travel to the Democratic Republic of the Congo,\" the department said in a statement to Reuters news agency.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "comunicado",
+      "name": "Switzerland's Federal Department of Foreign Affairs"
+     },
+     "text_hash": "sha256:8eb3d82f58fc3bed32945f15a35da5b58461de313877898108b4ff45ac5c9526",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-807ebe49da0e-4",
+     "article_id": "807ebe49da0e",
+     "exact_quote": "Today we are confirming that there has been one imported case of Ebola virus disease in the Federal Capital Territory,\" Pate said.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "fuente_citada",
+      "name": "Muhammad Ali Pate"
+     },
+     "text_hash": "sha256:8eb3d82f58fc3bed32945f15a35da5b58461de313877898108b4ff45ac5c9526",
+     "extraction_scope": "recortado"
+    }
+   ],
+   "comparisons": [
+    {
+     "source_id": "cgtn",
+     "article_ids": [
+      "090746fe0056"
+     ],
+     "framing_claims": [
+      {
+       "text": "El medio describe el brote de ébola en Kenia como una situación bajo control, enfatizando las medidas de cuarentena, rastreo de contactos y reforzamiento de los controles fronterizos.",
+       "evidence_ids": [
+        "e-090746fe0056-1"
+       ]
+      }
+     ],
+     "language_claims": [
+      {
+       "term": "second death",
+       "descriptive_alternative": "segunda muerte",
+       "evidence_ids": [
+        "e-090746fe0056-1"
+       ]
+      }
+     ],
+     "actor_claims": [
+      {
+       "actor": "Kenya",
+       "role": "país afectado que registra casos y aplica medidas sanitarias",
+       "evidence_ids": [
+        "e-090746fe0056-1"
+       ]
+      },
+      {
+       "actor": "Ministry of Health",
+       "role": "autoridad que informa los casos y las muertes",
+       "evidence_ids": [
+        "e-090746fe0056-1"
+       ]
+      },
+      {
+       "actor": "latest victim",
+       "role": "segunda víctima fallecida por ébola",
+       "evidence_ids": [
+        "e-090746fe0056-2"
+       ]
+      }
+     ],
+     "cited_source_claims": [
+      {
+       "source": "Ministry of Health",
+       "evidence_ids": [
+        "e-090746fe0056-1"
+       ]
+      },
+      {
+       "source": "authorities",
+       "evidence_ids": [
+        "e-090746fe0056-1"
+       ]
+      }
+     ]
+    },
+    {
+     "source_id": "dw",
+     "article_ids": [
+      "807ebe49da0e"
+     ],
+     "framing_claims": [
+      {
+       "text": "DW presenta el suceso como una investigación compleja sobre posibles transmisiones de ébola en rutas de tránsito, subrayando la ausencia de casos activos en Uganda y las discrepancias entre distintas autoridades sanitarias.",
+       "evidence_ids": [
+        "e-807ebe49da0e-1",
+        "e-807ebe49da0e-2",
+        "e-807ebe49da0e-3",
+        "e-807ebe49da0e-4"
+       ]
+      }
+     ],
+     "language_claims": [
+      {
+       "term": "deadly virus",
+       "descriptive_alternative": "highly lethal virus",
+       "evidence_ids": [
+        "e-807ebe49da0e-1"
+       ]
+      }
+     ],
+     "actor_claims": [
+      {
+       "actor": "Uganda's Health Ministry",
+       "role": "afirma que no hay casos activos y que el tránsito por Uganda no prueba infección",
+       "evidence_ids": [
+        "e-807ebe49da0e-2"
+       ]
+      }
+     ],
+     "cited_source_claims": []
+    },
+    {
+     "source_id": "euronews",
+     "article_ids": [
+      "be114023f534"
+     ],
+     "framing_claims": [
+      {
+       "text": "El medio presenta el brote como una emergencia sanitaria que requiere una respuesta coordinada en África y subraya la ausencia de casos activos en Uganda y el bajo riesgo de importación a Europa",
+       "evidence_ids": [
+        "e-be114023f534-1"
+       ]
+      }
+     ],
+     "language_claims": [
+      {
+       "term": "urgente",
+       "descriptive_alternative": "necesario y rápido",
+       "evidence_ids": [
+        "e-be114023f534-1"
+       ]
+      }
+     ],
+     "actor_claims": [],
+     "cited_source_claims": []
+    },
+    {
+     "source_id": "la-vanguardia",
+     "article_ids": [
+      "eb55c5b8e859"
+     ],
+     "framing_claims": [
+      {
+       "text": "El medio presenta el suceso como una actualización de la situación epidemiológica en Kenia, resaltando la segunda muerte y situándola en el contexto regional de la epidemia",
+       "evidence_ids": [
+        "e-eb55c5b8e859-1",
+        "e-eb55c5b8e859-2"
+       ]
+      }
+     ],
+     "language_claims": [],
+     "actor_claims": [
+      {
+       "actor": "Gobierno de Kenia",
+       "role": "Anunció la segunda muerte por ébola",
+       "evidence_ids": [
+        "e-eb55c5b8e859-1"
+       ]
+      },
+      {
+       "actor": "Ministerio de Sanidad keniano",
+       "role": "Proporcionó los datos de casos y muertes",
+       "evidence_ids": [
+        "e-eb55c5b8e859-2"
+       ]
+      }
+     ],
+     "cited_source_claims": [
+      {
+       "source": "Ministerio de Sanidad keniano",
+       "evidence_ids": [
+        "e-eb55c5b8e859-1",
+        "e-eb55c5b8e859-2"
+       ]
+      }
+     ]
+    },
+    {
+     "source_id": "politico-europe",
+     "article_ids": [
+      "93259486be76"
+     ],
+     "framing_claims": [],
+     "language_claims": [],
+     "actor_claims": [],
+     "cited_source_claims": []
+    },
+    {
+     "source_id": "the-guardian",
+     "article_ids": [
+      "9cd41a2cc7c2"
+     ],
+     "framing_claims": [],
+     "language_claims": [],
+     "actor_claims": [],
+     "cited_source_claims": []
+    }
+   ],
    "omissions": [],
    "figure_differences": [],
    "temporal_notes": [
     "Los artículos comparados se publicaron con hasta 105 h de diferencia (el primero, de Politico Europe; el último, de Al Jazeera). Una nota temprana y una crónica posterior no disponían de la misma información.",
     "No todos los textos están completos: de los artículos con texto parcial o sin texto no se deducen omisiones."
    ],
-   "highlight_claims": [],
-   "analysis_status": "sin_ia",
+   "highlight_claims": [
+    {
+     "id": "ev-283810dd07-l1",
+     "text": "CGTN describe el brote como bajo control y destaca medidas sanitarias, mientras DW lo presenta como una investigación incierta sobre posibles transmisiones.",
+     "evidence_ids": [
+      "e-090746fe0056-1",
+      "e-807ebe49da0e-2",
+      "e-807ebe49da0e-1"
+     ]
+    }
+   ],
+   "analysis_status": "completo",
    "matrix": {
     "diari-de-girona": "sin_coincidencias",
     "el-punt-avui-girona": "sin_coincidencias",
@@ -1037,7 +1360,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/detenen-un-home-per-lincendi-del-niu-de-laguila-el-xalet-refugi-dadolf-hitler-als-alps/noticia/3435887/",
      "title": "Detenen un home per l'incendi del Niu de l'Àguila, el xalet refugi d'Adolf Hitler als Alps",
      "published_at": "2026-10-24T07:10:51+00:00",
-     "retrieved_at": "2026-10-26T00:25:02+00:00",
+     "retrieved_at": "2026-10-26T00:30:06+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1055,7 +1378,7 @@
      "final_url": "https://www.abc.es/internacional/detenido-incendio-nido-aguila-antigua-residencia-hitler-20261024120530-nt.html",
      "title": "Un detenido por el incendio del 'Nido del Águila', antigua residencia de Hitler en Alemania",
      "published_at": "2026-10-24T10:05:30+00:00",
-     "retrieved_at": "2026-10-26T00:25:03+00:00",
+     "retrieved_at": "2026-10-26T00:30:07+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -1073,7 +1396,7 @@
      "final_url": "https://www.ara.cat/internacional/europa/detingut-alemanya-sospitos-d-incendiat-niu-l-aliga-famosa-residencia-muntanya-hitler_1_5889264.html",
      "title": "Un detingut a Alemanya, sospitós d'haver incendiat el Niu de l'Àliga, la famosa residència de muntanya de Hitler",
      "published_at": "2026-10-24T11:44:56+00:00",
-     "retrieved_at": "2026-10-26T00:25:04+00:00",
+     "retrieved_at": "2026-10-26T00:30:07+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1091,7 +1414,7 @@
      "final_url": "https://www.bbc.co.uk/news/videos/cq98z9xxy2n2o",
      "title": "Fire engulfs Hitler's mountaintop Eagle's Nest retreat",
      "published_at": "2026-10-24T15:56:48+00:00",
-     "retrieved_at": "2026-10-26T00:25:07+00:00",
+     "retrieved_at": "2026-10-26T00:30:10+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1109,7 +1432,7 @@
      "final_url": "https://www.dw.com/en/germany-news-fire-flares-up-at-hitlers-eagles-nest-retreat/live-79749353?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Germany news: Fire flares up at Hitler's Eagle's Nest retreat",
      "published_at": "2026-10-25T10:36:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:07+00:00",
+     "retrieved_at": "2026-10-26T00:30:10+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1127,7 +1450,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/24/6adc5e6fe4d4d83e7e8b4571.html",
      "title": "Detienen a un hombre tras producirse un incendio en el Nido del Águila, la antigua residencia de montaña de Hitler en Baviera",
      "published_at": "2026-10-24T07:29:56+00:00",
-     "retrieved_at": "2026-10-26T00:25:08+00:00",
+     "retrieved_at": "2026-10-26T00:30:11+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -1145,7 +1468,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/incendi-arrasa-niu-aliga-hitler-ultims-simbols-poder-nazi_1714417_102.html",
      "title": "Un incendi arrasa el Niu de l'Àliga de Hitler, un dels últims símbols del poder nazi",
      "published_at": "2026-10-24T09:59:45+00:00",
-     "retrieved_at": "2026-10-26T00:25:14+00:00",
+     "retrieved_at": "2026-10-26T00:30:16+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1163,7 +1486,7 @@
      "final_url": "https://elpais.com/internacional/2026-10-24/las-llamas-destruyen-el-nido-del-aguila-la-famosa-residencia-de-hitler-en-los-alpes.html",
      "title": "Las llamas destruyen El Nido del Águila, la famosa residencia de Hitler en los Alpes",
      "published_at": "2026-10-24T09:17:55+00:00",
-     "retrieved_at": "2026-10-26T00:25:16+00:00",
+     "retrieved_at": "2026-10-26T00:30:18+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -1181,7 +1504,7 @@
      "final_url": "https://www.eldiario.es/internacional/detenido-alemania-incendio-nido-aguila-casa-hitler-alpes_1_13611950.html",
      "title": "Un detenido en Alemania por el incendio del 'Nido del Águila', la casa de Hitler en los Alpes bávaros",
      "published_at": "2026-10-24T09:34:54+00:00",
-     "retrieved_at": "2026-10-26T00:25:17+00:00",
+     "retrieved_at": "2026-10-26T00:30:18+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1199,7 +1522,7 @@
      "final_url": "https://es.euronews.com/video/2026/10/24/incendio-arrasa-el-antiguo-refugio-nido-del-aguila-de-hitler-en-alemania",
      "title": "Un espectacular incendio devora el antiguo refugio de Hitler conocido como el Nido del Águila en Alemania",
      "published_at": "2026-10-24T14:12:38+00:00",
-     "retrieved_at": "2026-10-26T00:25:20+00:00",
+     "retrieved_at": "2026-10-26T00:30:21+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1217,7 +1540,7 @@
      "final_url": "https://www.france24.com/es/europa/20261024-un-incendio-devast%C3%B3-el-nido-del-%C3%A1guila-de-hitler-en-alemania-un-sospechoso-detenido",
      "title": "Un incendio devastó el 'Nido del Águila' de Hitler en Alemania; un sospechoso detenido",
      "published_at": "2026-10-24T21:49:42+00:00",
-     "retrieved_at": "2026-10-26T00:25:20+00:00",
+     "retrieved_at": "2026-10-26T00:30:21+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1235,7 +1558,7 @@
      "final_url": "https://www.haaretz.com/world-news/europe/2026-10-24/ty-article/german-police-suspect-arrested-as-fire-engulfs-nazi-guest-house-eagles-nest/000001a1-6c78-d34e-a1b9-fe7f69660000",
      "title": "Suspect arrested as fire engulfs Nazi guest house 'Eagle's Nest', German police say",
      "published_at": "2026-10-24T06:06:49+00:00",
-     "retrieved_at": "2026-10-26T00:25:21+00:00",
+     "retrieved_at": "2026-10-26T00:30:21+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -1253,7 +1576,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261024/11667088/detenido-alemania-sospechoso-incendiar-nido-aguila-hitler.html",
      "title": "Un incendio arrasa el ‘Nido del Águila’ de Hitler",
      "published_at": "2026-10-24T08:33:39+00:00",
-     "retrieved_at": "2026-10-26T00:25:23+00:00",
+     "retrieved_at": "2026-10-26T00:30:24+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1271,7 +1594,7 @@
      "final_url": "https://rt-english.com/news/647614-fire-destroys-hitlers-eagles-nest/",
      "title": "Fire destroys Hitler’s ‘Eagle’s Nest’ mountain retreat",
      "published_at": "2026-10-24T14:38:28+00:00",
-     "retrieved_at": "2026-10-26T00:25:23+00:00",
+     "retrieved_at": "2026-10-26T00:30:24+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1289,7 +1612,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/24/blaze-engulfs-hitlers-eagles-nest-mountain-retreat-in-bavaria",
      "title": "Suspect arrested over fire at Hitler’s ‘Eagle’s Nest’ retreat in Bavaria",
      "published_at": "2026-10-24T06:21:44+00:00",
-     "retrieved_at": "2026-10-26T00:25:28+00:00",
+     "retrieved_at": "2026-10-26T00:30:28+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1381,7 +1704,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/els-estudiants-de-serbia-es-perfilen-com-a-guanyadors-dunes-eleccions-amb-una-participacio-record/noticia/3436041/",
      "title": "El moviment dels Estudiants de Sèrbia guanya per sorpresa les eleccions amb una participació massiva",
      "published_at": "2026-10-25T20:58:30+00:00",
-     "retrieved_at": "2026-10-26T00:25:28+00:00",
+     "retrieved_at": "2026-10-26T00:30:28+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1399,7 +1722,7 @@
      "final_url": "https://www.aljazeera.com/video/newsfeed/2026/10/25/serbia-votes-as-student-led-bloc-challenges-longtime-leader-vucic?traffic_source=rss",
      "title": "Serbia votes as student-led bloc challenges longtime leader Vucic",
      "published_at": "2026-10-25T13:40:10+00:00",
-     "retrieved_at": "2026-10-26T00:25:30+00:00",
+     "retrieved_at": "2026-10-26T00:30:29+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1417,7 +1740,7 @@
      "final_url": "https://www.ara.cat/internacional/europa/estudiants-serbis-desafien-vucic-urnes_1_5888697.html",
      "title": "Els estudiants serbis desafien el poder de Vucic a les urnes",
      "published_at": "2026-10-24T17:00:07+00:00",
-     "retrieved_at": "2026-10-26T00:25:30+00:00",
+     "retrieved_at": "2026-10-26T00:30:29+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -1435,7 +1758,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/cmq8n3v94ql3o",
      "title": "Why a student protest movement is challenging 12 years of Vučić rule in Serbia",
      "published_at": "2026-10-22T14:33:06+00:00",
-     "retrieved_at": "2026-10-26T00:25:30+00:00",
+     "retrieved_at": "2026-10-26T00:30:30+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -1453,7 +1776,7 @@
      "final_url": "https://www.dw.com/en/serbia-election-vucic-concedes-defeat-to-student-led-movement/a-79753482?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Serbia election: Can student-led opposition end Aleksandar Vucic's grip on power?",
      "published_at": "2026-10-25T10:42:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:30+00:00",
+     "retrieved_at": "2026-10-26T00:30:30+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1471,7 +1794,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/25/6ade499ffc6c832b708b458f.html",
      "title": "Aleksandar Vucic reconoce la victoria por mayoría absoluta de la Lista Estudiantil en las elecciones en Serbia",
      "published_at": "2026-10-25T18:40:25+00:00",
-     "retrieved_at": "2026-10-26T00:25:31+00:00",
+     "retrieved_at": "2026-10-26T00:30:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -1489,7 +1812,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/moviment-estudiantil-guanya-eleccions-serbia-enterra-era-vu-i_1714780_102.html",
      "title": "Gir històric: el moviment estudiantil guanya les eleccions a Sèrbia i enterra l'era Vučić",
      "published_at": "2026-10-25T20:57:11+00:00",
-     "retrieved_at": "2026-10-26T00:25:32+00:00",
+     "retrieved_at": "2026-10-26T00:30:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1507,7 +1830,7 @@
      "final_url": "https://elpais.com/internacional/2026-10-25/el-presidente-vucic-reconoce-la-victoria-de-la-lista-estudiantil-en-las-elecciones-serbias.html",
      "title": "Vucic reconoce la victoria de la Lista Estudiantil en las elecciones de Serbia",
      "published_at": "2026-10-25T20:59:16+00:00",
-     "retrieved_at": "2026-10-26T00:25:32+00:00",
+     "retrieved_at": "2026-10-26T00:30:31+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -1525,7 +1848,7 @@
      "final_url": "https://www.eldiario.es/internacional/movimiento-estudiantil-pone-reinado-autoritario-12-anos-vucic-serbia_1_13614161.html",
      "title": "Un movimiento estudiantil pone fin al reinado autoritario de 12 años de Vucic en las elecciones de Serbia",
      "published_at": "2026-10-25T20:41:15+00:00",
-     "retrieved_at": "2026-10-26T00:25:32+00:00",
+     "retrieved_at": "2026-10-26T00:30:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1543,7 +1866,7 @@
      "final_url": "https://es.euronews.com/video/2026/10/22/serbia-manifestantes-estudiantiles-abarrotan-belgrado-antes-de-las-elecciones-anticipadas",
      "title": "Serbia: manifestantes estudiantiles abarrotan Belgrado antes de las elecciones anticipadas",
      "published_at": "2026-10-22T07:20:27+00:00",
-     "retrieved_at": "2026-10-26T00:25:33+00:00",
+     "retrieved_at": "2026-10-26T00:30:32+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1561,7 +1884,7 @@
      "final_url": "https://www.france24.com/es/europa/20261025-serbia-el-populista-vucic-reconoce-su-derrota-ante-la-lista-de-estudiantes-en-las-legislativas",
      "title": "Serbia: el populista Vucic reconoce su derrota ante la Lista de Estudiantes en las legislativas",
      "published_at": "2026-10-25T21:30:18+00:00",
-     "retrieved_at": "2026-10-26T00:25:33+00:00",
+     "retrieved_at": "2026-10-26T00:30:32+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1579,7 +1902,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261025/11667785/movimiento-estudiantil-derrota-vucic-elecciones-generales-serbia.html",
      "title": "El movimiento estudiantil derrota a Vucic en las elecciones generales de Serbia",
      "published_at": "2026-10-25T20:49:54+00:00",
-     "retrieved_at": "2026-10-26T00:25:33+00:00",
+     "retrieved_at": "2026-10-26T00:30:32+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1597,7 +1920,7 @@
      "final_url": "https://www.politico.eu/article/serbia-student-protests-challenge-aleksandar-vucic-power-poll/",
      "title": "Serbia’s protesting students mount serious challenge to Vučić’s power",
      "published_at": "2026-10-23T02:00:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:34+00:00",
+     "retrieved_at": "2026-10-26T00:30:32+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1615,7 +1938,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/23/friday-briefing-how-a-leaderless-student-group-is-challenging-power-in-serbia",
      "title": "Friday briefing: How a leaderless student group is challenging power in Serbia",
      "published_at": "2026-10-23T05:43:19+00:00",
-     "retrieved_at": "2026-10-26T00:25:34+00:00",
+     "retrieved_at": "2026-10-26T00:30:33+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1668,313 +1991,6 @@
    }
   },
   {
-   "id": "ev-697e8203a9",
-   "title": "Informe desde Río de Janeiro: Brasil cierra las urnas tras prórroga excepcional de dos horas",
-   "title_is_headline": true,
-   "title_source_id": "france-24",
-   "summary_claims": [],
-   "source_ids": [
-    "3cat-324",
-    "abc",
-    "al-jazeera",
-    "dw",
-    "el-mundo",
-    "el-nacional",
-    "el-pais",
-    "eldiario-es",
-    "euronews",
-    "france-24",
-    "la-vanguardia",
-    "tass",
-    "the-guardian"
-   ],
-   "country_ids": [
-    "DE",
-    "ES",
-    "FR",
-    "GB",
-    "QA",
-    "RU"
-   ],
-   "first_published_at": "2026-10-21T00:53:41+00:00",
-   "last_published_at": "2026-10-25T22:52:52+00:00",
-   "articles": [
-    {
-     "id": "c7891b18d2fb",
-     "source_id": "3cat-324",
-     "url": "https://www.3cat.cat/3catinfo/lula-o-bolsonaro-el-brasil-es-mira-al-mirall-en-unes-eleccions-que-decidiran-el-futur-del-pais/noticia/3435942/",
-     "final_url": "https://www.3cat.cat/3catinfo/lula-o-bolsonaro-el-brasil-es-mira-al-mirall-en-unes-eleccions-que-decidiran-el-futur-del-pais/noticia/3435942/",
-     "title": "Lula o Bolsonaro: el Brasil es mira al mirall en unes eleccions que decidiran el futur del país",
-     "published_at": "2026-10-25T06:35:47+00:00",
-     "retrieved_at": "2026-10-26T00:25:34+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "articleBody",
-     "text_hash": "sha256:95e013f9173c8785f38fb378f8c68c37e9e574b1e18ef955225c9bb702a5e43d",
-     "text_chars": 5414,
-     "extraction_scope": "cuerpo_completo",
-     "language": "ca",
-     "analyzed": false
-    },
-    {
-     "id": "659133f87b04",
-     "source_id": "abc",
-     "url": "https://www.abc.es/internacional/brasil-acude-urnas-jornada-marcada-caos-transporte-20261025215236-nt.html",
-     "final_url": "https://www.abc.es/internacional/brasil-acude-urnas-jornada-marcada-caos-transporte-20261025215236-nt.html",
-     "title": "Brasil elige entre mantener a Lula o la vuelta del 'bolsonarismo' en una segunda vuelta tensa y ajustada",
-     "published_at": "2026-10-25T20:52:37+00:00",
-     "retrieved_at": "2026-10-26T00:25:36+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "parcial",
-     "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:20792ce3423366b43c874edc60fcbb3c3bfe103deea2f896520c93d4a7ab8f24",
-     "text_chars": 6312,
-     "extraction_scope": "cuerpo_parcial",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "16ac4cf9e62f",
-     "source_id": "al-jazeera",
-     "url": "https://www.aljazeera.com/news/liveblog/2026/10/25/brazil-election-results-2026-live-polls-close-in-lula-bolsonaro-face-off?traffic_source=rss",
-     "final_url": "https://www.aljazeera.com/news/liveblog/2026/10/25/brazil-election-results-2026-live-polls-close-in-lula-bolsonaro-face-off?traffic_source=rss",
-     "title": "Brazil election results 2026 live: Lula, Bolsonaro voters await final tally",
-     "published_at": "2026-10-25T20:00:04+00:00",
-     "retrieved_at": "2026-10-26T00:25:36+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "solo_titular",
-     "access_reason": "no se encontró texto del cuerpo",
-     "text_hash": null,
-     "text_chars": 0,
-     "extraction_scope": "ninguno",
-     "language": "en",
-     "analyzed": false
-    },
-    {
-     "id": "8564bb783e75",
-     "source_id": "dw",
-     "url": "https://www.dw.com/en/brazil-election-lula-bolsonaro-cast-votes-in-final-bout/live-79755630?maca=en-rss-en-all-1573-xml-mrss",
-     "final_url": "https://www.dw.com/en/brazilian-leftist-president-lula-wins-reelection-against-conservative-challenger-flavio-bolsonaro/live-79755630?maca=en-rss-en-all-1573-xml-mrss",
-     "title": "Brazil election: Lula, Bolsonaro cast votes in final bout",
-     "published_at": "2026-10-25T14:13:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:36+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "párrafos visibles",
-     "text_hash": "sha256:a323d047e01907d2c46838146d358c53f3ed6d3648f03982aee33309dd4ec2e8",
-     "text_chars": 7573,
-     "extraction_scope": "cuerpo_completo",
-     "language": "en",
-     "analyzed": false
-    },
-    {
-     "id": "57e39d26c6ca",
-     "source_id": "el-mundo",
-     "url": "https://www.elmundo.es/internacional/2026/10/25/6adcd212e9cf4a41288b456f.html",
-     "final_url": "https://www.elmundo.es/internacional/2026/10/25/6adcd212e9cf4a41288b456f.html",
-     "title": "Elecciones en Brasil: dos ideas de país para la gran potencia de América Latina",
-     "published_at": "2026-10-24T23:27:04+00:00",
-     "retrieved_at": "2026-10-26T00:25:36+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
-     "access_status": "completo",
-     "access_reason": "articleBody",
-     "text_hash": "sha256:35b876945fd76ee07a3569bfa6cb804879f2b207298029df0e0007ded77d429d",
-     "text_chars": 6018,
-     "extraction_scope": "cuerpo_completo",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "7daa4b9404f5",
-     "source_id": "el-nacional",
-     "url": "https://www.elnacional.cat/ca/internacional/brasil-afronta-segona-volta-ajustada-posa-prova-llegat-lula-forca-bolsonarisme_1714048_102.html",
-     "final_url": "https://www.elnacional.cat/ca/internacional/brasil-afronta-segona-volta-ajustada-posa-prova-llegat-lula-forca-bolsonarisme_1714048_102.html",
-     "title": "El Brasil afronta una segona volta ajustada que posa a prova el llegat de Lula i la força del bolsonarisme",
-     "published_at": "2026-10-25T04:30:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:38+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "párrafos visibles",
-     "text_hash": "sha256:4e070c2c8aa4e0f977f442d957a5add488ac2ff6ac54637c7ee149c2709526e8",
-     "text_chars": 4175,
-     "extraction_scope": "cuerpo_completo",
-     "language": "ca",
-     "analyzed": false
-    },
-    {
-     "id": "361a5eafe0da",
-     "source_id": "el-pais",
-     "url": "https://elpais.com/america/2026-10-24/videoanalisis-brasil-elige-presidente-en-una-eleccion-renida-y-que-sera-decisiva-para-latinoamerica.html",
-     "final_url": "https://elpais.com/america/2026-10-24/videoanalisis-brasil-elige-presidente-en-una-eleccion-renida-y-que-sera-decisiva-para-latinoamerica.html",
-     "title": "Videoanálisis | Brasil elige presidente en una elección reñida y que será decisiva para Latinoamérica",
-     "published_at": "2026-10-24T20:07:42+00:00",
-     "retrieved_at": "2026-10-26T00:25:38+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "solo_titular",
-     "access_reason": "no se encontró texto del cuerpo",
-     "text_hash": null,
-     "text_chars": 0,
-     "extraction_scope": "ninguno",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "c3e77d890bba",
-     "source_id": "eldiario-es",
-     "url": "https://www.eldiario.es/internacional/empate-tecnico-brasil-lula-sostener-gran-bastion-izquierda-region-frente-bolsonaro-ola-ultra_1_13610497.html",
-     "final_url": "https://www.eldiario.es/internacional/empate-tecnico-brasil-lula-sostener-gran-bastion-izquierda-region-frente-bolsonaro-ola-ultra_1_13610497.html",
-     "title": "Empate técnico en Brasil: Lula intenta sostener el gran bastión de la izquierda en la región frente a Bolsonaro y la ola ultra",
-     "published_at": "2026-10-24T20:25:21+00:00",
-     "retrieved_at": "2026-10-26T00:25:38+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "articleBody",
-     "text_hash": "sha256:283c35c114b7fe532064865490ab8d34bc380bce01d94ee65fa5172092852450",
-     "text_chars": 9479,
-     "extraction_scope": "cuerpo_completo",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "6f5783564c5f",
-     "source_id": "euronews",
-     "url": "https://es.euronews.com/video/2026/10/25/brasil-largas-colas-y-viajes-fluviales-marcan-voto-presidencial-clave",
-     "final_url": "https://es.euronews.com/video/2026/10/25/brasil-largas-colas-y-viajes-fluviales-marcan-voto-presidencial-clave",
-     "title": "Brasil vota en la segunda vuelta entre Lula y Flávio Bolsonaro: largas colas y urnas en la Amazonía",
-     "published_at": "2026-10-25T17:50:02+00:00",
-     "retrieved_at": "2026-10-26T00:25:39+00:00",
-     "genre": "no_verificado",
-     "genre_basis": null,
-     "access_status": "parcial",
-     "access_reason": "texto corto (907 caracteres, párrafos visibles)",
-     "text_hash": "sha256:f96451bee8fafc0f7125c5391c5efe433776cd9f109a8f522896e12a259b1257",
-     "text_chars": 907,
-     "extraction_scope": "cuerpo_parcial",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "a47de1e76b36",
-     "source_id": "france-24",
-     "url": "https://www.france24.com/es/video/20261025-informe-desde-r%C3%ADo-de-janeiro-brasil-cierra-las-urnas-tras-pr%C3%B3rroga-excepcional-de-dos-horas",
-     "final_url": "https://www.france24.com/es/video/20261025-informe-desde-r%C3%ADo-de-janeiro-brasil-cierra-las-urnas-tras-pr%C3%B3rroga-excepcional-de-dos-horas",
-     "title": "Informe desde Río de Janeiro: Brasil cierra las urnas tras prórroga excepcional de dos horas",
-     "published_at": "2026-10-25T22:52:52+00:00",
-     "retrieved_at": "2026-10-26T00:25:40+00:00",
-     "genre": "no_verificado",
-     "genre_basis": null,
-     "access_status": "parcial",
-     "access_reason": "texto corto (929 caracteres, párrafos visibles)",
-     "text_hash": "sha256:14e5b52d8f93d2a12aa3c5233efb78640aac1f8fdc03fe1c995dac4d857222cd",
-     "text_chars": 929,
-     "extraction_scope": "cuerpo_parcial",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "b6fc0429f9db",
-     "source_id": "la-vanguardia",
-     "url": "https://www.lavanguardia.com/internacional/20261025/11667291/lula-bolsonaro-llegan-urnas-situacion-empate.html",
-     "final_url": "https://www.lavanguardia.com/internacional/20261025/11667291/lula-bolsonaro-llegan-urnas-situacion-empate.html",
-     "title": "Lula y Bolsonaro llegan a las urnas en situación de empate",
-     "published_at": "2026-10-25T05:00:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:40+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "articleBody",
-     "text_hash": "sha256:ba6b4c6c980da475ba0b93dd822a21dd2292b753f5dbd4cf4792411ad3253e23",
-     "text_chars": 5897,
-     "extraction_scope": "cuerpo_completo",
-     "language": "es",
-     "analyzed": false
-    },
-    {
-     "id": "6d44312f89f0",
-     "source_id": "tass",
-     "url": "https://tass.com/world/2207381",
-     "final_url": "https://tass.com/world/2207381",
-     "title": "IN BRIEF: Brazil to hold second round of presidential elections",
-     "published_at": "2026-10-25T01:15:01+00:00",
-     "retrieved_at": "2026-10-26T00:25:40+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "párrafos visibles",
-     "text_hash": "sha256:c46bcbd6fc6413541576b0c56f26f97ea5318821e650cbafec977565cfc7e94b",
-     "text_chars": 2538,
-     "extraction_scope": "cuerpo_completo",
-     "language": "en",
-     "analyzed": false
-    },
-    {
-     "id": "e189f9f1edbd",
-     "source_id": "the-guardian",
-     "url": "https://www.theguardian.com/world/ng-interactive/2026/oct/25/brazil-election-2026-live-second-round-results",
-     "final_url": "https://www.theguardian.com/world/ng-interactive/2026/oct/25/brazil-election-2026-live-second-round-results",
-     "title": "Brazil election 2026: Live second round results",
-     "published_at": "2026-10-25T19:37:49+00:00",
-     "retrieved_at": "2026-10-26T00:25:44+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "completo",
-     "access_reason": "párrafos visibles",
-     "text_hash": "sha256:85150272f7e31a8a2b186ef4107fb6d3a0c7018a9fab8caca9d0aad7e932ca50",
-     "text_chars": 1895,
-     "extraction_scope": "cuerpo_completo",
-     "language": "en",
-     "analyzed": false
-    }
-   ],
-   "evidence": [],
-   "comparisons": [],
-   "omissions": [],
-   "figure_differences": [],
-   "temporal_notes": [
-    "Los artículos comparados se publicaron con hasta 27 h de diferencia (el primero, de El País; el último, de France 24). Una nota temprana y una crónica posterior no disponían de la misma información.",
-    "No todos los textos están completos: de los artículos con texto parcial o sin texto no se deducen omisiones."
-   ],
-   "highlight_claims": [],
-   "analysis_status": "sin_ia",
-   "matrix": {
-    "diari-de-girona": "sin_coincidencias",
-    "el-punt-avui-girona": "sin_coincidencias",
-    "3cat-324": "encontrada",
-    "la-vanguardia": "encontrada",
-    "ara": "sin_coincidencias",
-    "el-periodico": "sin_coincidencias",
-    "el-nacional": "encontrada",
-    "el-pais": "parcial",
-    "el-mundo": "encontrada",
-    "abc": "parcial",
-    "eldiario-es": "encontrada",
-    "el-confidencial": "sin_coincidencias",
-    "rtve": "no_evaluable",
-    "politico-europe": "sin_coincidencias",
-    "euronews": "parcial",
-    "bbc-news": "sin_coincidencias",
-    "the-guardian": "encontrada",
-    "france-24": "parcial",
-    "tass": "encontrada",
-    "rt": "sin_coincidencias",
-    "al-jazeera": "parcial",
-    "tehran-times": "no_evaluable",
-    "global-times": "no_evaluable",
-    "cgtn": "no_evaluable",
-    "haaretz": "no_evaluable",
-    "npr": "no_evaluable",
-    "dw": "encontrada"
-   }
-  },
-  {
    "id": "ev-0f1bbc2bad",
    "title": "Why Israel's election is one of the most important in its history",
    "title_is_headline": true,
@@ -2010,7 +2026,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/eleccions-a-israel-cinc-perfils-de-votant-per-entendre-un-pais-amb-moltes-cares/noticia/3428416/",
      "title": "Eleccions a Israel: cinc perfils de votant per entendre un país amb moltes cares",
      "published_at": "2026-10-25T06:42:26+00:00",
-     "retrieved_at": "2026-10-26T00:25:44+00:00",
+     "retrieved_at": "2026-10-26T00:30:33+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2028,7 +2044,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/israeli-elections-what-are-the-possible-outcomes?traffic_source=rss",
      "title": "Israeli elections: What are the possible outcomes?",
      "published_at": "2026-10-25T07:10:52+00:00",
-     "retrieved_at": "2026-10-26T00:25:45+00:00",
+     "retrieved_at": "2026-10-26T00:30:34+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2046,7 +2062,7 @@
      "final_url": "https://www.ara.cat/internacional/proxim-orient/l-economia-ferida-guerra-tambe-marca-eleccions-d-israel_130_5888927.html",
      "title": "L'economia ferida per la guerra també marca les eleccions d'Israel",
      "published_at": "2026-10-24T17:00:08+00:00",
-     "retrieved_at": "2026-10-26T00:25:45+00:00",
+     "retrieved_at": "2026-10-26T00:30:34+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "parcial",
@@ -2064,7 +2080,7 @@
      "final_url": "https://www.bbc.co.uk/news/videos/c64g1wje3jjwo",
      "title": "Why Israel's election is one of the most important in its history",
      "published_at": "2026-10-25T22:05:30+00:00",
-     "retrieved_at": "2026-10-26T00:25:45+00:00",
+     "retrieved_at": "2026-10-26T00:30:34+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -2082,14 +2098,14 @@
      "final_url": "https://cincodias.elpais.com/opinion/2026-10-22/israel-se-juega-su-economia-en-las-urnas.html",
      "title": "Israel se juega su economía en las urnas",
      "published_at": "2026-10-22T03:40:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:45+00:00",
-     "genre": "opinion",
-     "genre_basis": "declarado: OpinionNewsArticle",
-     "access_status": "completo",
-     "access_reason": "articleBody",
-     "text_hash": "sha256:a995f83cc93dcc85305e39ebef4be1535d31ca26db59a3ad323ababb55c2c6a0",
-     "text_chars": 7935,
-     "extraction_scope": "cuerpo_completo",
+     "retrieved_at": "2026-10-26T00:30:34+00:00",
+     "genre": "no_verificado",
+     "genre_basis": null,
+     "access_status": "inaccesible",
+     "access_reason": "HTTP 403 (control de acceso; no se intenta sortear)",
+     "text_hash": null,
+     "text_chars": 0,
+     "extraction_scope": "ninguno",
      "language": "es",
      "analyzed": false
     },
@@ -2100,7 +2116,7 @@
      "final_url": "https://www.eldiario.es/internacional/elecciones-israel-carrera-mostrar-postura-dura-palestina_129_13606698.html",
      "title": "Las elecciones en Israel, una carrera por mostrar la postura más dura contra Palestina",
      "published_at": "2026-10-24T20:25:22+00:00",
-     "retrieved_at": "2026-10-26T00:25:48+00:00",
+     "retrieved_at": "2026-10-26T00:30:37+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2118,7 +2134,7 @@
      "final_url": "https://www.france24.com/es/programas/en-contexto/20261023-qui%C3%A9n-tiene-la-llave-del-gobierno-de-israel-tras-las-elecciones",
      "title": "¿Quién tiene la llave del Gobierno de Israel tras las elecciones?",
      "published_at": "2026-10-23T20:36:14+00:00",
-     "retrieved_at": "2026-10-26T00:25:49+00:00",
+     "retrieved_at": "2026-10-26T00:30:38+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2136,7 +2152,7 @@
      "final_url": "https://www.haaretz.com/israel-news/elections/2026-10-25/ty-article-magazine/.premium/a-last-chance-israelis-fly-back-to-vote-hoping-for-a-reason-to-stay/000001a1-7315-db66-abbf-7f9f55dd0000",
      "title": "'A last chance': Israelis fly back to vote, hoping for a reason to stay",
      "published_at": "2026-10-25T20:03:59+00:00",
-     "retrieved_at": "2026-10-26T00:25:50+00:00",
+     "retrieved_at": "2026-10-26T00:30:39+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2154,7 +2170,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261023/11665751/vota-israel.html",
      "title": "¿Quién vota en Israel?",
      "published_at": "2026-10-23T04:00:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:50+00:00",
+     "retrieved_at": "2026-10-26T00:30:40+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2172,7 +2188,7 @@
      "final_url": "https://www.tehrantimes.com/news/531494/Israeli-elections-What-can-Palestinians-expect",
      "title": "Israeli elections: What can Palestinians expect?",
      "published_at": "2026-10-25T16:58:30+00:00",
-     "retrieved_at": "2026-10-26T00:25:50+00:00",
+     "retrieved_at": "2026-10-26T00:30:40+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2190,7 +2206,6 @@
    "figure_differences": [],
    "temporal_notes": [
     "Los artículos comparados se publicaron con hasta 90 h de diferencia (el primero, de El País; el último, de BBC News). Una nota temprana y una crónica posterior no disponían de la misma información.",
-    "Se comparan géneros distintos (noticia, opinion): la opinión y el análisis valoran; la noticia informa.",
     "No todos los textos están completos: de los artículos con texto parcial o sin texto no se deducen omisiones."
    ],
    "highlight_claims": [],
@@ -2203,7 +2218,7 @@
     "ara": "parcial",
     "el-periodico": "sin_coincidencias",
     "el-nacional": "sin_coincidencias",
-    "el-pais": "encontrada",
+    "el-pais": "parcial",
     "el-mundo": "sin_coincidencias",
     "abc": "sin_coincidencias",
     "eldiario-es": "encontrada",
@@ -2257,7 +2272,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/serbia-voter-turnout-highest-in-decades-as-students-oppose-longtime-leader?traffic_source=rss",
      "title": "Serbia’s Vucic concedes election defeat to student-led movement",
      "published_at": "2026-10-25T19:19:54+00:00",
-     "retrieved_at": "2026-10-26T00:25:53+00:00",
+     "retrieved_at": "2026-10-26T00:30:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2275,7 +2290,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/cw5yn3xlprpmo",
      "title": "Serbia's veteran ruler Vučić concedes election to student-led protest movement",
      "published_at": "2026-10-25T21:10:47+00:00",
-     "retrieved_at": "2026-10-26T00:25:53+00:00",
+     "retrieved_at": "2026-10-26T00:30:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -2293,7 +2308,7 @@
      "final_url": "https://www.dw.com/en/serbia-election-vucic-concedes-defeat-to-student-led-movement/a-79753482?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Serbia election: Vucic concedes defeat to student-led movement",
      "published_at": "2026-10-25T21:07:00+00:00",
-     "retrieved_at": "2026-10-26T00:25:54+00:00",
+     "retrieved_at": "2026-10-26T00:30:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2311,7 +2326,7 @@
      "final_url": "https://es.euronews.com/2026/10/25/vucic-admite-derrota-elecciones-anticipadas-serbias-domingo",
      "title": "Vučić admite su derrota en las elecciones anticipadas serbias de este domingo",
      "published_at": "2026-10-25T21:32:51+00:00",
-     "retrieved_at": "2026-10-26T00:25:54+00:00",
+     "retrieved_at": "2026-10-26T00:30:44+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2329,7 +2344,7 @@
      "final_url": "https://www.haaretz.com/world-news/europe/2026-10-25/ty-article/serbias-vucic-concedes-defeat-to-student-led-movement-in-parliamentary-election/000001a1-74cf-d2e1-a3ef-f5cf897f0000",
      "title": "Serbian President and Netanyahu ally Vučić concedes defeat in parliamentary election",
      "published_at": "2026-10-25T20:50:43+00:00",
-     "retrieved_at": "2026-10-26T00:25:54+00:00",
+     "retrieved_at": "2026-10-26T00:30:44+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2347,7 +2362,7 @@
      "final_url": "https://www.politico.eu/article/serbia-aleksandar-vucic-concedes-defeat-after-tense-parliamentary-elections/",
      "title": "Serbia’s Vučić concedes defeat after tense parliamentary elections",
      "published_at": "2026-10-25T21:18:11+00:00",
-     "retrieved_at": "2026-10-26T00:25:55+00:00",
+     "retrieved_at": "2026-10-26T00:30:44+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2437,7 +2452,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/maria-corina-machado-torna-a-venecuela-soc-aqui-amb-vostes/noticia/3436029/",
      "title": "María Corina Machado torna a Veneçuela: \"Soc aquí, amb vostès\"",
      "published_at": "2026-10-25T17:45:16+00:00",
-     "retrieved_at": "2026-10-26T00:25:55+00:00",
+     "retrieved_at": "2026-10-26T00:30:44+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2455,7 +2470,7 @@
      "final_url": "https://www.abc.es/internacional/maria-corina-machado-regresa-venezuela-tras-operacion-20261025164628-nt.html",
      "title": "María Corina Machado regresa a Venezuela: «Estoy aquí. Con ustedes»",
      "published_at": "2026-10-25T15:47:32+00:00",
-     "retrieved_at": "2026-10-26T00:25:55+00:00",
+     "retrieved_at": "2026-10-26T00:30:46+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2473,7 +2488,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/venezuelas-opposition-leader-maria-corina-machado-returns-from-exile?traffic_source=rss",
      "title": "Venezuela’s opposition leader Maria Corina Machado returns from exile",
      "published_at": "2026-10-25T18:55:39+00:00",
-     "retrieved_at": "2026-10-26T00:25:56+00:00",
+     "retrieved_at": "2026-10-26T00:30:46+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2491,7 +2506,7 @@
      "final_url": "https://www.ara.cat/internacional/america/maria-corina-machado-torna-venecuela_1_5890179.html",
      "title": "María Corina Machado torna a Veneçuela",
      "published_at": "2026-10-25T17:00:23+00:00",
-     "retrieved_at": "2026-10-26T00:25:56+00:00",
+     "retrieved_at": "2026-10-26T00:30:46+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2509,7 +2524,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/cq8ez592pp0eo",
      "title": "Venezuelan opposition leader María Machado returns after months in exile",
      "published_at": "2026-10-25T16:21:40+00:00",
-     "retrieved_at": "2026-10-26T00:25:56+00:00",
+     "retrieved_at": "2026-10-26T00:30:47+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -2527,7 +2542,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/25/6ade24bbfdddff48738b459b.html",
      "title": "María Corina Machado regresa a Venezuela y elige el santuario de la Divina Pastora como primera parada",
      "published_at": "2026-10-25T15:52:52+00:00",
-     "retrieved_at": "2026-10-26T00:25:57+00:00",
+     "retrieved_at": "2026-10-26T00:30:47+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -2545,7 +2560,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/maria-corina-machado-torna-venecuela-estic-aqui-vosaltres_1714723_102.html",
      "title": "María Corina Machado torna a Veneçuela: \"Estic aquí. Amb vosaltres\"",
      "published_at": "2026-10-25T16:09:30+00:00",
-     "retrieved_at": "2026-10-26T00:25:58+00:00",
+     "retrieved_at": "2026-10-26T00:30:49+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2563,7 +2578,7 @@
      "final_url": "https://elpais.com/america/2026-10-25/maria-corina-machado-ya-volvio-a-venezuela-y-ahora-que.html",
      "title": "María Corina Machado ya volvió a Venezuela. ¿Y ahora qué?",
      "published_at": "2026-10-25T20:32:33+00:00",
-     "retrieved_at": "2026-10-26T00:25:58+00:00",
+     "retrieved_at": "2026-10-26T00:30:49+00:00",
      "genre": "opinion",
      "genre_basis": "declarado: OpinionNewsArticle",
      "access_status": "parcial",
@@ -2581,7 +2596,7 @@
      "final_url": "https://www.eldiario.es/internacional/maria-corina-machado-insinua-vuelto-venezuela-edmundo-gonzalez-confirma_1_13613849.html",
      "title": "María Corina Machado vuelve a Venezuela y reaparece en un santuario católico",
      "published_at": "2026-10-25T15:55:13+00:00",
-     "retrieved_at": "2026-10-26T00:25:58+00:00",
+     "retrieved_at": "2026-10-26T00:30:49+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2599,7 +2614,7 @@
      "final_url": "https://es.euronews.com/2026/10/25/maria-corina-machado-regresa-venezuela-diez-meses-despues",
      "title": "María Corina Machado regresa a Venezuela tras casi 10 meses fuera del país",
      "published_at": "2026-10-25T15:46:36+00:00",
-     "retrieved_at": "2026-10-26T00:25:59+00:00",
+     "retrieved_at": "2026-10-26T00:30:50+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2617,7 +2632,7 @@
      "final_url": "https://www.france24.com/es/am%C3%A9rica-latina/20261025-estoy-aqu%C3%AD-mar%C3%ADa-corina-machado-regresa-a-venezuela-tras-casi-un-a%C3%B1o-fuera-del-pa%C3%ADs",
      "title": "“Estoy aquí”: María Corina Machado regresa a Venezuela tras casi un año fuera del país",
      "published_at": "2026-10-25T16:09:42+00:00",
-     "retrieved_at": "2026-10-26T00:25:59+00:00",
+     "retrieved_at": "2026-10-26T00:30:50+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2635,7 +2650,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261025/11667709/lider-oposicion-antichavista-maria-corina-machado-regresa-venezuela-diez-meses.html",
      "title": "La líder de la oposición antichavista, María Corina Machado, regresa a Venezuela",
      "published_at": "2026-10-25T16:19:33+00:00",
-     "retrieved_at": "2026-10-26T00:25:59+00:00",
+     "retrieved_at": "2026-10-26T00:30:51+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2653,7 +2668,7 @@
      "final_url": "https://www.npr.org/2026/10/25/nx-s1-6016222/venezuela-maria-corina-machado-leader-returns-exile",
      "title": "Venezuela's opposition leader María Corina Machado returns after months in exile",
      "published_at": "2026-10-25T16:18:41+00:00",
-     "retrieved_at": "2026-10-26T00:25:59+00:00",
+     "retrieved_at": "2026-10-26T00:30:52+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2671,7 +2686,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/25/exiled-venezuelan-opposition-leader-maria-corina-machado-announces-her-return",
      "title": "Exiled opposition leader María Corina Machado returns to Venezuela",
      "published_at": "2026-10-25T17:00:12+00:00",
-     "retrieved_at": "2026-10-26T00:26:02+00:00",
+     "retrieved_at": "2026-10-26T00:30:54+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2762,7 +2777,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/les-protestes-sestenen-arreu-deuropa-els-joves-surten-al-carrer-a-italia-albania-i-belgica/noticia/3435927/",
      "title": "Les protestes s'estenen arreu d'Europa: els joves surten al carrer a Itàlia, Albània i Bèlgica",
      "published_at": "2026-10-24T18:17:45+00:00",
-     "retrieved_at": "2026-10-26T00:26:02+00:00",
+     "retrieved_at": "2026-10-26T00:30:54+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2780,7 +2795,7 @@
      "final_url": "https://www.abc.es/internacional/detenido-joven-origen-marroqui-cerebro-nuevas-protestas-20261024201317-nt.html",
      "title": "Detenido un joven de origen marroquí como el «cerebro» de las nuevas protestas en Italia",
      "published_at": "2026-10-24T18:29:10+00:00",
-     "retrieved_at": "2026-10-26T00:26:03+00:00",
+     "retrieved_at": "2026-10-26T00:30:55+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2798,7 +2813,7 @@
      "final_url": "https://www.ara.cat/internacional/europa/protestes-s-estenen-altres-ciutats-d-italia_1_5889848.html",
      "title": "Les protestes s'estenen a altres ciutats d'Itàlia",
      "published_at": "2026-10-24T20:52:54+00:00",
-     "retrieved_at": "2026-10-26T00:26:03+00:00",
+     "retrieved_at": "2026-10-26T00:30:55+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2816,7 +2831,7 @@
      "final_url": "https://www.diaridegirona.cat/societat/2026/10/24/greus-aldarulls-barcelona-per-protesta-135723446.html",
      "title": "Greus aldarulls a Barcelona per una protesta juvenil inspirada en les mobilitzacions europees",
      "published_at": "2026-10-24T19:00:25+00:00",
-     "retrieved_at": "2026-10-26T00:26:04+00:00",
+     "retrieved_at": "2026-10-26T00:30:56+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2834,7 +2849,7 @@
      "final_url": "https://www.dw.com/en/france-protests-police-paris/live-79748223?maca=en-rss-en-all-1573-xml-mrss",
      "title": "France: Hundreds arrested after nationwide protests",
      "published_at": "2026-10-25T12:05:00+00:00",
-     "retrieved_at": "2026-10-26T00:26:07+00:00",
+     "retrieved_at": "2026-10-26T00:30:58+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2852,7 +2867,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/24/6adc7e49e9cf4a1c0a8b456d.html",
      "title": "Las manifestaciones en Francia congregan al mismo número de gente que el 17-O pese a las prohibiciones",
      "published_at": "2026-10-24T10:18:13+00:00",
-     "retrieved_at": "2026-10-26T00:26:07+00:00",
+     "retrieved_at": "2026-10-26T00:30:59+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "completo",
@@ -2870,7 +2885,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/revolta-social-esten-italia-disturbis-roma-bolonya-tori-en-jornada-protestes_1714549_102.html",
      "title": "La revolta social s'estén a Itàlia: disturbis a Roma, Bolonya i Torí en una jornada de protestes",
      "published_at": "2026-10-24T19:59:26+00:00",
-     "retrieved_at": "2026-10-26T00:26:08+00:00",
+     "retrieved_at": "2026-10-26T00:31:02+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2888,7 +2903,7 @@
      "final_url": "https://elpais.com/internacional/2026-10-24/la-temida-jornada-de-protestas-en-italia-transcurre-sin-incidentes-y-con-la-detencion-del-presunto-promotor-en-redes-de-los-disturbios.html",
      "title": "La temida jornada de protestas en Italia transcurre sin incidentes y con la detención del presunto promotor en redes de los disturbios",
      "published_at": "2026-10-24T17:03:03+00:00",
-     "retrieved_at": "2026-10-26T00:26:08+00:00",
+     "retrieved_at": "2026-10-26T00:31:02+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2906,7 +2921,7 @@
      "final_url": "https://www.eldiario.es/internacional/theguardian/ola-disturbios-francia-acorrala-macron-vez-aislado_129_13603031.html",
      "title": "Por qué la ola de disturbios en Francia acorrala a un Macron cada vez más aislado",
      "published_at": "2026-10-21T19:53:35+00:00",
-     "retrieved_at": "2026-10-26T00:26:09+00:00",
+     "retrieved_at": "2026-10-26T00:31:02+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2924,7 +2939,7 @@
      "final_url": "https://es.euronews.com/2026/10/25/protestas-europa-francia-albania-italia-espana-portugal",
      "title": "Las protestas se extienden por Europa: de Francia a Albania, pasando por Italia, España y Portugal",
      "published_at": "2026-10-25T11:04:07+00:00",
-     "retrieved_at": "2026-10-26T00:26:09+00:00",
+     "retrieved_at": "2026-10-26T00:31:02+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2942,7 +2957,7 @@
      "final_url": "https://www.france24.com/es/video/20261025-marchas-masivas-en-francia-bajo-fuerte-seguridad-casi-mil-detenidos-y-choques-en-varias-ciudades",
      "title": "Marchas masivas en Francia bajo fuerte seguridad: casi mil detenidos y choques en varias ciudades",
      "published_at": "2026-10-25T03:16:49+00:00",
-     "retrieved_at": "2026-10-26T00:26:09+00:00",
+     "retrieved_at": "2026-10-26T00:31:02+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -2960,7 +2975,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261024/11667247/detenido-milan-presunto-cerebro-protestas-juveniles-italia.html",
      "title": "Detenido en Milán el presunto cerebro de las protestas juveniles en Italia",
      "published_at": "2026-10-24T15:23:39+00:00",
-     "retrieved_at": "2026-10-26T00:26:10+00:00",
+     "retrieved_at": "2026-10-26T00:31:03+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2978,7 +2993,7 @@
      "final_url": "https://www.tehrantimes.com/news/531454/Hundreds-of-protests-are-held-across-France",
      "title": "Hundreds of protests are held across France",
      "published_at": "2026-10-24T16:25:47+00:00",
-     "retrieved_at": "2026-10-26T00:26:10+00:00",
+     "retrieved_at": "2026-10-26T00:31:03+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2996,7 +3011,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/24/hundreds-of-thousands-march-across-france-in-protests-over-schools-and-policing",
      "title": "Hundreds of thousands march across France in protests over schools and policing",
      "published_at": "2026-10-24T17:54:41+00:00",
-     "retrieved_at": "2026-10-26T00:26:11+00:00",
+     "retrieved_at": "2026-10-26T00:31:04+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3047,6 +3062,331 @@
     "npr": "no_evaluable",
     "dw": "encontrada"
    }
+  },
+  {
+   "id": "ev-2074277d5e",
+   "title": "Qué sabemos del virus shamonda, que ha contagiado por primera vez a un ser humano y se ha detectado en España",
+   "title_is_headline": true,
+   "title_source_id": "eldiario-es",
+   "summary_claims": [],
+   "source_ids": [
+    "3cat-324",
+    "abc",
+    "ara",
+    "bbc-news",
+    "el-mundo",
+    "el-nacional",
+    "el-pais",
+    "eldiario-es",
+    "euronews",
+    "france-24",
+    "la-vanguardia",
+    "politico-europe",
+    "rt",
+    "the-guardian"
+   ],
+   "country_ids": [
+    "BE",
+    "ES",
+    "FR",
+    "GB",
+    "RU"
+   ],
+   "first_published_at": "2026-10-22T09:12:45+00:00",
+   "last_published_at": "2026-10-23T07:30:14+00:00",
+   "articles": [
+    {
+     "id": "3397a52abca5",
+     "source_id": "3cat-324",
+     "url": "https://www.3cat.cat/3catinfo/mor-a-franca-una-persona-infectada-pel-virus-de-shamonda-primer-cas-detectat-en-humans/noticia/3435596/",
+     "final_url": "https://www.3cat.cat/3catinfo/mor-a-franca-una-persona-infectada-pel-virus-de-shamonda-primer-cas-detectat-en-humans/noticia/3435596/",
+     "title": "Mor a França una persona infectada pel virus de Shamonda, primer cas detectat en humans",
+     "published_at": "2026-10-22T14:07:23+00:00",
+     "retrieved_at": "2026-10-26T00:31:04+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:ba615bdc55a7363260744fd0cd3adabddba5c545b99147ca8ab2436f6ceaca0f",
+     "text_chars": 5676,
+     "extraction_scope": "cuerpo_completo",
+     "language": "ca",
+     "analyzed": false
+    },
+    {
+     "id": "6a4410559fc3",
+     "source_id": "abc",
+     "url": "https://www.abc.es/salud/enfermedades/virus-shamonda-claves-enfermedad-detectado-primera-vez-20261022174158-nt.html",
+     "final_url": "https://www.abc.es/salud/enfermedades/virus-shamonda-claves-enfermedad-detectado-primera-vez-20261022174158-nt.html",
+     "title": "Las claves de la enfermedad que se ha detectado por primera vez en un humano en Francia",
+     "published_at": "2026-10-23T00:57:38+00:00",
+     "retrieved_at": "2026-10-26T00:31:05+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "parcial",
+     "access_reason": "el medio declara contenido de pago: solo la parte visible",
+     "text_hash": "sha256:9bbfd48a4d272ff5c81ce9437589d7b57a1cb3d95310b34ba936893fe0125a05",
+     "text_chars": 3704,
+     "extraction_scope": "cuerpo_parcial",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "0463a08b1ea8",
+     "source_id": "ara",
+     "url": "https://www.ara.cat/societat/salut/mor-home-franca-pel-virus-shamonda-rarament-afecta-humans_1_5886861.html",
+     "final_url": "https://www.ara.cat/societat/salut/mor-home-franca-pel-virus-shamonda-rarament-afecta-humans_1_5886861.html",
+     "title": "Què és el virus Shamonda, que ha causat la mort d'un home a França?",
+     "published_at": "2026-10-22T10:00:33+00:00",
+     "retrieved_at": "2026-10-26T00:31:06+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "parcial",
+     "access_reason": "el medio declara contenido de pago: solo la parte visible",
+     "text_hash": "sha256:8a3d1b96d2b6598df0058b80e2159d444029b9e48cfd874e6d7eae859d7d082f",
+     "text_chars": 7228,
+     "extraction_scope": "cuerpo_parcial",
+     "language": "ca",
+     "analyzed": false
+    },
+    {
+     "id": "869a22603563",
+     "source_id": "bbc-news",
+     "url": "https://www.bbc.co.uk/news/articles/c6reyx1d9ge9o",
+     "final_url": "https://www.bbc.co.uk/news/articles/c6reyx1d9ge9o",
+     "title": "First human case of Shamonda virus detected in France, officials say",
+     "published_at": "2026-10-22T11:04:14+00:00",
+     "retrieved_at": "2026-10-26T00:31:07+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: ReportageNewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:e68636b7bd9be496d7231424595a51098d83a47477fee4a58e900243b020d5a1",
+     "text_chars": 2306,
+     "extraction_scope": "cuerpo_completo",
+     "language": "en",
+     "analyzed": false
+    },
+    {
+     "id": "6b261899b1b8",
+     "source_id": "el-mundo",
+     "url": "https://www.elmundo.es/salud/2026/10/22/6ad9d62afdddffef108b457e.html",
+     "final_url": "https://www.elmundo.es/salud/2026/10/22/6ad9d62afdddffef108b457e.html",
+     "title": "Qué sabemos del virus shamonda con el que estaba infectado el hombre muerto en Francia",
+     "published_at": "2026-10-22T10:52:31+00:00",
+     "retrieved_at": "2026-10-26T00:31:07+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:15efaf57f82ba5a6bc5610507f8f9640792379e12e529d69b47100cc130422d3",
+     "text_chars": 12713,
+     "extraction_scope": "cuerpo_completo",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "84f51afb764f",
+     "source_id": "el-nacional",
+     "url": "https://www.elnacional.cat/ca/societat/es-virus-shamonda-detectat-en-mort-franca-picades-insectes-afectacio-humana-limitada_1713811_102.html",
+     "final_url": "https://www.elnacional.cat/ca/societat/es-virus-shamonda-detectat-en-mort-franca-picades-insectes-afectacio-humana-limitada_1713811_102.html",
+     "title": "Què és el virus shamonda, detectat en un mort a França: picades d'insectes i afectació humana \"limitada\"",
+     "published_at": "2026-10-23T07:16:13+00:00",
+     "retrieved_at": "2026-10-26T00:31:10+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:67a44286cb43d81a2fb0ff04a5fb72489dca82ad0f1ffb5cfa417b9535a41c16",
+     "text_chars": 2886,
+     "extraction_scope": "cuerpo_completo",
+     "language": "ca",
+     "analyzed": false
+    },
+    {
+     "id": "831b2675acee",
+     "source_id": "el-pais",
+     "url": "https://elpais.com/sociedad/2026-10-23/el-primer-salto-del-shamonda-a-un-humano-que-se-sabe-de-un-virus-emergente-que-ha-sorprendido-a-los-expertos.html",
+     "final_url": "https://elpais.com/sociedad/2026-10-23/el-primer-salto-del-shamonda-a-un-humano-que-se-sabe-de-un-virus-emergente-que-ha-sorprendido-a-los-expertos.html",
+     "title": "El primer salto del shamonda a un humano: qué se sabe de un virus emergente que ha sorprendido a los expertos",
+     "published_at": "2026-10-23T03:30:01+00:00",
+     "retrieved_at": "2026-10-26T00:31:10+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:7dc834f72c2932a9b3cebdc1d45b1a9f06bcc1836d7c70d3fa98ba922f8bdef7",
+     "text_chars": 5391,
+     "extraction_scope": "cuerpo_completo",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "0959ed69aa48",
+     "source_id": "eldiario-es",
+     "url": "https://www.eldiario.es/sociedad/virus-shamonda-contagiado-primera-vez-humano-detectado-espana_1_13608494.html",
+     "final_url": "https://www.eldiario.es/sociedad/virus-shamonda-contagiado-primera-vez-humano-detectado-espana_1_13608494.html",
+     "title": "Qué sabemos del virus shamonda, que ha contagiado por primera vez a un ser humano y se ha detectado en España",
+     "published_at": "2026-10-23T07:30:14+00:00",
+     "retrieved_at": "2026-10-26T00:31:11+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:96fa3798170d24acee3f0cb18abf2accd8411e5910edd9b71d2a6171c7561614",
+     "text_chars": 5047,
+     "extraction_scope": "cuerpo_completo",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "9026e6e5b071",
+     "source_id": "euronews",
+     "url": "https://es.euronews.com/2026/10/22/espana-en-alerta-por-el-virus-shamonda-tras-el-primer-caso-humano-en-francia",
+     "final_url": "https://es.euronews.com/2026/10/22/espana-en-alerta-por-el-virus-shamonda-tras-el-primer-caso-humano-en-francia",
+     "title": "España en alerta por el virus Shamonda tras el primer caso humano en Francia",
+     "published_at": "2026-10-22T16:13:53+00:00",
+     "retrieved_at": "2026-10-26T00:31:11+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:7eb0cfd0c4aeda4c0c147be8cce9a600ca0fd7c278098d5a6e283ddf55195835",
+     "text_chars": 1437,
+     "extraction_scope": "cuerpo_completo",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "3220e62a8203",
+     "source_id": "france-24",
+     "url": "https://www.france24.com/es/salud/20261022-francia-detecta-el-primer-caso-del-virus-shamonda-en-humanos-en-un-paciente-inmunodeprimido-fallecido",
+     "final_url": "https://www.france24.com/es/salud/20261022-francia-detecta-el-primer-caso-del-virus-shamonda-en-humanos-en-un-paciente-inmunodeprimido-fallecido",
+     "title": "Francia detecta el primer caso del virus Shamonda en humanos en un paciente inmunodeprimido fallecido",
+     "published_at": "2026-10-22T18:13:49+00:00",
+     "retrieved_at": "2026-10-26T00:31:12+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:d092484010be49cbb409a2036f8122b26fc67f318cd00bdb49792eb3c21032a1",
+     "text_chars": 5252,
+     "extraction_scope": "cuerpo_completo",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "c5d05b11fa23",
+     "source_id": "la-vanguardia",
+     "url": "https://www.lavanguardia.com/vida/salud/20261022/11665549/virus-shamonda-que-como-contagia-principales-sintomas.html",
+     "final_url": "https://www.lavanguardia.com/vida/salud/20261022/11665549/virus-shamonda-que-como-contagia-principales-sintomas.html",
+     "title": "Virus de Shamonda: qué es, cómo se contagia y qué se sabe de sus síntomas tras detectarse el primer caso mortal en Francia",
+     "published_at": "2026-10-22T13:26:56+00:00",
+     "retrieved_at": "2026-10-26T00:31:12+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:bb85de7705b6a20aed85bce4d39aca554d87aff3d25fab6414b99aa581a30edc",
+     "text_chars": 4025,
+     "extraction_scope": "cuerpo_completo",
+     "language": "es",
+     "analyzed": false
+    },
+    {
+     "id": "4465a83c72ab",
+     "source_id": "politico-europe",
+     "url": "https://www.politico.eu/article/first-known-human-case-of-shamonda-virus-reported-in-france/",
+     "final_url": "https://www.politico.eu/article/first-known-human-case-of-shamonda-virus-reported-in-france/",
+     "title": "First known human case of Shamonda virus confirmed in France",
+     "published_at": "2026-10-22T13:14:26+00:00",
+     "retrieved_at": "2026-10-26T00:31:12+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:b257b80e4a31fd1ac5776987859cdffe16e5ee91a04ff800cdee96220b980a2c",
+     "text_chars": 2394,
+     "extraction_scope": "cuerpo_completo",
+     "language": "en",
+     "analyzed": false
+    },
+    {
+     "id": "f82ed6ad5fd3",
+     "source_id": "rt",
+     "url": "https://rt-english.com/news/647529-shamonda-first-human-case/",
+     "final_url": "https://rt-english.com/news/647529-shamonda-first-human-case/",
+     "title": "Livestock virus claims first human victim in France",
+     "published_at": "2026-10-22T15:22:57+00:00",
+     "retrieved_at": "2026-10-26T00:31:12+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:9250ff87d46d01674c5497c6e21e0e128addba338de42183d72f3548230b518f",
+     "text_chars": 2646,
+     "extraction_scope": "cuerpo_completo",
+     "language": "en",
+     "analyzed": false
+    },
+    {
+     "id": "c5548c0cafe9",
+     "source_id": "the-guardian",
+     "url": "https://www.theguardian.com/world/2026/oct/22/shamonda-virus-detected-in-human-first-time-france",
+     "final_url": "https://www.theguardian.com/world/2026/oct/22/shamonda-virus-detected-in-human-first-time-france",
+     "title": "Shamonda virus detected in human for first time in France",
+     "published_at": "2026-10-22T15:07:01+00:00",
+     "retrieved_at": "2026-10-26T00:31:14+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:dd873466a94df9288dca9e693a6d418924adba6d92fe14eb9d50451cfedf03b0",
+     "text_chars": 2751,
+     "extraction_scope": "cuerpo_completo",
+     "language": "en",
+     "analyzed": false
+    }
+   ],
+   "evidence": [],
+   "comparisons": [],
+   "omissions": [],
+   "figure_differences": [],
+   "temporal_notes": [
+    "Los artículos comparados se publicaron con hasta 21 h de diferencia (el primero, de Ara; el último, de elDiario.es). Una nota temprana y una crónica posterior no disponían de la misma información.",
+    "No todos los textos están completos: de los artículos con texto parcial o sin texto no se deducen omisiones."
+   ],
+   "highlight_claims": [],
+   "analysis_status": "sin_ia",
+   "matrix": {
+    "diari-de-girona": "sin_coincidencias",
+    "el-punt-avui-girona": "sin_coincidencias",
+    "3cat-324": "encontrada",
+    "la-vanguardia": "encontrada",
+    "ara": "parcial",
+    "el-periodico": "sin_coincidencias",
+    "el-nacional": "encontrada",
+    "el-pais": "encontrada",
+    "el-mundo": "encontrada",
+    "abc": "parcial",
+    "eldiario-es": "encontrada",
+    "el-confidencial": "sin_coincidencias",
+    "rtve": "no_evaluable",
+    "politico-europe": "encontrada",
+    "euronews": "encontrada",
+    "bbc-news": "encontrada",
+    "the-guardian": "encontrada",
+    "france-24": "encontrada",
+    "tass": "no_evaluable",
+    "rt": "encontrada",
+    "al-jazeera": "no_evaluable",
+    "tehran-times": "no_evaluable",
+    "global-times": "no_evaluable",
+    "cgtn": "sin_coincidencias",
+    "haaretz": "sin_coincidencias",
+    "npr": "no_evaluable",
+    "dw": "sin_coincidencias"
+   }
   }
  ],
  "silences": [
@@ -3055,7 +3395,7 @@
    "source_ids": [
     "rt"
    ],
-   "description": "Sin artículos en la muestra sobre «Uganda orders 21-day Ebola quarantine for citizens returning from DR Congo» de: RT (RU). La fuente sí tenía titulares capturados en esas fechas."
+   "description": "Sin artículos en la muestra sobre «Segunda muerte por ébola y nueve casos confirmados en Kenia» de: RT (RU). La fuente sí tenía titulares capturados en esas fechas."
   },
   {
    "event_id": "ev-3a5b377472",
@@ -3075,15 +3415,6 @@
     "haaretz"
    ],
    "description": "Sin artículos en la muestra sobre «Serbia: el populista Vucic reconoce su derrota ante la Lista de Estudiantes en las legislativas» de: RT (RU), Haaretz (IL). La fuente sí tenía titulares capturados en esas fechas."
-  },
-  {
-   "event_id": "ev-697e8203a9",
-   "source_ids": [
-    "politico-europe",
-    "bbc-news",
-    "rt"
-   ],
-   "description": "Sin artículos en la muestra sobre «Informe desde Río de Janeiro: Brasil cierra las urnas tras prórroga excepcional de dos horas» de: Politico Europe (BE), BBC News (GB), RT (RU). La fuente sí tenía titulares capturados en esas fechas."
   },
   {
    "event_id": "ev-0f1bbc2bad",
@@ -3128,6 +3459,15 @@
     "rt"
    ],
    "description": "Sin artículos en la muestra sobre «France: Hundreds arrested after nationwide protests» de: Politico Europe (BE), BBC News (GB), RT (RU). La fuente sí tenía titulares capturados en esas fechas."
+  },
+  {
+   "event_id": "ev-2074277d5e",
+   "source_ids": [
+    "cgtn",
+    "haaretz",
+    "dw"
+   ],
+   "description": "Sin artículos en la muestra sobre «Qué sabemos del virus shamonda, que ha contagiado por primera vez a un ser humano y se ha detectado en España» de: CGTN (CN), Haaretz (IL), DW (DE). La fuente sí tenía titulares capturados en esas fechas."
   }
  ],
  "source_notes": [
@@ -3163,14 +3503,14 @@
  "api_limits": {
   "x-ratelimit-limit-requests": "1000",
   "x-ratelimit-limit-tokens": "8000",
-  "x-ratelimit-remaining-requests": "986",
-  "x-ratelimit-remaining-tokens": "1246",
-  "x-ratelimit-reset-requests": "20m9.6s",
-  "x-ratelimit-reset-tokens": "50.654s"
+  "x-ratelimit-remaining-requests": "980",
+  "x-ratelimit-remaining-tokens": "63",
+  "x-ratelimit-reset-requests": "28m48s",
+  "x-ratelimit-reset-tokens": "59.527s"
  },
  "token_usage": {
-  "tokens": 6205,
-  "requests": 5,
+  "tokens": 16064,
+  "requests": 14,
   "cache_hits": 2
  }
 }
