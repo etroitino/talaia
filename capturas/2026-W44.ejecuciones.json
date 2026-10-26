@@ -127,7 +127,9 @@
 "rss_hasta": "2026-10-25T16:37:09+00:00"
 },
 "el-punt-avui-girona": {
-"error": {},
+"error": {
+"2026-10-26T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+},
 "ok": [
 "2026-10-25T23",
 "2026-10-26T00"
