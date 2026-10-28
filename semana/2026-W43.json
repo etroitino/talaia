@@ -5,7 +5,7 @@
  "period_start": "2026-10-19T00:00:00+02:00",
  "period_end_exclusive": "2026-10-26T00:00:00+01:00",
  "cutoff_at": "2026-10-25T23:00:00+00:00",
- "generated_at": "2026-10-28T09:02:44+00:00",
+ "generated_at": "2026-10-28T15:32:27+00:00",
  "status": "parcial",
  "analysis_status": "parcial",
  "analysis_note": "análisis interrumpido: Groq no responde bien (HTTP 400)",
@@ -361,7 +361,9 @@
    "articles_in_period": 1158,
    "articles_evaluated": 8,
    "access_counts": {
-    "inaccesible": 8
+    "inaccesible": 6,
+    "completo": 1,
+    "solo_titular": 1
    },
    "capture_hours_ok": 14,
    "errors": [],
@@ -529,9 +531,9 @@
    "articles_in_period": 291,
    "articles_evaluated": 8,
    "access_counts": {
-    "inaccesible": 2,
-    "completo": 3,
-    "parcial": 3
+    "inaccesible": 3,
+    "completo": 4,
+    "parcial": 1
    },
    "capture_hours_ok": 14,
    "errors": [
@@ -758,7 +760,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/segona-mort-per-ebola-a-kenya-mentre-lepidemia-assola-la-rd-del-congo/noticia/3435888/",
      "title": "Segona mort per Ebola a Kenya mentre l'epidèmia assola la RD del Congo",
      "published_at": "2026-10-24T08:56:58+00:00",
-     "retrieved_at": "2026-10-28T09:04:35+00:00",
+     "retrieved_at": "2026-10-28T15:35:38+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -776,13 +778,13 @@
      "final_url": "https://www.abc.es/sociedad/nigeria-confirma-primer-nuevo-brote-ebola-propaga-20261021121803-nt.html",
      "title": "Nigeria confirma el primer caso de ébola: todos los países africanos contagiados",
      "published_at": "2026-10-21T10:31:08+00:00",
-     "retrieved_at": "2026-10-28T09:04:37+00:00",
+     "retrieved_at": "2026-10-28T15:35:41+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
      "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:3a19491c2d243223e14f6b7bce5c9cf639bb095483df43e43f8e60c10ae67479",
-     "text_chars": 4552,
+     "text_hash": "sha256:3937ae84e3bdbcc4952ecfa425238e6bdb421dcbb3e31cc1485f366852192ba2",
+     "text_chars": 4553,
      "extraction_scope": "cuerpo_parcial",
      "language": "es",
      "analyzed": false
@@ -794,7 +796,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/uganda-orders-21-day-ebola-quarantine-for-citizens-returning-from-dr-congo?traffic_source=rss",
      "title": "Uganda orders 21-day Ebola quarantine for citizens returning from DR Congo",
      "published_at": "2026-10-25T18:20:26+00:00",
-     "retrieved_at": "2026-10-28T09:04:40+00:00",
+     "retrieved_at": "2026-10-28T15:35:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -812,7 +814,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/c6x2355448eyo",
      "title": "Woman, 65, becomes second patient to die of Ebola in Kenya",
      "published_at": "2026-10-24T00:05:43+00:00",
-     "retrieved_at": "2026-10-28T09:04:43+00:00",
+     "retrieved_at": "2026-10-28T15:35:46+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -830,7 +832,7 @@
      "final_url": "https://newsaf.cgtn.com/news/2026-10-24/Kenya-records-second-Ebola-death-as-outbreak-reaches-nine-cases-1RvbXESAfjG/p.html",
      "title": "Kenya records second Ebola death as outbreak reaches nine cases",
      "published_at": "2026-10-24T08:03:46+00:00",
-     "retrieved_at": "2026-10-28T09:04:46+00:00",
+     "retrieved_at": "2026-10-28T15:35:48+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -848,7 +850,7 @@
      "final_url": "https://www.dw.com/en/uganda-says-it-has-no-active-ebola-cases-but-infections-in-kenya-and-nigeria-are-prompting-fresh-scrutiny/a-79741580?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Uganda says it has no active Ebola cases, but infections in Kenya and Nigeria are prompting fresh scrutiny",
      "published_at": "2026-10-25T13:41:00+00:00",
-     "retrieved_at": "2026-10-28T09:04:49+00:00",
+     "retrieved_at": "2026-10-28T15:35:51+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -866,7 +868,7 @@
      "final_url": "https://elpais.com/planeta-futuro/2026-10-21/el-brote-de-ebola-se-expande-a-africa-occidental-tras-la-confirmacion-del-primer-caso-en-nigeria.html",
      "title": "El brote de ébola se expande a África Occidental tras la confirmación del primer caso en Nigeria",
      "published_at": "2026-10-21T14:54:30+00:00",
-     "retrieved_at": "2026-10-28T09:04:52+00:00",
+     "retrieved_at": "2026-10-28T15:35:53+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -884,7 +886,7 @@
      "final_url": "https://es.euronews.com/2026/10/21/ministros-de-sanidad-africanos-abordan-la-crisis-del-ebola-tras-el-primer-caso-en-nigeria",
      "title": "Ministros de Sanidad africanos abordan la crisis del ébola tras el primer caso en Nigeria",
      "published_at": "2026-10-21T15:20:19+00:00",
-     "retrieved_at": "2026-10-28T09:04:54+00:00",
+     "retrieved_at": "2026-10-28T15:35:56+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -902,7 +904,7 @@
      "final_url": "https://www.france24.com/es/video/20261021-nigeria-confirma-el-primer-caso-de-%C3%A9bola-en-el-pa%C3%ADs",
      "title": "Nigeria confirma el primer caso de ébola en el país",
      "published_at": "2026-10-21T20:42:37+00:00",
-     "retrieved_at": "2026-10-28T09:04:57+00:00",
+     "retrieved_at": "2026-10-28T15:35:58+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -920,7 +922,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261024/11667067/kenia-confirma-segunda-muerte-ebola-contactos-primer-caso.html",
      "title": "Kenia confirma una segunda muerte por ébola entre los contactos del primer caso",
      "published_at": "2026-10-24T06:35:36+00:00",
-     "retrieved_at": "2026-10-28T09:04:59+00:00",
+     "retrieved_at": "2026-10-28T15:36:00+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -938,7 +940,7 @@
      "final_url": "https://www.politico.eu/article/nigeria-confirms-ebola-case-drc-congo-outbreak-spreads/",
      "title": "Nigeria confirms Ebola case, as Congo outbreak spreads",
      "published_at": "2026-10-21T09:37:53+00:00",
-     "retrieved_at": "2026-10-28T09:05:01+00:00",
+     "retrieved_at": "2026-10-28T15:36:02+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -956,7 +958,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/23/ebola-swiss-patient-nigeria-dr-congo-concerns-virus-spread",
      "title": "Mystery over source of Ebola infection in Nigeria fuels concern about spread of virus",
      "published_at": "2026-10-23T13:43:46+00:00",
-     "retrieved_at": "2026-10-28T09:05:03+00:00",
+     "retrieved_at": "2026-10-28T15:36:04+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1321,10 +1323,33 @@
   },
   {
    "id": "ev-3a5b377472",
-   "title": "Germany news: Fire flares up at Hitler's Eagle's Nest retreat",
-   "title_is_headline": true,
-   "title_source_id": "dw",
-   "summary_claims": [],
+   "title": "Incendio y detención en el Nido del Águila",
+   "title_is_headline": false,
+   "summary_claims": [
+    {
+     "id": "ev-3a5b377472-c1",
+     "text": "Un incendio se desató en el refugio nazi del Nido del Águila en Baviera, causando graves daños al edificio.",
+     "evidence_ids": [
+      "e-0bbc57481ad4-1",
+      "e-8c87f7dc5df6-1"
+     ]
+    },
+    {
+     "id": "ev-3a5b377472-c2",
+     "text": "La policía bávara detuvo a un sospechoso de 33 años tras el incendio.",
+     "evidence_ids": [
+      "e-0bbc57481ad4-3",
+      "e-913aeacbbe8d-1"
+     ]
+    },
+    {
+     "id": "ev-3a5b377472-c3",
+     "text": "Las autoridades siguen investigando las causas del fuego.",
+     "evidence_ids": [
+      "e-47160d7a8ea7-1"
+     ]
+    }
+   ],
    "source_ids": [
     "3cat-324",
     "abc",
@@ -1360,7 +1385,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/detenen-un-home-per-lincendi-del-niu-de-laguila-el-xalet-refugi-dadolf-hitler-als-alps/noticia/3435887/",
      "title": "Detenen un home per l'incendi del Niu de l'Àguila, el xalet refugi d'Adolf Hitler als Alps",
      "published_at": "2026-10-24T07:10:51+00:00",
-     "retrieved_at": "2026-10-28T09:05:06+00:00",
+     "retrieved_at": "2026-10-28T15:36:07+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1378,13 +1403,13 @@
      "final_url": "https://www.abc.es/internacional/detenido-incendio-nido-aguila-antigua-residencia-hitler-20261024120530-nt.html",
      "title": "Un detenido por el incendio del 'Nido del Águila', antigua residencia de Hitler en Alemania",
      "published_at": "2026-10-24T10:05:30+00:00",
-     "retrieved_at": "2026-10-28T09:05:07+00:00",
+     "retrieved_at": "2026-10-28T15:36:08+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
      "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:d5193148777046f3e8860229cef0734ad01b7d914ea2f0a4a2b0a99704d8f36d",
-     "text_chars": 2366,
+     "text_hash": "sha256:5c730ed54a48130e9d6e098e3f11110acd0130732546f52b0ad160123f874cbf",
+     "text_chars": 2367,
      "extraction_scope": "cuerpo_parcial",
      "language": "es",
      "analyzed": false
@@ -1396,7 +1421,7 @@
      "final_url": "https://www.ara.cat/internacional/europa/detingut-alemanya-sospitos-d-incendiat-niu-l-aliga-famosa-residencia-muntanya-hitler_1_5889264.html",
      "title": "Un detingut a Alemanya, sospitós d'haver incendiat el Niu de l'Àliga, la famosa residència de muntanya de Hitler",
      "published_at": "2026-10-24T11:44:56+00:00",
-     "retrieved_at": "2026-10-28T09:05:07+00:00",
+     "retrieved_at": "2026-10-28T15:36:08+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1414,7 +1439,7 @@
      "final_url": "https://www.bbc.co.uk/news/videos/cq98z9xxy2n2o",
      "title": "Fire engulfs Hitler's mountaintop Eagle's Nest retreat",
      "published_at": "2026-10-24T15:56:48+00:00",
-     "retrieved_at": "2026-10-28T09:05:11+00:00",
+     "retrieved_at": "2026-10-28T15:36:11+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1432,16 +1457,16 @@
      "final_url": "https://www.dw.com/en/germany-news-fire-flares-up-at-hitlers-eagles-nest-retreat/live-79749353?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Germany news: Fire flares up at Hitler's Eagle's Nest retreat",
      "published_at": "2026-10-25T10:36:00+00:00",
-     "retrieved_at": "2026-10-28T09:05:12+00:00",
+     "retrieved_at": "2026-10-28T15:36:11+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
      "access_reason": "párrafos visibles",
      "text_hash": "sha256:4ecba91a2b8a33466141218e67d3c50ec27f563103be34ee3732512cb4ae0e1f",
      "text_chars": 12880,
-     "extraction_scope": "cuerpo_completo",
+     "extraction_scope": "recortado",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "523b758b6987",
@@ -1450,7 +1475,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/24/6adc5e6fe4d4d83e7e8b4571.html",
      "title": "Detienen a un hombre tras producirse un incendio en el Nido del Águila, la antigua residencia de montaña de Hitler en Baviera",
      "published_at": "2026-10-24T07:29:56+00:00",
-     "retrieved_at": "2026-10-28T09:05:15+00:00",
+     "retrieved_at": "2026-10-28T15:36:14+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -1468,7 +1493,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/incendi-arrasa-niu-aliga-hitler-ultims-simbols-poder-nazi_1714417_102.html",
      "title": "Un incendi arrasa el Niu de l'Àliga de Hitler, un dels últims símbols del poder nazi",
      "published_at": "2026-10-24T09:59:45+00:00",
-     "retrieved_at": "2026-10-28T09:05:18+00:00",
+     "retrieved_at": "2026-10-28T15:36:16+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1486,7 +1511,7 @@
      "final_url": "https://elpais.com/internacional/2026-10-24/las-llamas-destruyen-el-nido-del-aguila-la-famosa-residencia-de-hitler-en-los-alpes.html",
      "title": "Las llamas destruyen El Nido del Águila, la famosa residencia de Hitler en los Alpes",
      "published_at": "2026-10-24T09:17:55+00:00",
-     "retrieved_at": "2026-10-28T09:05:20+00:00",
+     "retrieved_at": "2026-10-28T15:36:18+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -1504,7 +1529,7 @@
      "final_url": "https://www.eldiario.es/internacional/detenido-alemania-incendio-nido-aguila-casa-hitler-alpes_1_13611950.html",
      "title": "Un detenido en Alemania por el incendio del 'Nido del Águila', la casa de Hitler en los Alpes bávaros",
      "published_at": "2026-10-24T09:34:54+00:00",
-     "retrieved_at": "2026-10-28T09:05:20+00:00",
+     "retrieved_at": "2026-10-28T15:36:18+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1522,7 +1547,7 @@
      "final_url": "https://es.euronews.com/video/2026/10/24/incendio-arrasa-el-antiguo-refugio-nido-del-aguila-de-hitler-en-alemania",
      "title": "Un espectacular incendio devora el antiguo refugio de Hitler conocido como el Nido del Águila en Alemania",
      "published_at": "2026-10-24T14:12:38+00:00",
-     "retrieved_at": "2026-10-28T09:05:23+00:00",
+     "retrieved_at": "2026-10-28T15:36:21+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1540,16 +1565,16 @@
      "final_url": "https://www.france24.com/es/europa/20261024-un-incendio-devast%C3%B3-el-nido-del-%C3%A1guila-de-hitler-en-alemania-un-sospechoso-detenido",
      "title": "Un incendio devastó el 'Nido del Águila' de Hitler en Alemania; un sospechoso detenido",
      "published_at": "2026-10-24T21:49:42+00:00",
-     "retrieved_at": "2026-10-28T09:05:23+00:00",
-     "genre": "no_verificado",
-     "genre_basis": null,
-     "access_status": "inaccesible",
-     "access_reason": "HTTP 403 (control de acceso; no se intenta sortear)",
-     "text_hash": null,
-     "text_chars": 0,
-     "extraction_scope": "ninguno",
+     "retrieved_at": "2026-10-28T15:36:22+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "completo",
+     "access_reason": "párrafos visibles",
+     "text_hash": "sha256:d742377225aa9cc5ff3bad676c5d8398ef915f1b012b1ceb0b1d155a6403f24f",
+     "text_chars": 3571,
+     "extraction_scope": "cuerpo_completo",
      "language": "es",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "913aeacbbe8d",
@@ -1558,7 +1583,7 @@
      "final_url": "https://www.haaretz.com/world-news/europe/2026-10-24/ty-article/german-police-suspect-arrested-as-fire-engulfs-nazi-guest-house-eagles-nest/000001a1-6c78-d34e-a1b9-fe7f69660000",
      "title": "Suspect arrested as fire engulfs Nazi guest house 'Eagle's Nest', German police say",
      "published_at": "2026-10-24T06:06:49+00:00",
-     "retrieved_at": "2026-10-28T09:05:23+00:00",
+     "retrieved_at": "2026-10-28T15:36:22+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -1567,7 +1592,7 @@
      "text_chars": 380,
      "extraction_scope": "cuerpo_parcial",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "e2e8e4cc9261",
@@ -1576,7 +1601,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261024/11667088/detenido-alemania-sospechoso-incendiar-nido-aguila-hitler.html",
      "title": "Un incendio arrasa el ‘Nido del Águila’ de Hitler",
      "published_at": "2026-10-24T08:33:39+00:00",
-     "retrieved_at": "2026-10-28T09:05:26+00:00",
+     "retrieved_at": "2026-10-28T15:36:24+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1594,7 +1619,7 @@
      "final_url": "https://rt-english.com/news/647614-fire-destroys-hitlers-eagles-nest/",
      "title": "Fire destroys Hitler’s ‘Eagle’s Nest’ mountain retreat",
      "published_at": "2026-10-24T14:38:28+00:00",
-     "retrieved_at": "2026-10-28T09:05:27+00:00",
+     "retrieved_at": "2026-10-28T15:36:24+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1603,7 +1628,7 @@
      "text_chars": 1831,
      "extraction_scope": "cuerpo_completo",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "cc84288b4a7b",
@@ -1612,7 +1637,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/24/blaze-engulfs-hitlers-eagles-nest-mountain-retreat-in-bavaria",
      "title": "Suspect arrested over fire at Hitler’s ‘Eagle’s Nest’ retreat in Bavaria",
      "published_at": "2026-10-24T06:21:44+00:00",
-     "retrieved_at": "2026-10-28T09:05:31+00:00",
+     "retrieved_at": "2026-10-28T15:36:27+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1621,19 +1646,340 @@
      "text_chars": 3961,
      "extraction_scope": "cuerpo_completo",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     }
    ],
-   "evidence": [],
-   "comparisons": [],
+   "evidence": [
+    {
+     "id": "e-47160d7a8ea7-1",
+     "article_id": "47160d7a8ea7",
+     "exact_quote": "Segons mitjans alemanys, una de les hipòtesis és que ha estat provocat intencionadament, però la policia encara investiga les causes del foc.",
+     "language": "ca",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:816a8d1647c9dbc3317a11e5cdc6bd34595bd34aa0e7501521c29be62ea0ecd5",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-0bbc57481ad4-1",
+     "article_id": "0bbc57481ad4",
+     "exact_quote": "A fire that broke out on Friday evening at the Eagle's Nest mountain retreat in southern Germany that was once used by Nazi dictator Adolf Hitler erupted again overnight to Sunday in the almost destroyed building, Bavarian police said.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:4ecba91a2b8a33466141218e67d3c50ec27f563103be34ee3732512cb4ae0e1f",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-0bbc57481ad4-2",
+     "article_id": "0bbc57481ad4",
+     "exact_quote": "A police officer said flames there burnt again at \"room height\" after smoldering embers provoked a flare-up in what the officer said was a common occurrence in the case of such conflagrations.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:4ecba91a2b8a33466141218e67d3c50ec27f563103be34ee3732512cb4ae0e1f",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-0bbc57481ad4-3",
+     "article_id": "0bbc57481ad4",
+     "exact_quote": "Police arrested a 33-year-old German man suspected of having lit the fire, with an initial psychiatric assessement indicating mental illness.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:4ecba91a2b8a33466141218e67d3c50ec27f563103be34ee3732512cb4ae0e1f",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-0bbc57481ad4-4",
+     "article_id": "0bbc57481ad4",
+     "exact_quote": "The building was largely destroyed by the blaze, which caused millions of euros of damage.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:4ecba91a2b8a33466141218e67d3c50ec27f563103be34ee3732512cb4ae0e1f",
+     "extraction_scope": "recortado"
+    },
+    {
+     "id": "e-913aeacbbe8d-1",
+     "article_id": "913aeacbbe8d",
+     "exact_quote": "German police have detained a suspect after a fire that largely destroyed the historic mountain retreat known as the Eagle's Nest, built for Nazi officials including Adolf Hitler in the Bavarian Alps.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:d4a9b17c492fd86a4e4c4e0e3cb3342b4bd81c720db179033d283f946c5424af",
+     "extraction_scope": "cuerpo_parcial"
+    },
+    {
+     "id": "e-8c87f7dc5df6-1",
+     "article_id": "8c87f7dc5df6",
+     "exact_quote": "The Eagle’s Nest mountainous retreat built for Nazi dictator Adolf Hitler in the Bavarian Alps has been devastated by a blaze, the German police have said.",
+     "language": "en",
+     "translation_es": null,
+     "speaker": {
+      "type": "periodista",
+      "name": null
+     },
+     "text_hash": "sha256:7e80fd683ab6ca31e36887ffaf6cb867b5bed8247a0a302030af45af21ae98bf",
+     "extraction_scope": "cuerpo_completo"
+    },
+    {
+     "id": "e-8c87f7dc5df6-2",
+     "article_id": "8c87f7dc5df6",
+     "exact_quote": "It is damaged to a large extent. The house is unlikely to be saved,” a police spokesperson told Bild tabloid.",
+     "language": "en",
+     "translation_es": "\"Está dañada en gran medida. Es poco probable que la casa se pueda salvar\", dijo un portavoz policial al tabloide Bild.",
+     "speaker": {
+      "type": "fuente_citada",
+      "name": null
+     },
+     "text_hash": "sha256:7e80fd683ab6ca31e36887ffaf6cb867b5bed8247a0a302030af45af21ae98bf",
+     "extraction_scope": "cuerpo_completo"
+    }
+   ],
+   "comparisons": [
+    {
+     "source_id": "3cat-324",
+     "article_ids": [
+      "47160d7a8ea7"
+     ],
+     "framing_claims": [],
+     "language_claims": [
+      {
+       "term": "provocat intencionadament",
+       "descriptive_alternative": "posible origen deliberado",
+       "evidence_ids": [
+        "e-47160d7a8ea7-1"
+       ]
+      }
+     ],
+     "actor_claims": [
+      {
+       "actor": "policia alemanya",
+       "role": "autor de la detención y de la investigación del incendio",
+       "evidence_ids": [
+        "e-47160d7a8ea7-1"
+       ]
+      },
+      {
+       "actor": "mitjans alemanys",
+       "role": "fuente que sugiere una posible causa intencional del fuego",
+       "evidence_ids": [
+        "e-47160d7a8ea7-1"
+       ]
+      }
+     ],
+     "cited_source_claims": []
+    },
+    {
+     "source_id": "dw",
+     "article_ids": [
+      "0bbc57481ad4"
+     ],
+     "framing_claims": [
+      {
+       "text": "DW presenta el incendio en el Eagle's Nest como un suceso recurrente que requirió una nueva intervención de bomberos, destaca la actuación de la policía bávara y subraya los daños materiales significativos.",
+       "evidence_ids": [
+        "e-0bbc57481ad4-1",
+        "e-0bbc57481ad4-2",
+        "e-0bbc57481ad4-3",
+        "e-0bbc57481ad4-4"
+       ]
+      }
+     ],
+     "language_claims": [
+      {
+       "term": "almost destroyed",
+       "descriptive_alternative": "severamente dañado",
+       "evidence_ids": [
+        "e-0bbc57481ad4-1"
+       ]
+      }
+     ],
+     "actor_claims": [
+      {
+       "actor": "Bavarian police",
+       "role": "autoridad que informó del incendio y su reactivación",
+       "evidence_ids": [
+        "e-0bbc57481ad4-1"
+       ]
+      },
+      {
+       "actor": "police officer",
+       "role": "testigo que describió la reactivación de las llamas",
+       "evidence_ids": [
+        "e-0bbc57481ad4-2"
+       ]
+      },
+      {
+       "actor": "33-year-old German man",
+       "role": "presunto autor del incendio según la investigación policial",
+       "evidence_ids": [
+        "e-0bbc57481ad4-3"
+       ]
+      }
+     ],
+     "cited_source_claims": [
+      {
+       "source": "Bavarian police",
+       "evidence_ids": [
+        "e-0bbc57481ad4-1"
+       ]
+      },
+      {
+       "source": "police officer",
+       "evidence_ids": [
+        "e-0bbc57481ad4-2"
+       ]
+      },
+      {
+       "source": "Police",
+       "evidence_ids": [
+        "e-0bbc57481ad4-3"
+       ]
+      }
+     ]
+    },
+    {
+     "source_id": "france-24",
+     "article_ids": [
+      "33b3db7d56a4"
+     ],
+     "framing_claims": [],
+     "language_claims": [],
+     "actor_claims": [],
+     "cited_source_claims": []
+    },
+    {
+     "source_id": "haaretz",
+     "article_ids": [
+      "913aeacbbe8d"
+     ],
+     "framing_claims": [
+      {
+       "text": "Presenta el suceso como una detención policial tras un incendio que destruyó gran parte del refugio histórico conocido como el Nido del Águila.",
+       "evidence_ids": [
+        "e-913aeacbbe8d-1"
+       ]
+      }
+     ],
+     "language_claims": [],
+     "actor_claims": [
+      {
+       "actor": "German police",
+       "role": "autoridad que detuvo al sospechoso",
+       "evidence_ids": [
+        "e-913aeacbbe8d-1"
+       ]
+      },
+      {
+       "actor": "suspect",
+       "role": "presunto responsable del incendio",
+       "evidence_ids": [
+        "e-913aeacbbe8d-1"
+       ]
+      }
+     ],
+     "cited_source_claims": []
+    },
+    {
+     "source_id": "rt",
+     "article_ids": [
+      "8c87f7dc5df6"
+     ],
+     "framing_claims": [
+      {
+       "text": "Presenta el incendio como una devastación del histórico refugio nazi, enfatizando el daño extenso y la imposibilidad de salvar la estructura.",
+       "evidence_ids": [
+        "e-8c87f7dc5df6-1"
+       ]
+      }
+     ],
+     "language_claims": [
+      {
+       "term": "devastated",
+       "descriptive_alternative": "gravemente dañado",
+       "evidence_ids": [
+        "e-8c87f7dc5df6-1"
+       ]
+      }
+     ],
+     "actor_claims": [
+      {
+       "actor": "German police",
+       "role": "informan del incendio y del arresto de un sospechoso",
+       "evidence_ids": [
+        "e-8c87f7dc5df6-1"
+       ]
+      },
+      {
+       "actor": "police spokesperson",
+       "role": "declara que la casa está gravemente dañada y poco probable de salvar",
+       "evidence_ids": [
+        "e-8c87f7dc5df6-2"
+       ]
+      }
+     ],
+     "cited_source_claims": [
+      {
+       "source": "German police",
+       "evidence_ids": [
+        "e-8c87f7dc5df6-1"
+       ]
+      },
+      {
+       "source": "police spokesperson",
+       "evidence_ids": [
+        "e-8c87f7dc5df6-2"
+       ]
+      }
+     ]
+    },
+    {
+     "source_id": "the-guardian",
+     "article_ids": [
+      "cc84288b4a7b"
+     ],
+     "framing_claims": [],
+     "language_claims": [],
+     "actor_claims": [],
+     "cited_source_claims": []
+    }
+   ],
    "omissions": [],
    "figure_differences": [],
    "temporal_notes": [
     "Los artículos comparados se publicaron con hasta 28 h de diferencia (el primero, de Haaretz; el último, de DW). Una nota temprana y una crónica posterior no disponían de la misma información.",
     "No todos los textos están completos: de los artículos con texto parcial o sin texto no se deducen omisiones."
    ],
-   "highlight_claims": [],
-   "analysis_status": "sin_ia",
+   "highlight_claims": [
+    {
+     "id": "ev-3a5b377472-l1",
+     "text": "El medio 3Cat sugiere que el incendio pudo haber sido provocado intencionalmente, una hipótesis que no aparece en los demás informes.",
+     "evidence_ids": [
+      "e-47160d7a8ea7-1"
+     ]
+    }
+   ],
+   "analysis_status": "completo",
    "matrix": {
     "diari-de-girona": "sin_coincidencias",
     "el-punt-avui-girona": "sin_coincidencias",
@@ -1652,7 +1998,7 @@
     "euronews": "parcial",
     "bbc-news": "parcial",
     "the-guardian": "encontrada",
-    "france-24": "parcial",
+    "france-24": "encontrada",
     "tass": "sin_coincidencias",
     "rt": "encontrada",
     "al-jazeera": "no_evaluable",
@@ -1704,7 +2050,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/els-estudiants-de-serbia-es-perfilen-com-a-guanyadors-dunes-eleccions-amb-una-participacio-record/noticia/3436041/",
      "title": "El moviment dels estudiants de Sèrbia guanya per sorpresa les eleccions amb una participació massiva",
      "published_at": "2026-10-25T20:58:30+00:00",
-     "retrieved_at": "2026-10-28T09:05:31+00:00",
+     "retrieved_at": "2026-10-28T15:36:28+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1722,7 +2068,7 @@
      "final_url": "https://www.aljazeera.com/video/newsfeed/2026/10/25/serbia-votes-as-student-led-bloc-challenges-longtime-leader-vucic?traffic_source=rss",
      "title": "Serbia votes as student-led bloc challenges longtime leader Vucic",
      "published_at": "2026-10-25T13:40:10+00:00",
-     "retrieved_at": "2026-10-28T09:05:32+00:00",
+     "retrieved_at": "2026-10-28T15:36:28+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1740,7 +2086,7 @@
      "final_url": "https://www.ara.cat/internacional/europa/estudiants-serbis-desafien-vucic-urnes_1_5888697.html",
      "title": "Els estudiants serbis desafien el poder de Vucic a les urnes",
      "published_at": "2026-10-24T17:00:07+00:00",
-     "retrieved_at": "2026-10-28T09:05:33+00:00",
+     "retrieved_at": "2026-10-28T15:36:28+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -1758,7 +2104,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/cmq8n3v94ql3o",
      "title": "Why a student protest movement is challenging 12 years of Vučić rule in Serbia",
      "published_at": "2026-10-22T14:33:06+00:00",
-     "retrieved_at": "2026-10-28T09:05:34+00:00",
+     "retrieved_at": "2026-10-28T15:36:29+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -1767,7 +2113,7 @@
      "text_chars": 5927,
      "extraction_scope": "cuerpo_completo",
      "language": "en",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "d9de4b1b2bcf",
@@ -1776,7 +2122,7 @@
      "final_url": "https://www.dw.com/en/serbia-election-vucic-concedes-defeat-to-student-led-movement/a-79753482?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Serbia election: Can student-led opposition end Aleksandar Vucic's grip on power?",
      "published_at": "2026-10-25T10:42:00+00:00",
-     "retrieved_at": "2026-10-28T09:05:35+00:00",
+     "retrieved_at": "2026-10-28T15:36:29+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1794,16 +2140,16 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/25/6ade499ffc6c832b708b458f.html",
      "title": "Aleksandar Vucic reconoce la victoria por mayoría absoluta de la Lista Estudiantil en las elecciones en Serbia",
      "published_at": "2026-10-25T18:40:25+00:00",
-     "retrieved_at": "2026-10-28T09:05:36+00:00",
+     "retrieved_at": "2026-10-28T15:36:30+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
      "access_reason": "articleBody",
      "text_hash": "sha256:b475dd79e1ee1f586bbb574cef8b446464709dfe712e15970faea86c0d3efad7",
      "text_chars": 11006,
-     "extraction_scope": "cuerpo_completo",
+     "extraction_scope": "recortado",
      "language": "es",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "7bc6a4d128ba",
@@ -1812,7 +2158,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/moviment-estudiantil-guanya-eleccions-serbia-enterra-era-vu-i_1714780_102.html",
      "title": "Gir històric: el moviment estudiantil guanya les eleccions a Sèrbia i enterra l'era Vučić",
      "published_at": "2026-10-25T20:57:11+00:00",
-     "retrieved_at": "2026-10-28T09:05:37+00:00",
+     "retrieved_at": "2026-10-28T15:36:30+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1830,7 +2176,7 @@
      "final_url": "https://elpais.com/internacional/2026-10-25/el-presidente-vucic-reconoce-la-victoria-de-la-lista-estudiantil-en-las-elecciones-serbias.html",
      "title": "Vucic reconoce la victoria de la Lista Estudiantil en las elecciones de Serbia",
      "published_at": "2026-10-25T20:59:16+00:00",
-     "retrieved_at": "2026-10-28T09:05:37+00:00",
+     "retrieved_at": "2026-10-28T15:36:30+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -1848,7 +2194,7 @@
      "final_url": "https://www.eldiario.es/internacional/movimiento-estudiantil-pone-reinado-autoritario-12-anos-vucic-serbia_1_13614161.html",
      "title": "Un movimiento estudiantil pone fin al reinado autoritario de 12 años de Vucic en las elecciones de Serbia",
      "published_at": "2026-10-25T20:41:15+00:00",
-     "retrieved_at": "2026-10-28T09:05:37+00:00",
+     "retrieved_at": "2026-10-28T15:36:30+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1866,7 +2212,7 @@
      "final_url": "https://es.euronews.com/video/2026/10/22/serbia-manifestantes-estudiantiles-abarrotan-belgrado-antes-de-las-elecciones-anticipadas",
      "title": "Serbia: manifestantes estudiantiles abarrotan Belgrado antes de las elecciones anticipadas",
      "published_at": "2026-10-22T07:20:27+00:00",
-     "retrieved_at": "2026-10-28T09:05:38+00:00",
+     "retrieved_at": "2026-10-28T15:36:31+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -1884,7 +2230,7 @@
      "final_url": "https://www.france24.com/es/europa/20261025-serbia-el-populista-vucic-reconoce-su-derrota-ante-la-lista-de-estudiantes-en-las-legislativas",
      "title": "Serbia: el populista Vucic reconoce su derrota ante la Lista de Estudiantes en las legislativas",
      "published_at": "2026-10-25T21:30:18+00:00",
-     "retrieved_at": "2026-10-28T09:05:39+00:00",
+     "retrieved_at": "2026-10-28T15:36:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1893,7 +2239,7 @@
      "text_chars": 2771,
      "extraction_scope": "cuerpo_completo",
      "language": "es",
-     "analyzed": false
+     "analyzed": true
     },
     {
      "id": "7ae72d8a5fbc",
@@ -1902,7 +2248,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261025/11667785/movimiento-estudiantil-derrota-vucic-elecciones-generales-serbia.html",
      "title": "El movimiento estudiantil derrota a Vucic en las elecciones generales de Serbia",
      "published_at": "2026-10-25T20:49:54+00:00",
-     "retrieved_at": "2026-10-28T09:05:39+00:00",
+     "retrieved_at": "2026-10-28T15:36:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1920,7 +2266,7 @@
      "final_url": "https://www.politico.eu/article/serbia-student-protests-challenge-aleksandar-vucic-power-poll/",
      "title": "Serbia’s protesting students mount serious challenge to Vučić’s power",
      "published_at": "2026-10-23T02:00:00+00:00",
-     "retrieved_at": "2026-10-28T09:05:39+00:00",
+     "retrieved_at": "2026-10-28T15:36:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -1938,7 +2284,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/23/friday-briefing-how-a-leaderless-student-group-is-challenging-power-in-serbia",
      "title": "Friday briefing: How a leaderless student group is challenging power in Serbia",
      "published_at": "2026-10-23T05:43:19+00:00",
-     "retrieved_at": "2026-10-28T09:05:39+00:00",
+     "retrieved_at": "2026-10-28T15:36:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2026,7 +2372,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/eleccions-a-israel-cinc-perfils-de-votant-per-entendre-un-pais-amb-moltes-cares/noticia/3428416/",
      "title": "Eleccions a Israel: cinc perfils de votant per entendre un país amb moltes cares",
      "published_at": "2026-10-25T06:42:26+00:00",
-     "retrieved_at": "2026-10-28T09:05:40+00:00",
+     "retrieved_at": "2026-10-28T15:36:31+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2044,7 +2390,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/israeli-elections-what-are-the-possible-outcomes?traffic_source=rss",
      "title": "Israeli elections: What are the possible outcomes?",
      "published_at": "2026-10-25T07:10:52+00:00",
-     "retrieved_at": "2026-10-28T09:05:40+00:00",
+     "retrieved_at": "2026-10-28T15:36:33+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2062,7 +2408,7 @@
      "final_url": "https://www.ara.cat/internacional/proxim-orient/l-economia-ferida-guerra-tambe-marca-eleccions-d-israel_130_5888927.html",
      "title": "L'economia ferida per la guerra també marca les eleccions d'Israel",
      "published_at": "2026-10-24T17:00:08+00:00",
-     "retrieved_at": "2026-10-28T09:05:40+00:00",
+     "retrieved_at": "2026-10-28T15:36:33+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "parcial",
@@ -2080,7 +2426,7 @@
      "final_url": "https://www.bbc.co.uk/news/videos/c64g1wje3jjwo",
      "title": "Why Israel's election is one of the most important in its history",
      "published_at": "2026-10-25T22:05:30+00:00",
-     "retrieved_at": "2026-10-28T09:05:42+00:00",
+     "retrieved_at": "2026-10-28T15:36:33+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -2098,7 +2444,7 @@
      "final_url": "https://cincodias.elpais.com/opinion/2026-10-22/israel-se-juega-su-economia-en-las-urnas.html",
      "title": "Israel se juega su economía en las urnas",
      "published_at": "2026-10-22T03:40:00+00:00",
-     "retrieved_at": "2026-10-28T09:05:43+00:00",
+     "retrieved_at": "2026-10-28T15:36:33+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2116,7 +2462,7 @@
      "final_url": "https://www.eldiario.es/internacional/elecciones-israel-carrera-mostrar-postura-dura-palestina_129_13606698.html",
      "title": "Las elecciones en Israel, una carrera por mostrar la postura más dura contra Palestina",
      "published_at": "2026-10-24T20:25:22+00:00",
-     "retrieved_at": "2026-10-28T09:05:45+00:00",
+     "retrieved_at": "2026-10-28T15:36:36+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2134,14 +2480,14 @@
      "final_url": "https://www.france24.com/es/programas/en-contexto/20261023-qui%C3%A9n-tiene-la-llave-del-gobierno-de-israel-tras-las-elecciones",
      "title": "¿Quién tiene la llave del Gobierno de Israel tras las elecciones?",
      "published_at": "2026-10-23T20:36:14+00:00",
-     "retrieved_at": "2026-10-28T09:05:47+00:00",
-     "genre": "noticia",
-     "genre_basis": "declarado: NewsArticle",
-     "access_status": "parcial",
-     "access_reason": "texto corto (1023 caracteres, párrafos visibles)",
-     "text_hash": "sha256:7522ddaff7abae0b78d2f5f6ede8878deb0b2774d909587a428a1fa657cbde95",
-     "text_chars": 1023,
-     "extraction_scope": "cuerpo_parcial",
+     "retrieved_at": "2026-10-28T15:36:37+00:00",
+     "genre": "no_verificado",
+     "genre_basis": null,
+     "access_status": "inaccesible",
+     "access_reason": "HTTP 403 (control de acceso; no se intenta sortear)",
+     "text_hash": null,
+     "text_chars": 0,
+     "extraction_scope": "ninguno",
      "language": "es",
      "analyzed": false
     },
@@ -2152,7 +2498,7 @@
      "final_url": "https://www.haaretz.com/israel-news/elections/2026-10-25/ty-article-magazine/.premium/a-last-chance-israelis-fly-back-to-vote-hoping-for-a-reason-to-stay/000001a1-7315-db66-abbf-7f9f55dd0000",
      "title": "'A last chance': Israelis fly back to vote, hoping for a reason to stay",
      "published_at": "2026-10-25T20:03:59+00:00",
-     "retrieved_at": "2026-10-28T09:05:48+00:00",
+     "retrieved_at": "2026-10-28T15:36:37+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2170,7 +2516,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261023/11665751/vota-israel.html",
      "title": "¿Quién vota en Israel?",
      "published_at": "2026-10-23T04:00:00+00:00",
-     "retrieved_at": "2026-10-28T09:05:48+00:00",
+     "retrieved_at": "2026-10-28T15:36:37+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2188,7 +2534,7 @@
      "final_url": "https://www.tehrantimes.com/news/531494/Israeli-elections-What-can-Palestinians-expect",
      "title": "Israeli elections: What can Palestinians expect?",
      "published_at": "2026-10-25T16:58:30+00:00",
-     "retrieved_at": "2026-10-28T09:05:48+00:00",
+     "retrieved_at": "2026-10-28T15:36:37+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2279,7 +2625,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/maria-corina-machado-torna-a-venecuela-soc-aqui-amb-vostes/noticia/3436029/",
      "title": "María Corina Machado torna a Veneçuela: \"Soc aquí, amb vostès\"",
      "published_at": "2026-10-25T17:45:16+00:00",
-     "retrieved_at": "2026-10-28T09:05:52+00:00",
+     "retrieved_at": "2026-10-28T15:36:40+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2297,13 +2643,13 @@
      "final_url": "https://www.abc.es/internacional/maria-corina-machado-regresa-venezuela-tras-operacion-20261025164628-nt.html",
      "title": "María Corina Machado regresa a Venezuela: «Estoy aquí. Con ustedes»",
      "published_at": "2026-10-25T15:47:32+00:00",
-     "retrieved_at": "2026-10-28T09:05:53+00:00",
+     "retrieved_at": "2026-10-28T15:36:41+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
      "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:8502686744f587b1dc9abb209ec38d5d9fa76cdb6caf6b135d5d42353cf2a926",
-     "text_chars": 10561,
+     "text_hash": "sha256:b8ef7c9c29efabccd94ed2a6b5c6abfef69bac0b3967eae0f19d1175c5d07b87",
+     "text_chars": 10562,
      "extraction_scope": "cuerpo_parcial",
      "language": "es",
      "analyzed": false
@@ -2315,7 +2661,7 @@
      "final_url": "https://www.aljazeera.com/news/2026/10/25/venezuelas-opposition-leader-maria-corina-machado-returns-from-exile?traffic_source=rss",
      "title": "Venezuela’s opposition leader Maria Corina Machado returns from exile",
      "published_at": "2026-10-25T18:55:39+00:00",
-     "retrieved_at": "2026-10-28T09:05:54+00:00",
+     "retrieved_at": "2026-10-28T15:36:41+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2333,7 +2679,7 @@
      "final_url": "https://www.ara.cat/internacional/america/maria-corina-machado-torna-venecuela_1_5890179.html",
      "title": "María Corina Machado torna a Veneçuela",
      "published_at": "2026-10-25T17:00:23+00:00",
-     "retrieved_at": "2026-10-28T09:05:55+00:00",
+     "retrieved_at": "2026-10-28T15:36:42+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2351,7 +2697,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/cq8ez592pp0eo",
      "title": "Venezuelan opposition leader María Machado returns after months in exile",
      "published_at": "2026-10-25T16:21:40+00:00",
-     "retrieved_at": "2026-10-28T09:05:55+00:00",
+     "retrieved_at": "2026-10-28T15:36:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -2369,7 +2715,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/25/6ade24bbfdddff48738b459b.html",
      "title": "María Corina Machado regresa a Venezuela y elige el santuario de la Divina Pastora como primera parada",
      "published_at": "2026-10-25T15:52:52+00:00",
-     "retrieved_at": "2026-10-28T09:05:57+00:00",
+     "retrieved_at": "2026-10-28T15:36:43+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -2387,7 +2733,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/maria-corina-machado-torna-venecuela-estic-aqui-vosaltres_1714723_102.html",
      "title": "María Corina Machado torna a Veneçuela: \"Estic aquí. Amb vosaltres\"",
      "published_at": "2026-10-25T16:09:30+00:00",
-     "retrieved_at": "2026-10-28T09:05:57+00:00",
+     "retrieved_at": "2026-10-28T15:36:44+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2405,7 +2751,7 @@
      "final_url": "https://elpais.com/america/2026-10-25/maria-corina-machado-ya-volvio-a-venezuela-y-ahora-que.html",
      "title": "María Corina Machado ya volvió a Venezuela. ¿Y ahora qué?",
      "published_at": "2026-10-25T20:32:33+00:00",
-     "retrieved_at": "2026-10-28T09:05:57+00:00",
+     "retrieved_at": "2026-10-28T15:36:44+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2423,7 +2769,7 @@
      "final_url": "https://www.eldiario.es/internacional/maria-corina-machado-insinua-vuelto-venezuela-edmundo-gonzalez-confirma_1_13613849.html",
      "title": "María Corina Machado vuelve a Venezuela y reaparece en un santuario católico",
      "published_at": "2026-10-25T15:55:13+00:00",
-     "retrieved_at": "2026-10-28T09:05:58+00:00",
+     "retrieved_at": "2026-10-28T15:36:44+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2441,7 +2787,7 @@
      "final_url": "https://es.euronews.com/2026/10/25/maria-corina-machado-regresa-venezuela-diez-meses-despues",
      "title": "María Corina Machado regresa a Venezuela tras casi 10 meses fuera del país",
      "published_at": "2026-10-25T15:46:36+00:00",
-     "retrieved_at": "2026-10-28T09:05:59+00:00",
+     "retrieved_at": "2026-10-28T15:36:45+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2459,7 +2805,7 @@
      "final_url": "https://www.france24.com/es/am%C3%A9rica-latina/20261025-estoy-aqu%C3%AD-mar%C3%ADa-corina-machado-regresa-a-venezuela-tras-casi-un-a%C3%B1o-fuera-del-pa%C3%ADs",
      "title": "“Estoy aquí”: María Corina Machado regresa a Venezuela tras casi un año fuera del país",
      "published_at": "2026-10-25T16:09:42+00:00",
-     "retrieved_at": "2026-10-28T09:06:00+00:00",
+     "retrieved_at": "2026-10-28T15:36:45+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2477,7 +2823,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261025/11667709/lider-oposicion-antichavista-maria-corina-machado-regresa-venezuela-diez-meses.html",
      "title": "La líder de la oposición antichavista, María Corina Machado, regresa a Venezuela tras diez meses de exilio forzado",
      "published_at": "2026-10-25T16:19:33+00:00",
-     "retrieved_at": "2026-10-28T09:06:01+00:00",
+     "retrieved_at": "2026-10-28T15:36:46+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2495,7 +2841,7 @@
      "final_url": "https://www.npr.org/2026/10/25/nx-s1-6016222/venezuela-maria-corina-machado-leader-returns-exile",
      "title": "Venezuela's opposition leader María Corina Machado returns after months in exile",
      "published_at": "2026-10-25T16:18:41+00:00",
-     "retrieved_at": "2026-10-28T09:06:01+00:00",
+     "retrieved_at": "2026-10-28T15:36:47+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2513,7 +2859,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/25/exiled-venezuelan-opposition-leader-maria-corina-machado-announces-her-return",
      "title": "Exiled opposition leader María Corina Machado returns to rapturous reception in Venezuela",
      "published_at": "2026-10-25T17:00:12+00:00",
-     "retrieved_at": "2026-10-28T09:06:03+00:00",
+     "retrieved_at": "2026-10-28T15:36:49+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2603,7 +2949,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/les-protestes-sestenen-arreu-deuropa-els-joves-surten-al-carrer-a-italia-albania-i-belgica/noticia/3435927/",
      "title": "Les protestes s'estenen arreu d'Europa: els joves surten al carrer a Itàlia, Albània i Bèlgica",
      "published_at": "2026-10-24T18:17:45+00:00",
-     "retrieved_at": "2026-10-28T09:06:04+00:00",
+     "retrieved_at": "2026-10-28T15:36:49+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2621,13 +2967,13 @@
      "final_url": "https://www.abc.es/internacional/detenido-joven-origen-marroqui-cerebro-nuevas-protestas-20261024201317-nt.html",
      "title": "Detenido un joven de origen marroquí como el «cerebro» de las nuevas protestas en Italia",
      "published_at": "2026-10-24T18:29:10+00:00",
-     "retrieved_at": "2026-10-28T09:06:05+00:00",
+     "retrieved_at": "2026-10-28T15:36:50+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
      "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:5183f47e9d8ad08a6596076a220a6ab5be7ae1dc6e9b7e90913dcbeaf70bd404",
-     "text_chars": 6252,
+     "text_hash": "sha256:00b20f0e5fb69eea249f8e2366dfac1cf027b20dc92776f96358b05c24ffcc76",
+     "text_chars": 6253,
      "extraction_scope": "cuerpo_parcial",
      "language": "es",
      "analyzed": false
@@ -2639,7 +2985,7 @@
      "final_url": "https://www.ara.cat/internacional/europa/protestes-s-estenen-altres-ciutats-d-italia_1_5889848.html",
      "title": "Les protestes s'estenen a altres ciutats d'Itàlia",
      "published_at": "2026-10-24T20:52:54+00:00",
-     "retrieved_at": "2026-10-28T09:06:06+00:00",
+     "retrieved_at": "2026-10-28T15:36:50+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2657,7 +3003,7 @@
      "final_url": "https://www.diaridegirona.cat/societat/2026/10/24/greus-aldarulls-barcelona-per-protesta-135723446.html",
      "title": "Greus aldarulls a Barcelona per una protesta juvenil inspirada en les mobilitzacions europees",
      "published_at": "2026-10-24T19:00:25+00:00",
-     "retrieved_at": "2026-10-28T09:06:07+00:00",
+     "retrieved_at": "2026-10-28T15:36:51+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2675,7 +3021,7 @@
      "final_url": "https://www.dw.com/en/france-protests-police-paris/live-79748223?maca=en-rss-en-all-1573-xml-mrss",
      "title": "France: Hundreds arrested after nationwide protests",
      "published_at": "2026-10-25T12:05:00+00:00",
-     "retrieved_at": "2026-10-28T09:06:10+00:00",
+     "retrieved_at": "2026-10-28T15:36:53+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2693,7 +3039,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/24/6adc7e49e9cf4a1c0a8b456d.html",
      "title": "Las manifestaciones en Francia congregan al mismo número de gente que el 17-O pese a las prohibiciones",
      "published_at": "2026-10-24T10:18:13+00:00",
-     "retrieved_at": "2026-10-28T09:06:11+00:00",
+     "retrieved_at": "2026-10-28T15:36:54+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "completo",
@@ -2711,7 +3057,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/revolta-social-esten-italia-disturbis-roma-bolonya-tori-en-jornada-protestes_1714549_102.html",
      "title": "La revolta social s'estén a Itàlia: disturbis a Roma, Bolonya i Torí en una jornada de protestes",
      "published_at": "2026-10-24T19:59:26+00:00",
-     "retrieved_at": "2026-10-28T09:06:11+00:00",
+     "retrieved_at": "2026-10-28T15:36:54+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2729,7 +3075,7 @@
      "final_url": "https://elpais.com/economia/negocios/2026-10-25/la-rabia-de-las-revueltas-francesas-por-acabar-con-el-malestar-social.html",
      "title": "La rabia de las revueltas francesas por acabar con el malestar social",
      "published_at": "2026-10-25T04:30:00+00:00",
-     "retrieved_at": "2026-10-28T09:06:11+00:00",
+     "retrieved_at": "2026-10-28T15:36:54+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2747,7 +3093,7 @@
      "final_url": "https://www.eldiario.es/internacional/theguardian/ola-disturbios-francia-acorrala-macron-vez-aislado_129_13603031.html",
      "title": "Por qué la ola de disturbios en Francia acorrala a un Macron cada vez más aislado",
      "published_at": "2026-10-21T19:53:35+00:00",
-     "retrieved_at": "2026-10-28T09:06:12+00:00",
+     "retrieved_at": "2026-10-28T15:36:54+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2765,7 +3111,7 @@
      "final_url": "https://es.euronews.com/2026/10/25/protestas-europa-francia-albania-italia-espana-portugal",
      "title": "Las protestas se extienden por Europa: de Francia a Albania, pasando por Italia, España y Portugal",
      "published_at": "2026-10-25T11:04:07+00:00",
-     "retrieved_at": "2026-10-28T09:06:12+00:00",
+     "retrieved_at": "2026-10-28T15:36:56+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2783,7 +3129,7 @@
      "final_url": "https://www.france24.com/es/video/20261025-marchas-masivas-en-francia-bajo-fuerte-seguridad-casi-mil-detenidos-y-choques-en-varias-ciudades",
      "title": "Marchas masivas en Francia bajo fuerte seguridad: casi mil detenidos y choques en varias ciudades",
      "published_at": "2026-10-25T03:16:49+00:00",
-     "retrieved_at": "2026-10-28T09:06:12+00:00",
+     "retrieved_at": "2026-10-28T15:36:56+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -2801,7 +3147,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261024/11667247/detenido-milan-presunto-cerebro-protestas-juveniles-italia.html",
      "title": "Detenido en Milán el presunto cerebro de las protestas juveniles en Italia",
      "published_at": "2026-10-24T15:23:39+00:00",
-     "retrieved_at": "2026-10-28T09:06:13+00:00",
+     "retrieved_at": "2026-10-28T15:36:56+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2819,7 +3165,7 @@
      "final_url": "https://www.tehrantimes.com/news/531454/Hundreds-of-protests-are-held-across-France",
      "title": "Hundreds of protests are held across France",
      "published_at": "2026-10-24T16:25:47+00:00",
-     "retrieved_at": "2026-10-28T09:06:14+00:00",
+     "retrieved_at": "2026-10-28T15:36:56+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "inaccesible",
@@ -2837,7 +3183,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/24/hundreds-of-thousands-march-across-france-in-protests-over-schools-and-policing",
      "title": "Hundreds of thousands march across France in protests over schools and policing",
      "published_at": "2026-10-24T17:54:41+00:00",
-     "retrieved_at": "2026-10-28T09:06:15+00:00",
+     "retrieved_at": "2026-10-28T15:36:57+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2928,7 +3274,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/mor-a-franca-una-persona-infectada-pel-virus-de-shamonda-primer-cas-detectat-en-humans/noticia/3435596/",
      "title": "Mor a França una persona infectada pel virus de Shamonda, primer cas detectat en humans",
      "published_at": "2026-10-22T14:07:23+00:00",
-     "retrieved_at": "2026-10-28T09:06:16+00:00",
+     "retrieved_at": "2026-10-28T15:36:58+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -2946,13 +3292,13 @@
      "final_url": "https://www.abc.es/salud/enfermedades/virus-shamonda-claves-enfermedad-detectado-primera-vez-20261022174158-nt.html",
      "title": "Las claves de la enfermedad que se ha detectado por primera vez en un humano en Francia",
      "published_at": "2026-10-23T00:57:38+00:00",
-     "retrieved_at": "2026-10-28T09:06:18+00:00",
+     "retrieved_at": "2026-10-28T15:36:58+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
      "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:21025642d26f8f6ff99bab0c0a99b3b11d4df83545f0d76139d43e7bec48e677",
-     "text_chars": 3652,
+     "text_hash": "sha256:c77bb5d686cf2a711c994d6ec88796b26db77756adffcae53f54d9049a8bec8c",
+     "text_chars": 3653,
      "extraction_scope": "cuerpo_parcial",
      "language": "es",
      "analyzed": false
@@ -2964,7 +3310,7 @@
      "final_url": "https://www.ara.cat/societat/salut/mor-home-franca-pel-virus-shamonda-rarament-afecta-humans_1_5886861.html",
      "title": "Què és el virus Shamonda, que ha causat la mort d'un home a França?",
      "published_at": "2026-10-22T10:00:33+00:00",
-     "retrieved_at": "2026-10-28T09:06:18+00:00",
+     "retrieved_at": "2026-10-28T15:36:59+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
@@ -2982,7 +3328,7 @@
      "final_url": "https://www.bbc.co.uk/news/articles/c6reyx1d9ge9o",
      "title": "First human case of Shamonda virus detected in France, officials say",
      "published_at": "2026-10-22T11:04:14+00:00",
-     "retrieved_at": "2026-10-28T09:06:19+00:00",
+     "retrieved_at": "2026-10-28T15:37:00+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: ReportageNewsArticle",
      "access_status": "completo",
@@ -3000,7 +3346,7 @@
      "final_url": "https://www.elmundo.es/salud/2026/10/22/6ad9d62afdddffef108b457e.html",
      "title": "Qué sabemos del virus shamonda con el que estaba infectado el hombre muerto en Francia",
      "published_at": "2026-10-22T10:52:31+00:00",
-     "retrieved_at": "2026-10-28T09:06:20+00:00",
+     "retrieved_at": "2026-10-28T15:37:00+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -3018,7 +3364,7 @@
      "final_url": "https://www.elnacional.cat/ca/societat/es-virus-shamonda-detectat-en-mort-franca-picades-insectes-afectacio-humana-limitada_1713811_102.html",
      "title": "Què és el virus shamonda, detectat en un mort a França: picades d'insectes i afectació humana \"limitada\"",
      "published_at": "2026-10-23T07:16:13+00:00",
-     "retrieved_at": "2026-10-28T09:06:20+00:00",
+     "retrieved_at": "2026-10-28T15:37:01+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3036,14 +3382,14 @@
      "final_url": "https://elpais.com/sociedad/2026-10-23/el-primer-salto-del-shamonda-a-un-humano-que-se-sabe-de-un-virus-emergente-que-ha-sorprendido-a-los-expertos.html",
      "title": "El primer salto del shamonda a un humano: qué se sabe de un virus emergente que ha sorprendido a los expertos",
      "published_at": "2026-10-23T03:30:01+00:00",
-     "retrieved_at": "2026-10-28T09:06:20+00:00",
-     "genre": "no_verificado",
-     "genre_basis": null,
-     "access_status": "inaccesible",
-     "access_reason": "HTTP 403 (control de acceso; no se intenta sortear)",
-     "text_hash": null,
-     "text_chars": 0,
-     "extraction_scope": "ninguno",
+     "retrieved_at": "2026-10-28T15:37:01+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
+     "access_status": "completo",
+     "access_reason": "articleBody",
+     "text_hash": "sha256:7dc834f72c2932a9b3cebdc1d45b1a9f06bcc1836d7c70d3fa98ba922f8bdef7",
+     "text_chars": 5391,
+     "extraction_scope": "cuerpo_completo",
      "language": "es",
      "analyzed": false
     },
@@ -3054,7 +3400,7 @@
      "final_url": "https://www.eldiario.es/sociedad/virus-shamonda-contagiado-primera-vez-humano-detectado-espana_1_13608494.html",
      "title": "Qué sabemos del virus shamonda, que ha contagiado por primera vez a un ser humano y se ha detectado en España",
      "published_at": "2026-10-23T07:30:14+00:00",
-     "retrieved_at": "2026-10-28T09:06:21+00:00",
+     "retrieved_at": "2026-10-28T15:37:02+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3072,7 +3418,7 @@
      "final_url": "https://es.euronews.com/2026/10/22/espana-en-alerta-por-el-virus-shamonda-tras-el-primer-caso-humano-en-francia",
      "title": "España en alerta por el virus Shamonda tras el primer caso humano en Francia",
      "published_at": "2026-10-22T16:13:53+00:00",
-     "retrieved_at": "2026-10-28T09:06:22+00:00",
+     "retrieved_at": "2026-10-28T15:37:03+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3090,7 +3436,7 @@
      "final_url": "https://www.france24.com/es/salud/20261022-francia-detecta-el-primer-caso-del-virus-shamonda-en-humanos-en-un-paciente-inmunodeprimido-fallecido",
      "title": "Francia detecta el primer caso del virus Shamonda en humanos en un paciente inmunodeprimido fallecido",
      "published_at": "2026-10-22T18:13:49+00:00",
-     "retrieved_at": "2026-10-28T09:06:22+00:00",
+     "retrieved_at": "2026-10-28T15:37:03+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3108,7 +3454,7 @@
      "final_url": "https://www.lavanguardia.com/vida/salud/20261022/11665549/virus-shamonda-que-como-contagia-principales-sintomas.html",
      "title": "Virus de Shamonda: qué es, cómo se contagia y qué se sabe de sus síntomas tras detectarse el primer caso mortal en Francia",
      "published_at": "2026-10-22T13:26:56+00:00",
-     "retrieved_at": "2026-10-28T09:06:23+00:00",
+     "retrieved_at": "2026-10-28T15:37:04+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3126,7 +3472,7 @@
      "final_url": "https://www.politico.eu/article/first-known-human-case-of-shamonda-virus-reported-in-france/",
      "title": "First known human case of Shamonda virus confirmed in France",
      "published_at": "2026-10-22T13:14:26+00:00",
-     "retrieved_at": "2026-10-28T09:06:23+00:00",
+     "retrieved_at": "2026-10-28T15:37:04+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3144,7 +3490,7 @@
      "final_url": "https://rt-english.com/news/647529-shamonda-first-human-case/",
      "title": "Livestock virus claims first human victim in France",
      "published_at": "2026-10-22T15:22:57+00:00",
-     "retrieved_at": "2026-10-28T09:06:24+00:00",
+     "retrieved_at": "2026-10-28T15:37:04+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3162,7 +3508,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/22/shamonda-virus-detected-in-human-first-time-france",
      "title": "Shamonda virus detected in human for first time in France",
      "published_at": "2026-10-22T15:07:01+00:00",
-     "retrieved_at": "2026-10-28T09:06:25+00:00",
+     "retrieved_at": "2026-10-28T15:37:06+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3192,7 +3538,7 @@
     "ara": "parcial",
     "el-periodico": "sin_coincidencias",
     "el-nacional": "encontrada",
-    "el-pais": "parcial",
+    "el-pais": "encontrada",
     "el-mundo": "encontrada",
     "abc": "parcial",
     "eldiario-es": "encontrada",
@@ -3251,7 +3597,7 @@
      "final_url": "https://www.3cat.cat/3catinfo/lula-o-bolsonaro-el-brasil-es-mira-al-mirall-en-unes-eleccions-que-decidiran-el-futur-del-pais/noticia/3435942/",
      "title": "Lula o Bolsonaro: el Brasil es mira al mirall en unes eleccions que decidiran el futur del país",
      "published_at": "2026-10-25T06:35:47+00:00",
-     "retrieved_at": "2026-10-28T09:06:26+00:00",
+     "retrieved_at": "2026-10-28T15:37:06+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3269,13 +3615,13 @@
      "final_url": "https://www.abc.es/internacional/brasil-acude-urnas-jornada-marcada-caos-transporte-20261025215236-nt.html",
      "title": "Brasil elige entre mantener a Lula o la vuelta del 'bolsonarismo' en una segunda vuelta tensa y ajustada",
      "published_at": "2026-10-25T20:52:37+00:00",
-     "retrieved_at": "2026-10-28T09:06:27+00:00",
+     "retrieved_at": "2026-10-28T15:37:08+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "parcial",
      "access_reason": "el medio declara contenido de pago: solo la parte visible",
-     "text_hash": "sha256:0d149b1ff55cb5573c0938dfdc11eda8a005c22adc0b4d08cf441c48ad4917ff",
-     "text_chars": 6260,
+     "text_hash": "sha256:0fb1a52bde80cd6851455b6df01d220e179f9eb744f4e0a9b6d88dab8d8413ba",
+     "text_chars": 6261,
      "extraction_scope": "cuerpo_parcial",
      "language": "es",
      "analyzed": false
@@ -3287,7 +3633,7 @@
      "final_url": "https://www.aljazeera.com/news/liveblog/2026/10/25/brazil-election-results-2026-live-polls-close-in-lula-bolsonaro-face-off?traffic_source=rss",
      "title": "Brazil election results 2026 updates: Lula beats Bolsonaro in tight race",
      "published_at": "2026-10-25T20:00:04+00:00",
-     "retrieved_at": "2026-10-28T09:06:27+00:00",
+     "retrieved_at": "2026-10-28T15:37:08+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "solo_titular",
@@ -3305,7 +3651,7 @@
      "final_url": "https://www.dw.com/en/brazil-elections-merz-world-leaders-congratulate-lula-on-his-win/live-79755630?maca=en-rss-en-all-1573-xml-mrss",
      "title": "Brazil election: Lula, Bolsonaro cast votes in final bout",
      "published_at": "2026-10-25T14:13:00+00:00",
-     "retrieved_at": "2026-10-28T09:06:28+00:00",
+     "retrieved_at": "2026-10-28T15:37:09+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3323,7 +3669,7 @@
      "final_url": "https://www.elmundo.es/internacional/2026/10/25/6ade4d41e9cf4a844f8b456e.html",
      "title": "Lula gana a Bolsonaro la Presidencia de Brasil por más de tres puntos con el 94% de los votos escrutados",
      "published_at": "2026-10-25T18:58:15+00:00",
-     "retrieved_at": "2026-10-28T09:06:29+00:00",
+     "retrieved_at": "2026-10-28T15:37:09+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle/ReportageNewsArticle",
      "access_status": "completo",
@@ -3341,7 +3687,7 @@
      "final_url": "https://www.elnacional.cat/ca/internacional/brasil-afronta-segona-volta-ajustada-posa-prova-llegat-lula-forca-bolsonarisme_1714048_102.html",
      "title": "El Brasil afronta una segona volta ajustada que posa a prova el llegat de Lula i la força del bolsonarisme",
      "published_at": "2026-10-25T04:30:00+00:00",
-     "retrieved_at": "2026-10-28T09:06:29+00:00",
+     "retrieved_at": "2026-10-28T15:37:09+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3359,11 +3705,11 @@
      "final_url": "https://elpais.com/america/2026-10-24/videoanalisis-brasil-elige-presidente-en-una-eleccion-renida-y-que-sera-decisiva-para-latinoamerica.html",
      "title": "Videoanálisis | Brasil elige presidente en una elección reñida y que será decisiva para Latinoamérica",
      "published_at": "2026-10-24T20:07:42+00:00",
-     "retrieved_at": "2026-10-28T09:06:29+00:00",
-     "genre": "no_verificado",
-     "genre_basis": null,
-     "access_status": "inaccesible",
-     "access_reason": "HTTP 403 (control de acceso; no se intenta sortear)",
+     "retrieved_at": "2026-10-28T15:37:10+00:00",
+     "genre": "noticia",
+     "genre_basis": "declarado: NewsArticle",
+     "access_status": "solo_titular",
+     "access_reason": "no se encontró texto del cuerpo",
      "text_hash": null,
      "text_chars": 0,
      "extraction_scope": "ninguno",
@@ -3377,7 +3723,7 @@
      "final_url": "https://www.eldiario.es/internacional/empate-tecnico-brasil-lula-sostener-gran-bastion-izquierda-region-frente-bolsonaro-ola-ultra_1_13610497.html",
      "title": "Empate técnico en Brasil: Lula intenta sostener el gran bastión de la izquierda en la región frente a Bolsonaro y la ola ultra",
      "published_at": "2026-10-24T20:25:21+00:00",
-     "retrieved_at": "2026-10-28T09:06:29+00:00",
+     "retrieved_at": "2026-10-28T15:37:11+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3395,7 +3741,7 @@
      "final_url": "https://es.euronews.com/video/2026/10/25/brasil-largas-colas-y-viajes-fluviales-marcan-voto-presidencial-clave",
      "title": "Brasil vota en la segunda vuelta entre Lula y Flávio Bolsonaro: largas colas y urnas en la Amazonía",
      "published_at": "2026-10-25T17:50:02+00:00",
-     "retrieved_at": "2026-10-28T09:06:30+00:00",
+     "retrieved_at": "2026-10-28T15:37:12+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
      "access_status": "parcial",
@@ -3413,14 +3759,14 @@
      "final_url": "https://www.france24.com/es/video/20261025-informe-desde-r%C3%ADo-de-janeiro-brasil-cierra-las-urnas-tras-pr%C3%B3rroga-excepcional-de-dos-horas",
      "title": "Informe desde Río de Janeiro: Brasil cierra las urnas tras prórroga excepcional de dos horas",
      "published_at": "2026-10-25T22:52:52+00:00",
-     "retrieved_at": "2026-10-28T09:06:30+00:00",
+     "retrieved_at": "2026-10-28T15:37:12+00:00",
      "genre": "no_verificado",
      "genre_basis": null,
-     "access_status": "parcial",
-     "access_reason": "texto corto (929 caracteres, párrafos visibles)",
-     "text_hash": "sha256:14e5b52d8f93d2a12aa3c5233efb78640aac1f8fdc03fe1c995dac4d857222cd",
-     "text_chars": 929,
-     "extraction_scope": "cuerpo_parcial",
+     "access_status": "inaccesible",
+     "access_reason": "HTTP 403 (control de acceso; no se intenta sortear)",
+     "text_hash": null,
+     "text_chars": 0,
+     "extraction_scope": "ninguno",
      "language": "es",
      "analyzed": false
     },
@@ -3431,7 +3777,7 @@
      "final_url": "https://www.lavanguardia.com/internacional/20261025/11667291/lula-bolsonaro-llegan-urnas-situacion-empate.html",
      "title": "Lula y Bolsonaro llegan a las urnas en situación de empate",
      "published_at": "2026-10-25T05:00:00+00:00",
-     "retrieved_at": "2026-10-28T09:06:30+00:00",
+     "retrieved_at": "2026-10-28T15:37:12+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3449,7 +3795,7 @@
      "final_url": "https://www.theguardian.com/world/2026/oct/25/lula-da-silva-flavio-bolsonaro-brazil-presidential-election",
      "title": "Brazilians vote in presidential election runoff pitting leftist Lula against far-right Bolsonaro",
      "published_at": "2026-10-25T08:00:58+00:00",
-     "retrieved_at": "2026-10-28T09:06:30+00:00",
+     "retrieved_at": "2026-10-28T15:37:12+00:00",
      "genre": "noticia",
      "genre_basis": "declarado: NewsArticle",
      "access_status": "completo",
@@ -3519,7 +3865,7 @@
     "cgtn",
     "npr"
    ],
-   "description": "Sin artículos en la muestra sobre «Germany news: Fire flares up at Hitler's Eagle's Nest retreat» de: Politico Europe (BE), TASS (RU), Tehran Times (IR), CGTN (CN), NPR (US). La fuente sí tenía titulares capturados en esas fechas."
+   "description": "Sin artículos en la muestra sobre «Incendio y detención en el Nido del Águila» de: Politico Europe (BE), TASS (RU), Tehran Times (IR), CGTN (CN), NPR (US). La fuente sí tenía titulares capturados en esas fechas."
   },
   {
    "event_id": "ev-c3b9b98ab5",
@@ -3617,13 +3963,13 @@
   "x-ratelimit-limit-requests": "1000",
   "x-ratelimit-limit-tokens": "8000",
   "x-ratelimit-remaining-requests": "996",
-  "x-ratelimit-remaining-tokens": "1944",
+  "x-ratelimit-remaining-tokens": "591",
   "x-ratelimit-reset-requests": "5m45.6s",
-  "x-ratelimit-reset-tokens": "45.42s"
+  "x-ratelimit-reset-tokens": "55.567s"
  },
  "token_usage": {
-  "tokens": 0,
-  "requests": 4,
-  "cache_hits": 8
+  "tokens": 4643,
+  "requests": 6,
+  "cache_hits": 16
  }
 }

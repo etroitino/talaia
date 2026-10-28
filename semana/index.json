@@ -8,7 +8,7 @@
    "period_start": "2026-10-19T00:00:00+02:00",
    "period_end_exclusive": "2026-10-26T00:00:00+01:00",
    "cutoff_at": "2026-10-25T23:00:00+00:00",
-   "generated_at": "2026-10-28T09:02:44+00:00",
+   "generated_at": "2026-10-28T15:32:27+00:00",
    "input_hash": "sha256:54d6e5b5f21963fb99a954ae021325cf822acaf1ea77dd2bc38640b1b5fa9024",
    "events": 8,
    "json": "semana/2026-W43.json",
@@ -120,10 +120,6 @@
     "a47de1e76b36": "ev-38e745e673",
     "b6fc0429f9db": "ev-38e745e673",
     "17bbb9e07e27": "ev-38e745e673"
-   },
-   "ultimo_error": {
-    "at": "2026-10-28T15:17:01+00:00",
-    "message": "ValueError: ev-3a5b377472: referencia a evidencia inexistente e-47160d7a8ea7-1"
    }
   }
  ]
