@@ -120,6 +120,10 @@
     "a47de1e76b36": "ev-38e745e673",
     "b6fc0429f9db": "ev-38e745e673",
     "17bbb9e07e27": "ev-38e745e673"
+   },
+   "ultimo_error": {
+    "at": "2026-10-28T08:47:15+00:00",
+    "message": "ValueError: ev-3a5b377472: referencia a evidencia inexistente e-47160d7a8ea7-1"
    }
   }
  ]
