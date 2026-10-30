@@ -1962,7 +1962,7 @@
 "2026-10-30T02"
 ],
 "rss_desde": "2026-10-25T03:27:47+00:00",
-"rss_hasta": "2026-10-30T01:00:42+00:00"
+"rss_hasta": "2026-10-30T02:26:46+00:00"
 },
 "global-times": {
 "error": {
@@ -2292,7 +2292,8 @@
 "error": {
 "2026-10-29T15": "The read operation timed out",
 "2026-10-29T19": "The read operation timed out",
-"2026-10-29T23": "The read operation timed out"
+"2026-10-29T23": "The read operation timed out",
+"2026-10-30T02": "The read operation timed out"
 },
 "ok": [
 "2026-10-25T23",
@@ -3054,7 +3055,7 @@
 "2026-10-30T02"
 ],
 "rss_desde": "2026-10-24T23:15:00+00:00",
-"rss_hasta": "2026-10-30T02:09:47+00:00"
+"rss_hasta": "2026-10-30T02:17:18+00:00"
 },
 "tehran-times": {
 "error": {},
