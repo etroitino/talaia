@@ -936,7 +936,7 @@
 "2026-10-31T05"
 ],
 "rss_desde": "2026-10-25T16:21:39+00:00",
-"rss_hasta": "2026-10-31T05:30:00+00:00"
+"rss_hasta": "2026-10-31T05:31:21+00:00"
 },
 "dw": {
 "error": {},
@@ -1740,7 +1740,7 @@
 "2026-10-31T05"
 ],
 "rss_desde": "2024-10-25T03:00:00+00:00",
-"rss_hasta": "2026-10-31T05:15:25+00:00"
+"rss_hasta": "2026-10-31T05:30:00+00:00"
 },
 "el-periodico": {
 "error": {
@@ -1895,7 +1895,8 @@
 "2026-10-29T12": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-10-29T18": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-10-30T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-10-30T15": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-10-30T15": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-10-31T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-10-25T23",
@@ -2722,7 +2723,7 @@
 "2026-10-31T05"
 ],
 "rss_desde": "2026-10-22T16:47:48+00:00",
-"rss_hasta": "2026-10-31T02:37:25+00:00"
+"rss_hasta": "2026-10-31T03:00:00+00:00"
 },
 "la-vanguardia": {
 "error": {},
@@ -2856,7 +2857,7 @@
 "2026-10-31T05"
 ],
 "rss_desde": "2026-03-30T04:00:00+00:00",
-"rss_hasta": "2026-10-31T03:00:00+00:00"
+"rss_hasta": "2026-10-31T05:00:00+00:00"
 },
 "maldita": {
 "error": {
