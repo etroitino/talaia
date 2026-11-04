@@ -61,7 +61,7 @@
 "2026-11-04T06"
 ],
 "rss_desde": "2026-10-26T13:15:27+00:00",
-"rss_hasta": "2026-11-04T06:30:30+00:00"
+"rss_hasta": "2026-11-04T06:44:49+00:00"
 },
 "abc": {
 "error": {},
@@ -124,7 +124,7 @@
 "2026-11-04T06"
 ],
 "rss_desde": "2026-02-17T02:03:57+00:00",
-"rss_hasta": "2026-11-04T06:25:42+00:00"
+"rss_hasta": "2026-11-04T06:43:01+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -313,7 +313,7 @@
 "2026-11-04T06"
 ],
 "rss_desde": "2026-10-30T22:11:52+00:00",
-"rss_hasta": "2026-11-04T06:14:20+00:00"
+"rss_hasta": "2026-11-04T06:53:56+00:00"
 },
 "cgtn": {
 "error": {},
@@ -439,7 +439,7 @@
 "2026-11-04T06"
 ],
 "rss_desde": "2026-11-01T16:24:22+00:00",
-"rss_hasta": "2026-11-04T05:30:56+00:00"
+"rss_hasta": "2026-11-04T06:42:25+00:00"
 },
 "dw": {
 "error": {},
@@ -817,7 +817,7 @@
 "2026-11-04T06"
 ],
 "rss_desde": "2025-10-24T03:45:01+00:00",
-"rss_hasta": "2026-11-04T06:41:17+00:00"
+"rss_hasta": "2026-11-04T06:48:44+00:00"
 },
 "el-periodico": {
 "error": {},
@@ -888,7 +888,8 @@
 "2026-11-02T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-03T09": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-04T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-04T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-04T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-04T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-01T23",
@@ -1920,7 +1921,7 @@
 "2026-11-04T06"
 ],
 "rss_desde": "2026-10-22T10:38:10+00:00",
-"rss_hasta": "2026-11-04T06:29:36+00:00"
+"rss_hasta": "2026-11-04T06:41:28+00:00"
 },
 "verificat": {
 "error": {
