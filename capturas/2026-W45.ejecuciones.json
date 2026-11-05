@@ -247,7 +247,7 @@
 "2026-11-05T02"
 ],
 "rss_desde": "2026-11-01T15:50:19+00:00",
-"rss_hasta": "2026-11-05T01:53:30+00:00"
+"rss_hasta": "2026-11-05T02:10:07+00:00"
 },
 "ara": {
 "error": {},
@@ -1177,7 +1177,8 @@
 "2026-11-04T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-04T18": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-04T19": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-04T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-04T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-05T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-01T23",
@@ -1694,7 +1695,7 @@
 "2026-11-05T02"
 ],
 "rss_desde": "2026-10-29T17:07:18+00:00",
-"rss_hasta": "2026-11-05T01:39:27+00:00"
+"rss_hasta": "2026-11-05T02:37:29+00:00"
 },
 "la-vanguardia": {
 "error": {},
@@ -2202,7 +2203,7 @@
 "2026-11-05T02"
 ],
 "rss_desde": "2026-10-26T09:05:06+00:00",
-"rss_hasta": "2026-11-05T01:24:30+00:00"
+"rss_hasta": "2026-11-05T02:39:36+00:00"
 },
 "rtve": {
 "error": {},
@@ -2539,7 +2540,7 @@
 "2026-11-05T02"
 ],
 "rss_desde": "2026-10-22T10:38:10+00:00",
-"rss_hasta": "2026-11-05T02:12:33+00:00"
+"rss_hasta": "2026-11-05T02:28:25+00:00"
 },
 "verificat": {
 "error": {
