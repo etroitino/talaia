@@ -856,7 +856,7 @@
 "2026-11-06T02"
 ],
 "rss_desde": "2026-10-05T10:34:00+00:00",
-"rss_hasta": "2026-11-05T23:32:00+00:00"
+"rss_hasta": "2026-11-06T02:41:00+00:00"
 },
 "efe-verifica": {
 "error": {
@@ -1971,7 +1971,7 @@
 "2026-11-06T02"
 ],
 "rss_desde": "2026-10-31T23:40:16+00:00",
-"rss_hasta": "2026-11-06T02:03:20+00:00"
+"rss_hasta": "2026-11-06T02:25:02+00:00"
 },
 "global-times": {
 "error": {},
@@ -2732,7 +2732,8 @@
 "rt": {
 "error": {
 "2026-11-02T01": "<urlopen error timed out>",
-"2026-11-03T09": "<urlopen error [Errno -2] Name or service not known>"
+"2026-11-03T09": "<urlopen error [Errno -2] Name or service not known>",
+"2026-11-06T02": "<urlopen error timed out>"
 },
 "ok": [
 "2026-11-01T23",
@@ -3270,7 +3271,7 @@
 "2026-11-06T02"
 ],
 "rss_desde": "2026-10-22T10:38:10+00:00",
-"rss_hasta": "2026-11-06T02:13:20+00:00"
+"rss_hasta": "2026-11-06T02:30:00+00:00"
 },
 "verificat": {
 "error": {
