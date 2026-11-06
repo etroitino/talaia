@@ -316,7 +316,7 @@
 "2026-11-06T01"
 ],
 "rss_desde": "2026-11-01T15:50:19+00:00",
-"rss_hasta": "2026-11-06T00:19:57+00:00"
+"rss_hasta": "2026-11-06T01:39:35+00:00"
 },
 "ara": {
 "error": {},
@@ -528,7 +528,7 @@
 "2026-11-06T01"
 ],
 "rss_desde": "2026-10-30T22:11:52+00:00",
-"rss_hasta": "2026-11-06T01:28:03+00:00"
+"rss_hasta": "2026-11-06T01:44:03+00:00"
 },
 "cgtn": {
 "error": {},
@@ -742,7 +742,7 @@
 "2026-11-06T01"
 ],
 "rss_desde": "2026-11-01T16:24:22+00:00",
-"rss_hasta": "2026-11-06T00:05:07+00:00"
+"rss_hasta": "2026-11-06T01:30:36+00:00"
 },
 "dw": {
 "error": {},
@@ -1507,7 +1507,8 @@
 "2026-11-05T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-05T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-05T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-05T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-05T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-06T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-01T23",
@@ -2164,7 +2165,7 @@
 "2026-11-06T01"
 ],
 "rss_desde": "2026-10-29T17:07:18+00:00",
-"rss_hasta": "2026-11-06T00:54:50+00:00"
+"rss_hasta": "2026-11-06T01:29:59+00:00"
 },
 "la-vanguardia": {
 "error": {},
@@ -3239,7 +3240,7 @@
 "2026-11-06T01"
 ],
 "rss_desde": "2026-10-22T10:38:10+00:00",
-"rss_hasta": "2026-11-06T01:23:42+00:00"
+"rss_hasta": "2026-11-06T01:39:57+00:00"
 },
 "verificat": {
 "error": {
