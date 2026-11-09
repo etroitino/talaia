@@ -141,7 +141,9 @@
 "rss_hasta": "2026-11-08T18:00:56+00:00"
 },
 "el-punt-avui-girona": {
-"error": {},
+"error": {
+"2026-11-09T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+},
 "ok": [
 "2026-11-08T23",
 "2026-11-09T00",
@@ -278,7 +280,7 @@
 "2026-11-09T01"
 ],
 "rss_desde": "2026-11-07T22:54:19+00:00",
-"rss_hasta": "2026-11-08T23:54:01+00:00"
+"rss_hasta": "2026-11-09T00:50:01+00:00"
 },
 "tehran-times": {
 "error": {},
