@@ -363,7 +363,9 @@
 "rss_hasta": "2026-11-09T02:11:25+00:00"
 },
 "verificat": {
-"error": {},
+"error": {
+"2026-11-09T03": "The read operation timed out"
+},
 "ok": [
 "2026-11-08T23",
 "2026-11-09T00",
