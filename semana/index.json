@@ -8,8 +8,8 @@
    "period_start": "2026-11-02T00:00:00+01:00",
    "period_end_exclusive": "2026-11-09T00:00:00+01:00",
    "cutoff_at": "2026-11-08T23:00:00+00:00",
-   "generated_at": "2026-11-09T14:02:14+00:00",
-   "input_hash": "sha256:39e8d7ffc175da8cf05b419acd03914c66ecaa385d555568ee338aa8678ccf93",
+   "generated_at": "2026-11-09T15:17:00+00:00",
+   "input_hash": "sha256:71a4c20f89760d7585b941e30186e0de37dacbf34a9dc83f21933afb4695e5f7",
    "events": 8,
    "json": "semana/2026-W45.json",
    "md": "semana/2026-W45.md",
@@ -123,10 +123,6 @@
     "24a06ffa3ad6": "ev-375b8ccc93",
     "a6bef79d1fac": "ev-375b8ccc93",
     "fe807ee0f6fc": "ev-375b8ccc93"
-   },
-   "ultimo_error": {
-    "at": "2026-11-09T15:02:25+00:00",
-    "message": "ValueError: ev-988481fab7: referencia a evidencia inexistente e-ac7d00389d81-1"
    }
   },
   {
