@@ -16,18 +16,19 @@ permissions:
   id-token: write
   actions: write    # para lanzar semana.yml cuando toca
 
-# Toda la ejecución (leer, fusionar y publicar) va en serie: dos recogidas nunca se pisan
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
+# Recoger y publicar van en jobs y grupos distintos: si el entorno github-pages se atasca (como la
+# ejecución 42670137053, en "waiting" del 9 al 10-nov-2026), la recogida y las capturas siguen.
 jobs:
   recoger:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    environment:
-      name: github-pages
-      url: ${{ steps.publicar.outputs.page_url }}
+    # Dos recogidas nunca se pisan (leer, fusionar, capturar)
+    concurrency:
+      group: recoger
+      cancel-in-progress: false
+    outputs:
+      version: ${{ steps.montar.outputs.version }}
+      actualizado: ${{ steps.montar.outputs.actualizado }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -63,14 +64,14 @@ jobs:
       # Si la rama archivo no está disponible, montar_sitio.py copia semana/ de lo publicado;
       # y no publica si lo publicado es más reciente que estos datos.
       - name: Montar sitio
-        run: uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
+        id: montar
+        run: |
+          uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
+          python3 -c "import json; v = json.load(open('_site/version.json')); print(f'version={v[\"version\"]}'); print(f'actualizado={v[\"actualizado\"]}')" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-
-      - id: publicar
-        uses: actions/deploy-pages@v4
 
       # Calendario semanal en hora de Madrid (semana.py decide; nada de desfases UTC fijos)
       - name: ¿Toca el informe semanal?
@@ -81,3 +82,102 @@ jobs:
           if uv run --with pyyaml python semana.py --auto --solo-comprobar --local; then
             gh workflow run semana.yml --ref "$GITHUB_REF_NAME"
           fi
+
+  publicar:
+    needs: recoger
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Grupo nuevo: un despliegue cada vez, sin cancelar el que está en curso. Los jobs entran en el grupo en el
+    # orden en que acaba la recogida (serializada), y uno pendiente se sustituye por el siguiente.
+    concurrency:
+      group: pages-despliegue
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+      actions: read     # para ver si una ejecución posterior ya desplegó
+    environment:
+      name: github-pages
+      url: ${{ steps.desplegar.outputs.page_url }}
+    steps:
+      # No se consulta lo que sirve Pages: el 9-nov-2026 sirvió una versión antigua durante 17 h mientras
+      # Actions marcaba correctos los despliegues. La referencia es Actions: si una ejecución posterior ya
+      # desplegó, esta no lo hace (p. ej. al relanzar una ejecución vieja). Si no se puede comprobar, no se despliega.
+      - name: ¿Ya desplegó una ejecución posterior?
+        id: orden
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB: publicar
+          PASO: Desplegar
+          POR_PAGINA: 100    # tamaño de página de la API (se recorren todas)
+          MAX_REVISAR: 100   # ejecuciones posteriores que se miran como mucho; si no basta, no se despliega
+        run: |
+          set -euo pipefail
+          workflow=$(basename "${GITHUB_WORKFLOW_REF%@*}")   # este mismo archivo de workflow
+          creado=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .created_at)
+          consulta="repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/runs?created=%3E$creado&per_page=$POR_PAGINA"
+          total=$(gh api "$consulta" --jq .total_count)
+          # Con filtros, la API no devuelve más de 1000 resultados: más allá, el historial no se puede comprobar
+          if (( total > 1000 )); then
+            echo "::error::$total ejecuciones posteriores (más de 1000): no se puede comprobar el historial; no se despliega"; exit 1
+          fi
+          # Todas las páginas, de la más reciente a la más antigua; sin repetidas si la lista se desplaza al paginar
+          posteriores=$(gh api --paginate "$consulta" --jq '.workflow_runs[].id' | awk '!visto[$0]++')
+          n=$(grep -c . <<<"$posteriores" || true)
+          if (( n < total )); then
+            echo "::error::Solo se obtuvieron $n de $total ejecuciones posteriores; no se despliega"; exit 1
+          fi
+          revisadas=0
+          for id in $posteriores; do
+            [[ "$id" == "$GITHUB_RUN_ID" ]] && continue
+            if (( revisadas >= MAX_REVISAR )); then
+              echo "::error::Más de $MAX_REVISAR ejecuciones posteriores sin descartar un despliegue; no se despliega"; exit 1
+            fi
+            revisadas=$((revisadas + 1))
+            # filter=all: también los intentos anteriores (un reintento que falla no deshace un despliegue previo)
+            pasos=$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs?filter=all&per_page=100" \
+                    --jq ".jobs[] | select(.name == \"$JOB\") | .steps[]? | select(.name == \"$PASO\") | .conclusion")
+            if grep -qx success <<<"$pasos"; then
+              echo "::notice::La ejecución $id, posterior, ya desplegó; esta no despliega ($revisadas de $n revisadas)"
+              echo "desplegar=no" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "$n ejecuciones posteriores, ninguna desplegó"
+          echo "desplegar=si" >> "$GITHUB_OUTPUT"
+
+      - name: Desplegar
+        id: desplegar
+        if: steps.orden.outputs.desplegar == 'si'
+        uses: actions/deploy-pages@v4
+
+      # "Reported success" no basta: el 9 y 10-nov-2026 Pages siguió sirviendo, o volvió a servir, versiones
+      # anteriores. La CDN ignora "?t=" y guarda una copia por Accept-Encoding (max-age=600), así que se lee
+      # como un navegador y con y sin compresión. Hacen falta 3 lecturas seguidas con esta versión o una posterior;
+      # si no llegan en 12 min, el job falla y queda a la vista. La siguiente recogida lo vuelve a intentar.
+      - name: ¿Pages sirve lo desplegado?
+        if: steps.orden.outputs.desplegar == 'si'
+        env:
+          ESPERADA: ${{ needs.recoger.outputs.version }}
+          ACTUALIZADO: ${{ needs.recoger.outputs.actualizado }}
+        run: |
+          url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/version.json"
+          leer() {
+            curl -fsSL --compressed -H "Accept-Encoding: $1" "$url" \
+              | python3 -c "import json,sys; v = json.load(sys.stdin); print(v['version'], v['actualizado'])" 2>/dev/null || echo "- -"
+          }
+          # ISO en UTC con el mismo formato: se compara como texto
+          vale() { [[ "$1" == "$ESPERADA" || ( "$2" != "-" && ! "$2" < "$ACTUALIZADO" ) ]]; }
+          seguidas=0
+          for i in $(seq 1 48); do
+            ok=1
+            for enc in "gzip, deflate, br" "identity"; do
+              read -r servida fecha < <(leer "$enc")
+              vale "$servida" "$fecha" || ok=0
+            done
+            if (( ok )); then seguidas=$((seguidas + 1)); else seguidas=0; fi
+            (( seguidas >= 3 )) && { echo "Pages sirve $servida ($fecha)"; exit 0; }
+            sleep 15
+          done
+          echo "::error::Pages sirve '$servida' ($fecha) en vez de $ESPERADA ($ACTUALIZADO) 12 min después de desplegar"
+          exit 1
