@@ -1,0 +1,36 @@
+name: Capturas RSS
+
+# V1: lote RSS comprimido con manifiesto (capturar_rss.py) como artefacto de 7 días, para que el Mac lo importe.
+# Sin IA, sin Pages, sin escribir en el repositorio. Mientras conviva con Directo, la lanza cada ejecución pedida
+# de recoger.yml (cron-job.org cada 15 min, vía workflow_run), sin tocar ese workflow ni su disparador.
+# El schedule es el respaldo: en fase 0 dio 4,3 ejecuciones al día en vez de 96 (huecos de ~6 h).
+on:
+  workflow_run:
+    workflows: ["Recoger titulares"]
+    types: [requested]
+  schedule:
+    - cron: "11,26,41,56 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: capturas
+  cancel-in-progress: false
+
+jobs:
+  capturar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv run capturar_rss.py lote
+      - uses: actions/upload-artifact@v4
+        with:
+          name: captura-rss
+          path: lote/lote.json.gz
+          retention-days: 7       # ventana del producto; el Mac aplica además 7 días por entrada
+          compression-level: 0    # ya va en gzip
+          if-no-files-found: error
