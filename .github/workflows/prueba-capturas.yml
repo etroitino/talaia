@@ -1,22 +1,19 @@
-name: Capturas RSS
+# PRUEBA de fase 1: igual que capturas.yml salvo el disparador (push a esta rama).
+name: Capturas RSS (prueba)
 
 # V1: lote RSS comprimido con manifiesto (capturar_rss.py) como artefacto de 7 días, para que el Mac lo importe.
 # Sin IA, sin Pages, sin escribir en el repositorio. Mientras conviva con Directo, la lanza cada ejecución pedida
 # de recoger.yml (cron-job.org cada 15 min, vía workflow_run), sin tocar ese workflow ni su disparador.
 # El schedule es el respaldo: en fase 0 dio 4,3 ejecuciones al día en vez de 96 (huecos de ~6 h).
 on:
-  workflow_run:
-    workflows: ["Recoger titulares"]
-    types: [requested]
-  schedule:
-    - cron: "11,26,41,56 * * * *"
-  workflow_dispatch:
+  push:
+    branches: [prueba-capturas]
 
 permissions:
   contents: read
 
 concurrency:
-  group: capturas
+  group: prueba-capturas
   cancel-in-progress: false
 
 jobs:
