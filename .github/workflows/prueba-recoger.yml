@@ -1,0 +1,121 @@
+# PRUEBA de la PR #3, sin Pages: misma estructura que recoger.yml. Diferencias: disparador (push a esta rama),
+# grupos de concurrencia propios, capturas en archivo-prueba, despliegue simulado según .prueba/escenario
+# (un valor por intento: ok | falla | bloqueado) y sin informe semanal ni verificación en Pages.
+name: Prueba recoger (sin Pages)
+
+# La lanza cron-job.org cada 15 min (workflow_dispatch); el schedule es solo respaldo.
+# Es el ÚNICO workflow que publica Pages: monta el sitio entero (Directo + semana/ de la rama archivo)
+# con montar_sitio.py, así ninguna publicación borra lo de otra.
+on:
+  push:
+    branches: [prueba-recoger-separar]
+
+permissions:
+  contents: write   # solo para subir capturas a la rama archivo-prueba
+
+# Recoger y publicar van en jobs y grupos distintos: si el entorno github-pages se atasca (como la
+# ejecución 42670137053, en "waiting" del 9 al 10-nov-2026), la recogida y las capturas siguen.
+jobs:
+  recoger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Dos recogidas nunca se pisan (leer, fusionar, capturar)
+    concurrency:
+      group: prueba-recoger
+      cancel-in-progress: false
+    outputs:
+      version: ${{ steps.montar.outputs.version }}
+      actualizado: ${{ steps.montar.outputs.actualizado }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+
+      # Sin commits en main: se parte del datos.json publicado (el ?t= evita la caché de Pages).
+      # Si no está, se reconstruye desde las capturas de la rama archivo.
+      - name: Descargar datos publicados
+        run: |
+          url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/datos.json?t=$(date +%s)"
+          if curl -fsSL "$url" -o datos.json && python3 -c "import json; json.load(open('datos.json'))['noticias']"; then
+            echo "Partiendo de $(python3 -c "import json; print(len(json.load(open('datos.json'))['noticias']))") noticias"
+          else
+            rm -f datos.json
+            uv run archivo.py restaurar datos.json || echo "Sin datos previos válidos: se empieza de cero"
+          fi
+
+      - run: uv run recoger.py
+
+      # Modelo de embeddings (~240 MB): en caché para no descargarlo cada 15 min
+      - uses: actions/cache@v4
+        with:
+          path: .modelos
+          key: modelos-${{ hashFiles('agrupar.py') }}
+          restore-keys: modelos-
+
+      - run: uv run agrupar.py
+
+      # Capturas incrementales de metadatos (sin textos) por semana ISO. Si falla, Directo se publica igual.
+      - name: Guardar capturas en la rama archivo
+        continue-on-error: true
+        run: uv run archivo.py capturar datos.json
+
+      # Si la rama archivo no está disponible, montar_sitio.py copia semana/ de lo publicado;
+      # y no publica si lo publicado es más reciente que estos datos.
+      - name: Montar sitio
+        id: montar
+        run: |
+          uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
+          python3 -c "import json; v = json.load(open('_site/version.json')); print(f'version={v[\"version\"]}'); print(f'actualizado={v[\"actualizado\"]}')" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publicar:
+    needs: recoger
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Grupo nuevo: un despliegue cada vez, sin cancelar el que está en curso. Los jobs entran en el grupo en el
+    # orden en que acaba la recogida (serializada), y uno pendiente se sustituye por el siguiente.
+    concurrency:
+      group: prueba-despliegue
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      actions: read     # para ver si una ejecución posterior ya desplegó
+    steps:
+      - uses: actions/checkout@v4   # solo para leer .prueba/escenario
+      # No se consulta lo que sirve Pages: el 9-nov-2026 sirvió una versión antigua durante 17 h mientras
+      # Actions marcaba correctos los despliegues. La referencia es Actions: si una ejecución posterior ya
+      # desplegó, esta no lo hace (p. ej. al relanzar una ejecución vieja). Si no se puede comprobar, no se despliega.
+      - name: ¿Ya desplegó una ejecución posterior?
+        id: orden
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB: publicar
+          PASO: Desplegar
+        run: |
+          set -euo pipefail
+          workflow=$(basename "${GITHUB_WORKFLOW_REF%@*}")   # este mismo archivo de workflow
+          creado=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .created_at)
+          posteriores=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/runs?created=%3E$creado&per_page=50" --jq '.workflow_runs[].id')
+          for id in $posteriores; do
+            [[ "$id" == "$GITHUB_RUN_ID" ]] && continue
+            # filter=all: también los intentos anteriores (un reintento que falla no deshace un despliegue previo)
+            paso=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs?filter=all&per_page=100" \
+                   --jq "[.jobs[] | select(.name == \"$JOB\") | .steps[]? | select(.name == \"$PASO\") | .conclusion] | join(\",\")")
+            if [[ ",$paso," == *",success,"* ]]; then
+              echo "::notice::La ejecución $id, posterior, ya desplegó; esta no despliega"
+              echo "desplegar=no" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "desplegar=si" >> "$GITHUB_OUTPUT"
+
+      - name: Desplegar
+        id: desplegar
+        if: steps.orden.outputs.desplegar == 'si'
+        run: |
+          e=$(cut -d, -f"$GITHUB_RUN_ATTEMPT" .prueba/escenario | tr -d '[:space:]')
+          e=${e:-$(awk -F, '{print $NF}' .prueba/escenario | tr -d '[:space:]')}
+          echo "Despliegue SIMULADO (sin Pages): intento $GITHUB_RUN_ATTEMPT -> $e"
+          case "$e" in ok) ;; falla) exit 1 ;; bloqueado) sleep 300; exit 1 ;; *) exit 2 ;; esac

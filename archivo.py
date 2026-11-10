@@ -27,7 +27,7 @@ from zoneinfo import ZoneInfo
 import yaml
 
 TZ = ZoneInfo("Europe/Madrid")
-RAMA = "archivo"
+RAMA = "archivo-prueba"  # SOLO en la rama de prueba
 CAMPOS = ("id", "fuente", "medio", "zona", "titulo", "enlace", "hora", "visto", "muro")
 
 
