@@ -1,0 +1,11 @@
+{
+ "esquema": 0,
+ "lote": "bd215635247d7ba5",
+ "base": "pub-0",
+ "fecha_editorial": "2026-11-10",
+ "corte": "2026-11-10T06:00:00+00:00",
+ "synthetic": true,
+ "archivos": {
+  "edicion.json": "1e99e102cdd9070cda5725d633b34cd0794daf4da1b4a1a76749045b74ab536e"
+ }
+}

@@ -1,0 +1,28 @@
+# Ensayo de fase 0 con datos SINTÉTICOS. Sin Pages, sin entorno github-pages, sin escritura.
+name: V1 prueba de entrega (sintética)
+on:
+  push:
+    branches: [v1-prueba-candidatos]
+permissions:
+  contents: read
+concurrency:
+  group: v1-prueba-entrega
+  cancel-in-progress: false
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      # Cada ejecución vuelve a leer toda la bandeja: no depende del aviso que la lanzó
+      - name: Validar y montar candidatos pendientes
+        run: |
+          for d in candidatos/*/; do
+            python3 entrega.py validar "$d" --confirmado estado/confirmado.json || exit 1
+            echo "publicación $(python3 entrega.py montar "$d" "_sitio/$(basename "$d")" --revision "$GITHUB_SHA") para $d"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v1-prueba-sitio
+          path: _sitio
+          retention-days: 1

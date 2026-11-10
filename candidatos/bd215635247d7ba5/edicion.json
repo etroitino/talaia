@@ -1,0 +1,66 @@
+{
+ "synthetic": true,
+ "fecha": "2026-11-10",
+ "acontecimientos": [
+  {
+   "id": "2026-11-10-1",
+   "titular": "Acontecimiento sintético 1",
+   "resumen": "Texto de prueba, no es una noticia real.",
+   "evidencias": [
+    {
+     "id": "ev-1",
+     "url": "https://example.org/",
+     "fuente": "sintética"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10-2",
+   "titular": "Acontecimiento sintético 2",
+   "resumen": "Texto de prueba, no es una noticia real.",
+   "evidencias": [
+    {
+     "id": "ev-2",
+     "url": "https://example.org/",
+     "fuente": "sintética"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10-3",
+   "titular": "Acontecimiento sintético 3",
+   "resumen": "Texto de prueba, no es una noticia real.",
+   "evidencias": [
+    {
+     "id": "ev-3",
+     "url": "https://example.org/",
+     "fuente": "sintética"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10-4",
+   "titular": "Acontecimiento sintético 4",
+   "resumen": "Texto de prueba, no es una noticia real.",
+   "evidencias": [
+    {
+     "id": "ev-4",
+     "url": "https://example.org/",
+     "fuente": "sintética"
+    }
+   ]
+  },
+  {
+   "id": "2026-11-10-5",
+   "titular": "Acontecimiento sintético 5",
+   "resumen": "Texto de prueba, no es una noticia real.",
+   "evidencias": [
+    {
+     "id": "ev-5",
+     "url": "https://example.org/",
+     "fuente": "sintética"
+    }
+   ]
+  }
+ ]
+}
