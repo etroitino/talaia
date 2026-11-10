@@ -28,6 +28,7 @@ jobs:
       cancel-in-progress: false
     outputs:
       version: ${{ steps.montar.outputs.version }}
+      actualizado: ${{ steps.montar.outputs.actualizado }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -66,7 +67,7 @@ jobs:
         id: montar
         run: |
           uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
-          echo "version=$(python3 -c "import json; print(json.load(open('_site/version.json'))['version'])")" >> "$GITHUB_OUTPUT"
+          python3 -c "import json; v = json.load(open('_site/version.json')); print(f'version={v[\"version\"]}'); print(f'actualizado={v[\"actualizado\"]}')" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -129,17 +130,22 @@ jobs:
         if: steps.orden.outputs.desplegar == 'si'
         uses: actions/deploy-pages@v4
 
-      # "Reported success" no basta: se comprueba que Pages sirve esta versión (con ?t= para saltar la caché).
-      # Si no la sirve en 5 min, el job falla y queda a la vista; la siguiente recogida lo vuelve a intentar.
+      # "Reported success" no basta: se comprueba que Pages sirve esta versión o una posterior (con ?t= para saltar
+      # la caché). Si no en 5 min, el job falla y queda a la vista; la siguiente recogida lo vuelve a intentar.
       - name: ¿Pages sirve lo desplegado?
         if: steps.orden.outputs.desplegar == 'si'
         env:
           ESPERADA: ${{ needs.recoger.outputs.version }}
+          ACTUALIZADO: ${{ needs.recoger.outputs.actualizado }}
         run: |
           url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/version.json"
           for i in $(seq 1 20); do
-            servida=$(curl -fsSL "$url?t=$(date +%s%N)" | python3 -c "import json,sys; print(json.load(sys.stdin)['version'])" 2>/dev/null || echo "")
-            [[ "$servida" == "$ESPERADA" ]] && { echo "Pages sirve $ESPERADA"; exit 0; }
+            read -r servida fecha < <(curl -fsSL "$url?t=$(date +%s%N)" \
+              | python3 -c "import json,sys; v = json.load(sys.stdin); print(v['version'], v['actualizado'])" 2>/dev/null || echo "- -")
+            # ISO en UTC con el mismo formato: se compara como texto
+            if [[ "$servida" == "$ESPERADA" || ( "$fecha" != "-" && ! "$fecha" < "$ACTUALIZADO" ) ]]; then
+              echo "Pages sirve $servida ($fecha)"; exit 0
+            fi
             sleep 15
           done
           echo "::error::Pages sigue sirviendo '${servida:-nada}' en vez de $ESPERADA tras desplegar"
