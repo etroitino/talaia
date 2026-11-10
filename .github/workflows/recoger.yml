@@ -16,18 +16,18 @@ permissions:
   id-token: write
   actions: write    # para lanzar semana.yml cuando toca
 
-# Toda la ejecución (leer, fusionar y publicar) va en serie: dos recogidas nunca se pisan
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
+# Recoger y publicar van en jobs y grupos distintos: si el entorno github-pages se atasca (como la
+# ejecución 42670137053, en "waiting" del 9 al 10-nov-2026), la recogida y las capturas siguen.
 jobs:
   recoger:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    environment:
-      name: github-pages
-      url: ${{ steps.publicar.outputs.page_url }}
+    # Dos recogidas nunca se pisan (leer, fusionar, capturar)
+    concurrency:
+      group: recoger
+      cancel-in-progress: false
+    outputs:
+      version: ${{ steps.montar.outputs.version }}
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
@@ -63,14 +63,14 @@ jobs:
       # Si la rama archivo no está disponible, montar_sitio.py copia semana/ de lo publicado;
       # y no publica si lo publicado es más reciente que estos datos.
       - name: Montar sitio
-        run: uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
+        id: montar
+        run: |
+          uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
+          echo "version=$(python3 -c "import json; print(json.load(open('_site/version.json'))['version'])")" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-
-      - id: publicar
-        uses: actions/deploy-pages@v4
 
       # Calendario semanal en hora de Madrid (semana.py decide; nada de desfases UTC fijos)
       - name: ¿Toca el informe semanal?
@@ -81,3 +81,66 @@ jobs:
           if uv run --with pyyaml python semana.py --auto --solo-comprobar --local; then
             gh workflow run semana.yml --ref "$GITHUB_REF_NAME"
           fi
+
+  publicar:
+    needs: recoger
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Grupo nuevo: un despliegue cada vez, sin cancelar el que está en curso. Los jobs entran en el grupo en el
+    # orden en que acaba la recogida (serializada), y uno pendiente se sustituye por el siguiente.
+    concurrency:
+      group: pages-despliegue
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+      actions: read     # para ver si una ejecución posterior ya desplegó
+    environment:
+      name: github-pages
+      url: ${{ steps.desplegar.outputs.page_url }}
+    steps:
+      # No se consulta lo que sirve Pages: el 9-nov-2026 sirvió una versión antigua durante 17 h mientras
+      # Actions marcaba correctos los despliegues. La referencia es Actions: si una ejecución posterior ya
+      # desplegó, esta no lo hace (p. ej. al relanzar una ejecución vieja). Si no se puede comprobar, no se despliega.
+      - name: ¿Ya desplegó una ejecución posterior?
+        id: orden
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB: publicar
+          PASO: Desplegar
+        run: |
+          set -euo pipefail
+          creado=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .created_at)
+          posteriores=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/recoger.yml/runs?created=%3E$creado&per_page=50" --jq '.workflow_runs[].id')
+          for id in $posteriores; do
+            [[ "$id" == "$GITHUB_RUN_ID" ]] && continue
+            paso=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs" \
+                   --jq "[.jobs[] | select(.name == \"$JOB\") | .steps[]? | select(.name == \"$PASO\") | .conclusion] | join(\",\")")
+            if [[ ",$paso," == *",success,"* ]]; then
+              echo "::notice::La ejecución $id, posterior, ya desplegó; esta no despliega"
+              echo "desplegar=no" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "desplegar=si" >> "$GITHUB_OUTPUT"
+
+      - name: Desplegar
+        id: desplegar
+        if: steps.orden.outputs.desplegar == 'si'
+        uses: actions/deploy-pages@v4
+
+      # "Reported success" no basta: se comprueba que Pages sirve esta versión (con ?t= para saltar la caché).
+      # Si no la sirve en 5 min, el job falla y queda a la vista; la siguiente recogida lo vuelve a intentar.
+      - name: ¿Pages sirve lo desplegado?
+        if: steps.orden.outputs.desplegar == 'si'
+        env:
+          ESPERADA: ${{ needs.recoger.outputs.version }}
+        run: |
+          url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/version.json"
+          for i in $(seq 1 20); do
+            servida=$(curl -fsSL "$url?t=$(date +%s%N)" | python3 -c "import json,sys; print(json.load(sys.stdin)['version'])" 2>/dev/null || echo "")
+            [[ "$servida" == "$ESPERADA" ]] && { echo "Pages sirve $ESPERADA"; exit 0; }
+            sleep 15
+          done
+          echo "::error::Pages sigue sirviendo '${servida:-nada}' en vez de $ESPERADA tras desplegar"
+          exit 1
