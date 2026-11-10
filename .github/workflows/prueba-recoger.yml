@@ -1,6 +1,7 @@
 # PRUEBA de la PR #3, sin Pages: misma estructura que recoger.yml. Diferencias: disparador (push a esta rama),
 # grupos de concurrencia propios, capturas en archivo-prueba, despliegue simulado según .prueba/escenario
 # (un valor por intento: ok | falla | bloqueado) y sin informe semanal ni verificación en Pages.
+# "[rapido]" en el mensaje del commit omite la recogida real; "[max10]" baja MAX_REVISAR a 10.
 name: Prueba recoger (sin Pages)
 
 # La lanza cron-job.org cada 15 min (workflow_dispatch); el schedule es solo respaldo.
@@ -28,11 +29,13 @@ jobs:
       actualizado: ${{ steps.montar.outputs.actualizado }}
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        uses: astral-sh/setup-uv@v6
 
       # Sin commits en main: se parte del datos.json publicado (el ?t= evita la caché de Pages).
       # Si no está, se reconstruye desde las capturas de la rama archivo.
-      - name: Descargar datos publicados
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        name: Descargar datos publicados
         run: |
           url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/datos.json?t=$(date +%s)"
           if curl -fsSL "$url" -o datos.json && python3 -c "import json; json.load(open('datos.json'))['noticias']"; then
@@ -42,31 +45,37 @@ jobs:
             uv run archivo.py restaurar datos.json || echo "Sin datos previos válidos: se empieza de cero"
           fi
 
-      - run: uv run recoger.py
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        run: uv run recoger.py
 
       # Modelo de embeddings (~240 MB): en caché para no descargarlo cada 15 min
-      - uses: actions/cache@v4
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        uses: actions/cache@v4
         with:
           path: .modelos
           key: modelos-${{ hashFiles('agrupar.py') }}
           restore-keys: modelos-
 
-      - run: uv run agrupar.py
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        run: uv run agrupar.py
 
       # Capturas incrementales de metadatos (sin textos) por semana ISO. Si falla, Directo se publica igual.
-      - name: Guardar capturas en la rama archivo
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        name: Guardar capturas en la rama archivo
         continue-on-error: true
         run: uv run archivo.py capturar datos.json
 
       # Si la rama archivo no está disponible, montar_sitio.py copia semana/ de lo publicado;
       # y no publica si lo publicado es más reciente que estos datos.
-      - name: Montar sitio
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        name: Montar sitio
         id: montar
         run: |
           uv run montar_sitio.py --publicado "https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}"
           python3 -c "import json; v = json.load(open('_site/version.json')); print(f'version={v[\"version\"]}'); print(f'actualizado={v[\"actualizado\"]}')" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/upload-pages-artifact@v3
+      - if: ${{ !contains(github.event.head_commit.message, '[rapido]') }}
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
 
@@ -93,22 +102,41 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           JOB: publicar
           PASO: Desplegar
+          POR_PAGINA: 20     # PRUEBA: páginas pequeñas para forzar la paginación
+          MAX_REVISAR: ${{ contains(github.event.head_commit.message, '[max10]') && '10' || '100' }}   # PRUEBA
         run: |
           set -euo pipefail
           workflow=$(basename "${GITHUB_WORKFLOW_REF%@*}")   # este mismo archivo de workflow
           creado=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .created_at)
-          posteriores=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/runs?created=%3E$creado&per_page=50" --jq '.workflow_runs[].id')
+          consulta="repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/runs?created=%3E$creado&per_page=$POR_PAGINA"
+          total=$(gh api "$consulta" --jq .total_count)
+          # Con filtros, la API no devuelve más de 1000 resultados: más allá, el historial no se puede comprobar
+          if (( total > 1000 )); then
+            echo "::error::$total ejecuciones posteriores (más de 1000): no se puede comprobar el historial; no se despliega"; exit 1
+          fi
+          # Todas las páginas, de la más reciente a la más antigua; sin repetidas si la lista se desplaza al paginar
+          posteriores=$(gh api --paginate "$consulta" --jq '.workflow_runs[].id' | awk '!visto[$0]++')
+          n=$(grep -c . <<<"$posteriores" || true)
+          if (( n < total )); then
+            echo "::error::Solo se obtuvieron $n de $total ejecuciones posteriores; no se despliega"; exit 1
+          fi
+          revisadas=0
           for id in $posteriores; do
             [[ "$id" == "$GITHUB_RUN_ID" ]] && continue
+            if (( revisadas >= MAX_REVISAR )); then
+              echo "::error::Más de $MAX_REVISAR ejecuciones posteriores sin descartar un despliegue; no se despliega"; exit 1
+            fi
+            revisadas=$((revisadas + 1))
             # filter=all: también los intentos anteriores (un reintento que falla no deshace un despliegue previo)
-            paso=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs?filter=all&per_page=100" \
-                   --jq "[.jobs[] | select(.name == \"$JOB\") | .steps[]? | select(.name == \"$PASO\") | .conclusion] | join(\",\")")
-            if [[ ",$paso," == *",success,"* ]]; then
-              echo "::notice::La ejecución $id, posterior, ya desplegó; esta no despliega"
+            pasos=$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs?filter=all&per_page=100" \
+                    --jq ".jobs[] | select(.name == \"$JOB\") | .steps[]? | select(.name == \"$PASO\") | .conclusion")
+            if grep -qx success <<<"$pasos"; then
+              echo "::notice::La ejecución $id, posterior, ya desplegó; esta no despliega ($revisadas de $n revisadas)"
               echo "desplegar=no" >> "$GITHUB_OUTPUT"
               exit 0
             fi
           done
+          echo "$n ejecuciones posteriores, ninguna desplegó"
           echo "desplegar=si" >> "$GITHUB_OUTPUT"
 
       - name: Desplegar
