@@ -7,6 +7,7 @@ Panel personal de titulares de última hora por zona (Girona, Cataluña, España
 - GitHub Actions:
   - `recoger.yml` cada 15 min: descarga el `datos.json` publicado (o lo restaura del archivo), ejecuta `recoger.py` y `agrupar.py`, guarda capturas en la rama `archivo`, monta el sitio con `montar_sitio.py` y publica Pages. **Es el único workflow que publica Pages.** Al final comprueba si toca el informe semanal y lanza `semana.yml`.
   - `semana.yml`: genera el informe, lo sube a la rama `archivo` y lanza `recoger.yml` para publicarlo. Nunca despliega Pages por su cuenta.
+  - `capturas.yml` (V1): lote RSS (`capturar_rss.py`) como artefacto `captura-rss` de 7 días. Se lanza con cada ejecución pedida de `recoger.yml` (`workflow_run`, `requested`) y con un `schedule` de respaldo. Solo `contents: read`: no publica Pages ni escribe en `archivo`. El Mac lo importa con `importar_capturas.py` (SQLite en `~/.talaia/talaia.db`).
 - El horario de GitHub no es fiable: la recogida la lanza cron-job.org cada 15 min vía API (`workflow_dispatch`) con un token fine-grained (solo repo talaia, solo Actions: write). No tocar cron-job.org ni su token. El `schedule` queda como respaldo.
 - Pages sirve `index.html` + `estilo.css` + `app.js` (router, Directo, Fuentes) + `semana.js` (vista Semana). Rutas hash: `#/directo`, `#/directo/<zona|miradas|verificadores>`, `#/semana/AAAA-Www[/ev-…]`, `#/fuentes`.
 - Fuentes en `fuentes.yaml`; ajustes (IA, semana, extracción) en `config.yaml`; esquema del informe en `esquema_semana.json`.
@@ -35,4 +36,5 @@ Panel personal de titulares de última hora por zona (Girona, Cataluña, España
 - `uv run archivo.py capturar --local --dir DIR` — capturas en un directorio sin git.
 - `uv run semana.py --week 2026-W43 [--as-of ISO] [--no-llm] [--dry-run --salida DIR] [--forzar] [--local --archivo DIR]`; `--auto` decide con la hora de Madrid; `--auto --solo-comprobar` solo informa.
 - `uv run montar_sitio.py --archivo DIR --salida _site` y `python3 -m http.server -d _site` → http://localhost:8000 (no abrir con file://).
-- Pruebas: `uv run test_recoger.py`, `test_agrupar.py`, `test_archivo.py`, `test_semana.py`, `test_navegador.py [--capturas DIR]` (Chromium de Playwright; axe-core desde cdnjs).
+- `uv run importar_capturas.py descargar|importar LOTE.json.gz|estado [--rama main] [--db RUTA]` — lotes RSS de V1 en el Mac.
+- Pruebas: `uv run test_recoger.py`, `test_agrupar.py`, `test_archivo.py`, `test_semana.py`, `test_capturas.py`, `test_navegador.py [--capturas DIR]` (Chromium de Playwright; axe-core desde cdnjs).
