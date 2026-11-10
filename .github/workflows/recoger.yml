@@ -86,7 +86,7 @@ jobs:
   publicar:
     needs: recoger
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     # Grupo nuevo: un despliegue cada vez, sin cancelar el que está en curso. Los jobs entran en el grupo en el
     # orden en que acaba la recogida (serializada), y uno pendiente se sustituye por el siguiente.
     concurrency:
@@ -130,8 +130,10 @@ jobs:
         if: steps.orden.outputs.desplegar == 'si'
         uses: actions/deploy-pages@v4
 
-      # "Reported success" no basta: se comprueba que Pages sirve esta versión o una posterior (con ?t= para saltar
-      # la caché). Si no en 5 min, el job falla y queda a la vista; la siguiente recogida lo vuelve a intentar.
+      # "Reported success" no basta: el 9 y 10-nov-2026 Pages siguió sirviendo, o volvió a servir, versiones
+      # anteriores. La CDN ignora "?t=" y guarda una copia por Accept-Encoding (max-age=600), así que se lee
+      # como un navegador y con y sin compresión. Hacen falta 3 lecturas seguidas con esta versión o una posterior;
+      # si no llegan en 12 min, el job falla y queda a la vista. La siguiente recogida lo vuelve a intentar.
       - name: ¿Pages sirve lo desplegado?
         if: steps.orden.outputs.desplegar == 'si'
         env:
@@ -139,14 +141,22 @@ jobs:
           ACTUALIZADO: ${{ needs.recoger.outputs.actualizado }}
         run: |
           url="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/version.json"
-          for i in $(seq 1 20); do
-            read -r servida fecha < <(curl -fsSL "$url?t=$(date +%s%N)" \
-              | python3 -c "import json,sys; v = json.load(sys.stdin); print(v['version'], v['actualizado'])" 2>/dev/null || echo "- -")
-            # ISO en UTC con el mismo formato: se compara como texto
-            if [[ "$servida" == "$ESPERADA" || ( "$fecha" != "-" && ! "$fecha" < "$ACTUALIZADO" ) ]]; then
-              echo "Pages sirve $servida ($fecha)"; exit 0
-            fi
+          leer() {
+            curl -fsSL --compressed -H "Accept-Encoding: $1" "$url" \
+              | python3 -c "import json,sys; v = json.load(sys.stdin); print(v['version'], v['actualizado'])" 2>/dev/null || echo "- -"
+          }
+          # ISO en UTC con el mismo formato: se compara como texto
+          vale() { [[ "$1" == "$ESPERADA" || ( "$2" != "-" && ! "$2" < "$ACTUALIZADO" ) ]]; }
+          seguidas=0
+          for i in $(seq 1 48); do
+            ok=1
+            for enc in "gzip, deflate, br" "identity"; do
+              read -r servida fecha < <(leer "$enc")
+              vale "$servida" "$fecha" || ok=0
+            done
+            if (( ok )); then seguidas=$((seguidas + 1)); else seguidas=0; fi
+            (( seguidas >= 3 )) && { echo "Pages sirve $servida ($fecha)"; exit 0; }
             sleep 15
           done
-          echo "::error::Pages sigue sirviendo '${servida:-nada}' en vez de $ESPERADA tras desplegar"
+          echo "::error::Pages sirve '$servida' ($fecha) en vez de $ESPERADA ($ACTUALIZADO) 12 min después de desplegar"
           exit 1
