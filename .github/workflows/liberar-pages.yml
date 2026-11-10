@@ -1,0 +1,19 @@
+# NO ESTÁ ACTIVO (fuera de .github/). Intento sin tocar main de expulsar la ejecución 42670137053 del grupo "pages".
+# Uso, solo con autorización: rama huérfana nueva con este archivo en .github/workflows/ y un push a esa rama.
+# Los grupos de concurrencia son de todo el repositorio, así que esta ejecución entra en "pages" y,
+# con cancel-in-progress, pide a GitHub cancelar la que lo retiene. No tiene permisos ni despliega nada.
+# Si GitHub no la cancela (su estado ya es incoherente), esta queda pendiente: cancelarla a mano.
+name: Liberar grupo pages (una vez)
+on:
+  push:
+    branches: [liberar-pages]
+permissions: {}
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  nada:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: echo "grupo pages liberado"
