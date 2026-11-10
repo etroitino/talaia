@@ -111,11 +111,13 @@ jobs:
           PASO: Desplegar
         run: |
           set -euo pipefail
+          workflow=$(basename "${GITHUB_WORKFLOW_REF%@*}")   # este mismo archivo de workflow
           creado=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --jq .created_at)
-          posteriores=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/recoger.yml/runs?created=%3E$creado&per_page=50" --jq '.workflow_runs[].id')
+          posteriores=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/$workflow/runs?created=%3E$creado&per_page=50" --jq '.workflow_runs[].id')
           for id in $posteriores; do
             [[ "$id" == "$GITHUB_RUN_ID" ]] && continue
-            paso=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs" \
+            # filter=all: también los intentos anteriores (un reintento que falla no deshace un despliegue previo)
+            paso=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$id/jobs?filter=all&per_page=100" \
                    --jq "[.jobs[] | select(.name == \"$JOB\") | .steps[]? | select(.name == \"$PASO\") | .conclusion] | join(\",\")")
             if [[ ",$paso," == *",success,"* ]]; then
               echo "::notice::La ejecución $id, posterior, ya desplegó; esta no despliega"
