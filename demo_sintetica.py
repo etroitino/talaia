@@ -151,7 +151,7 @@ def informe_demo(carpeta, trabajo):
     from datetime import datetime
     from extraer import extraer
     from ia import Cliente
-    os.environ.setdefault(conf["ia"]["secreto"], "clave-de-prueba")
+    os.environ[conf["ia"]["secreto"]] = "clave-de-prueba"  # el transporte es GroqFalso: nunca se usa una clave real
     preparar_archivo(carpeta)
     lf = LectorFalso()
     lector = lambda a: extraer(lf, a["enlace"], muro=a.get("muro"), min_completo=LIM["min_caracteres_completo"])
