@@ -94,7 +94,7 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-11-08T16:10:16+00:00",
-"rss_hasta": "2026-11-11T06:49:46+00:00"
+"rss_hasta": "2026-11-11T07:12:03+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -334,7 +334,7 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-11-08T15:54:16+00:00",
-"rss_hasta": "2026-11-11T07:15:28+00:00"
+"rss_hasta": "2026-11-11T07:30:39+00:00"
 },
 "dw": {
 "error": {},
@@ -478,7 +478,7 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-09-05T03:00:00+00:00",
-"rss_hasta": "2026-11-11T06:54:00+00:00"
+"rss_hasta": "2026-11-11T07:28:00+00:00"
 },
 "el-mundo": {
 "error": {},
@@ -574,7 +574,7 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-11-07T21:23:53+00:00",
-"rss_hasta": "2026-11-11T06:56:06+00:00"
+"rss_hasta": "2026-11-11T07:25:11+00:00"
 },
 "el-pais": {
 "error": {},
@@ -622,7 +622,7 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-10-31T16:45:00+00:00",
-"rss_hasta": "2026-11-11T07:12:32+00:00"
+"rss_hasta": "2026-11-11T07:24:26+00:00"
 },
 "el-periodico": {
 "error": {
@@ -672,13 +672,14 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-11-05T16:21:26+00:00",
-"rss_hasta": "2026-11-11T06:00:00+00:00"
+"rss_hasta": "2026-11-11T06:25:33+00:00"
 },
 "el-punt-avui-girona": {
 "error": {
 "2026-11-09T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-10T11": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-10T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-10T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-11T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-08T23",
@@ -1012,7 +1013,7 @@
 "2026-11-11T07"
 ],
 "rss_desde": "2026-10-14T05:45:00+00:00",
-"rss_hasta": "2026-11-11T06:12:58+00:00"
+"rss_hasta": "2026-11-11T06:35:40+00:00"
 },
 "maldita": {
 "error": {},
