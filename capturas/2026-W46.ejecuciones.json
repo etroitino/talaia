@@ -536,7 +536,7 @@
 "2026-11-14T21"
 ],
 "rss_desde": "2012-03-31T22:00:00+00:00",
-"rss_hasta": "2026-11-14T20:09:24+00:00"
+"rss_hasta": "2026-11-14T21:12:51+00:00"
 },
 "bbc-news": {
 "error": {},
@@ -2851,7 +2851,7 @@
 "2026-11-14T21"
 ],
 "rss_desde": "2026-02-15T15:53:46+00:00",
-"rss_hasta": "2026-11-14T18:55:38+00:00"
+"rss_hasta": "2026-11-14T21:04:50+00:00"
 },
 "maldita": {
 "error": {
@@ -4070,7 +4070,8 @@
 "2026-11-09T10": "<urlopen error timed out>",
 "2026-11-11T09": "The read operation timed out",
 "2026-11-12T14": "<urlopen error [Errno 111] Connection refused>",
-"2026-11-13T18": "The read operation timed out"
+"2026-11-13T18": "The read operation timed out",
+"2026-11-14T21": "The read operation timed out"
 },
 "ok": [
 "2026-11-08T23",
