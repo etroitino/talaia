@@ -540,7 +540,7 @@
 "2026-11-14T22"
 ],
 "rss_desde": "2012-03-31T22:00:00+00:00",
-"rss_hasta": "2026-11-14T21:34:42+00:00"
+"rss_hasta": "2026-11-14T22:01:44+00:00"
 },
 "bbc-news": {
 "error": {},
@@ -675,7 +675,7 @@
 "2026-11-14T22"
 ],
 "rss_desde": "2026-11-06T14:46:03+00:00",
-"rss_hasta": "2026-11-14T21:05:14+00:00"
+"rss_hasta": "2026-11-14T22:09:40+00:00"
 },
 "cgtn": {
 "error": {},
@@ -1353,7 +1353,7 @@
 "2026-11-14T22"
 ],
 "rss_desde": "2026-09-05T03:00:00+00:00",
-"rss_hasta": "2026-11-14T20:38:00+00:00"
+"rss_hasta": "2026-11-14T22:10:00+00:00"
 },
 "el-mundo": {
 "error": {},
@@ -1913,7 +1913,8 @@
 "2026-11-13T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-14T12": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-14T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-14T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-14T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-14T22": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-08T23",
@@ -3823,7 +3824,7 @@
 "2026-11-14T22"
 ],
 "rss_desde": "2026-11-07T22:54:19+00:00",
-"rss_hasta": "2026-11-14T20:54:56+00:00"
+"rss_hasta": "2026-11-14T22:01:53+00:00"
 },
 "tehran-times": {
 "error": {},
