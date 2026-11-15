@@ -286,7 +286,7 @@
 "2026-11-15T07"
 ],
 "rss_desde": "2026-11-08T16:10:16+00:00",
-"rss_hasta": "2026-11-15T07:24:33+00:00"
+"rss_hasta": "2026-11-15T07:46:52+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -1731,7 +1731,7 @@
 "2026-11-15T07"
 ],
 "rss_desde": "2026-11-07T21:23:53+00:00",
-"rss_hasta": "2026-11-15T07:40:00+00:00"
+"rss_hasta": "2026-11-15T07:55:00+00:00"
 },
 "el-pais": {
 "error": {},
@@ -2045,7 +2045,8 @@
 "2026-11-15T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-15T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-15T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-15T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-15T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-15T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-08T23",
@@ -2331,7 +2332,7 @@
 "2026-11-15T07"
 ],
 "rss_desde": "2025-10-31T11:23:47+00:00",
-"rss_hasta": "2026-11-15T07:30:56+00:00"
+"rss_hasta": "2026-11-15T07:48:31+00:00"
 },
 "euronews": {
 "error": {
@@ -2477,7 +2478,7 @@
 "2026-11-15T07"
 ],
 "rss_desde": "2026-11-07T08:07:28+00:00",
-"rss_hasta": "2026-11-15T07:40:50+00:00"
+"rss_hasta": "2026-11-15T07:46:54+00:00"
 },
 "france-24": {
 "error": {
