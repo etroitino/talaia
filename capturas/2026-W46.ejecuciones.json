@@ -1510,7 +1510,7 @@
 "2026-11-15T00"
 ],
 "rss_desde": "2024-10-26T00:40:02+00:00",
-"rss_hasta": "2026-11-14T23:54:35+00:00"
+"rss_hasta": "2026-11-15T00:10:48+00:00"
 },
 "el-nacional": {
 "error": {},
@@ -1943,7 +1943,8 @@
 "2026-11-14T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-14T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-14T22": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-14T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-14T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-15T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-08T23",
@@ -3606,7 +3607,7 @@
 "2026-11-15T00"
 ],
 "rss_desde": "2026-11-01T22:06:12+00:00",
-"rss_hasta": "2026-11-14T22:33:00+00:00"
+"rss_hasta": "2026-11-15T00:10:28+00:00"
 },
 "rtve": {
 "error": {},
