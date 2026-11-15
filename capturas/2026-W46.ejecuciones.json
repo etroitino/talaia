@@ -1779,7 +1779,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-11-07T21:23:53+00:00",
-"rss_hasta": "2026-11-15T11:29:00+00:00"
+"rss_hasta": "2026-11-15T11:38:30+00:00"
 },
 "el-pais": {
 "error": {},
@@ -1927,7 +1927,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-09-30T09:12:45+00:00",
-"rss_hasta": "2026-11-15T11:25:11+00:00"
+"rss_hasta": "2026-11-15T11:43:21+00:00"
 },
 "el-periodico": {
 "error": {
@@ -2103,7 +2103,8 @@
 "2026-11-15T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-15T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-15T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-15T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-15T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-15T11": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-08T23",
@@ -2397,7 +2398,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2025-10-31T11:23:47+00:00",
-"rss_hasta": "2026-11-15T11:10:17+00:00"
+"rss_hasta": "2026-11-15T11:30:56+00:00"
 },
 "euronews": {
 "error": {
@@ -2547,7 +2548,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-11-07T08:07:28+00:00",
-"rss_hasta": "2026-11-15T11:10:45+00:00"
+"rss_hasta": "2026-11-15T11:44:33+00:00"
 },
 "france-24": {
 "error": {
@@ -3008,7 +3009,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-11-05T10:47:41+00:00",
-"rss_hasta": "2026-11-15T10:57:29+00:00"
+"rss_hasta": "2026-11-15T11:36:56+00:00"
 },
 "la-vanguardia": {
 "error": {},
@@ -3156,7 +3157,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-02-15T15:53:46+00:00",
-"rss_hasta": "2026-11-15T10:31:01+00:00"
+"rss_hasta": "2026-11-15T11:07:00+00:00"
 },
 "maldita": {
 "error": {
@@ -3454,7 +3455,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-11-06T15:56:14+00:00",
-"rss_hasta": "2026-11-15T05:00:00+00:00"
+"rss_hasta": "2026-11-15T11:37:53+00:00"
 },
 "npr": {
 "error": {},
@@ -4198,7 +4199,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-11-07T22:54:19+00:00",
-"rss_hasta": "2026-11-15T11:17:35+00:00"
+"rss_hasta": "2026-11-15T11:42:43+00:00"
 },
 "tehran-times": {
 "error": {},
@@ -4494,7 +4495,7 @@
 "2026-11-15T11"
 ],
 "rss_desde": "2026-10-27T09:21:33+00:00",
-"rss_hasta": "2026-11-15T11:04:08+00:00"
+"rss_hasta": "2026-11-15T11:30:27+00:00"
 },
 "verificat": {
 "error": {
