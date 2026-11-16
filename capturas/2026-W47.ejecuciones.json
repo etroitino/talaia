@@ -158,7 +158,7 @@
 "2026-11-16T23"
 ],
 "rss_desde": "2026-11-13T15:09:40+00:00",
-"rss_hasta": "2026-11-16T22:21:27+00:00"
+"rss_hasta": "2026-11-16T23:20:45+00:00"
 },
 "cgtn": {
 "error": {},
@@ -414,7 +414,7 @@
 "2026-11-16T23"
 ],
 "rss_desde": "2026-10-28T16:47:21+00:00",
-"rss_hasta": "2026-11-16T22:53:31+00:00"
+"rss_hasta": "2026-11-16T23:17:29+00:00"
 },
 "el-periodico": {
 "error": {
@@ -460,7 +460,8 @@
 "2026-11-16T15": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T18": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-16T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-16T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-16T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -822,7 +823,9 @@
 "rss_hasta": "2026-11-16T22:48:21+00:00"
 },
 "rt": {
-"error": {},
+"error": {
+"2026-11-16T23": "<urlopen error timed out>"
+},
 "ok": [
 "2026-11-15T23",
 "2026-11-16T00",
@@ -915,7 +918,7 @@
 "2026-11-16T23"
 ],
 "rss_desde": "2026-11-14T23:02:19+00:00",
-"rss_hasta": "2026-11-16T22:34:01+00:00"
+"rss_hasta": "2026-11-16T23:13:01+00:00"
 },
 "tehran-times": {
 "error": {},
@@ -979,7 +982,7 @@
 "2026-11-16T23"
 ],
 "rss_desde": "2026-11-03T15:24:53+00:00",
-"rss_hasta": "2026-11-16T23:07:31+00:00"
+"rss_hasta": "2026-11-16T23:19:11+00:00"
 },
 "verificat": {
 "error": {},
