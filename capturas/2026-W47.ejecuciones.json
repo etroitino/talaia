@@ -79,7 +79,7 @@
 "2026-11-16T18"
 ],
 "rss_desde": "2026-11-15T15:16:29+00:00",
-"rss_hasta": "2026-11-16T17:54:31+00:00"
+"rss_hasta": "2026-11-16T18:13:14+00:00"
 },
 "ara": {
 "error": {},
@@ -322,7 +322,7 @@
 "2026-11-16T18"
 ],
 "rss_desde": "2026-11-15T04:30:00+00:00",
-"rss_hasta": "2026-11-16T18:30:00+00:00"
+"rss_hasta": "2026-11-16T18:33:37+00:00"
 },
 "el-pais": {
 "error": {},
@@ -388,7 +388,8 @@
 "2026-11-16T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T15": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-16T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-16T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-16T18": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -467,7 +468,7 @@
 "2026-11-16T18"
 ],
 "rss_desde": "2026-11-14T14:40:40+00:00",
-"rss_hasta": "2026-11-16T18:22:54+00:00"
+"rss_hasta": "2026-11-16T18:34:45+00:00"
 },
 "france-24": {
 "error": {
@@ -692,7 +693,7 @@
 "2026-11-16T18"
 ],
 "rss_desde": "2026-11-14T09:57:48+00:00",
-"rss_hasta": "2026-11-16T18:12:39+00:00"
+"rss_hasta": "2026-11-16T18:30:50+00:00"
 },
 "rt": {
 "error": {},
@@ -773,7 +774,7 @@
 "2026-11-16T18"
 ],
 "rss_desde": "2026-11-14T23:02:19+00:00",
-"rss_hasta": "2026-11-16T18:21:49+00:00"
+"rss_hasta": "2026-11-16T18:33:13+00:00"
 },
 "tehran-times": {
 "error": {},
@@ -827,7 +828,7 @@
 "2026-11-16T18"
 ],
 "rss_desde": "2026-11-03T15:24:53+00:00",
-"rss_hasta": "2026-11-16T18:24:49+00:00"
+"rss_hasta": "2026-11-16T18:30:57+00:00"
 },
 "verificat": {
 "error": {},
