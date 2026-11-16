@@ -344,7 +344,8 @@
 "2026-11-16T04": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-16T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-16T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-16T15": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -492,7 +493,7 @@
 "2026-11-16T15"
 ],
 "rss_desde": "2026-11-12T14:25:46+00:00",
-"rss_hasta": "2026-11-16T14:40:51+00:00"
+"rss_hasta": "2026-11-16T15:00:48+00:00"
 },
 "la-vanguardia": {
 "error": {},
