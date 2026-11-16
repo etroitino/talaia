@@ -32,7 +32,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2026-11-15T13:39:06+00:00",
-"rss_hasta": "2026-11-16T07:42:31+00:00"
+"rss_hasta": "2026-11-16T08:01:45+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -66,7 +66,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2022-11-10T12:00:47+00:00",
-"rss_hasta": "2026-11-16T07:41:55+00:00"
+"rss_hasta": "2026-11-16T08:00:08+00:00"
 },
 "bbc-news": {
 "error": {},
@@ -117,7 +117,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2026-11-15T15:30:20+00:00",
-"rss_hasta": "2026-11-16T07:59:12+00:00"
+"rss_hasta": "2026-11-16T08:04:29+00:00"
 },
 "dw": {
 "error": {},
@@ -202,7 +202,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2026-11-15T04:30:00+00:00",
-"rss_hasta": "2026-11-16T08:00:00+00:00"
+"rss_hasta": "2026-11-16T08:00:27+00:00"
 },
 "el-pais": {
 "error": {},
@@ -244,7 +244,8 @@
 "error": {
 "2026-11-16T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T04": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-16T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-16T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-16T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -276,7 +277,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2015-08-18T20:11:19+00:00",
-"rss_hasta": "2026-11-16T07:53:19+00:00"
+"rss_hasta": "2026-11-16T08:00:08+00:00"
 },
 "euronews": {
 "error": {},
@@ -484,7 +485,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2026-11-14T23:02:19+00:00",
-"rss_hasta": "2026-11-16T07:57:42+00:00"
+"rss_hasta": "2026-11-16T08:05:11+00:00"
 },
 "tehran-times": {
 "error": {},
@@ -518,7 +519,7 @@
 "2026-11-16T08"
 ],
 "rss_desde": "2026-11-03T15:24:53+00:00",
-"rss_hasta": "2026-11-16T07:43:22+00:00"
+"rss_hasta": "2026-11-16T08:03:29+00:00"
 },
 "verificat": {
 "error": {},
