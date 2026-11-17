@@ -503,7 +503,8 @@
 "2026-11-16T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T18": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-16T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-16T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-17T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -647,7 +648,7 @@
 "2026-11-17T02"
 ],
 "rss_desde": "2026-11-15T02:03:32+00:00",
-"rss_hasta": "2026-11-17T00:07:41+00:00"
+"rss_hasta": "2026-11-17T01:58:43+00:00"
 },
 "global-times": {
 "error": {},
@@ -1072,7 +1073,7 @@
 "2026-11-17T02"
 ],
 "rss_desde": "2026-11-03T15:24:53+00:00",
-"rss_hasta": "2026-11-17T01:41:01+00:00"
+"rss_hasta": "2026-11-17T02:02:30+00:00"
 },
 "verificat": {
 "error": {},
