@@ -82,7 +82,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2026-11-15T13:39:06+00:00",
-"rss_hasta": "2026-11-17T08:54:29+00:00"
+"rss_hasta": "2026-11-17T08:56:14+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -166,7 +166,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2022-11-10T12:00:47+00:00",
-"rss_hasta": "2026-11-17T08:47:23+00:00"
+"rss_hasta": "2026-11-17T09:19:03+00:00"
 },
 "bbc-news": {
 "error": {},
@@ -208,7 +208,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2026-11-13T15:09:40+00:00",
-"rss_hasta": "2026-11-17T08:53:09+00:00"
+"rss_hasta": "2026-11-17T09:20:29+00:00"
 },
 "cgtn": {
 "error": {},
@@ -292,7 +292,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2026-11-15T15:30:20+00:00",
-"rss_hasta": "2026-11-17T09:10:20+00:00"
+"rss_hasta": "2026-11-17T09:16:20+00:00"
 },
 "dw": {
 "error": {},
@@ -544,7 +544,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2026-10-28T16:47:21+00:00",
-"rss_hasta": "2026-11-17T08:57:55+00:00"
+"rss_hasta": "2026-11-17T09:15:22+00:00"
 },
 "el-periodico": {
 "error": {
@@ -603,7 +603,8 @@
 "2026-11-16T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-16T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-17T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-17T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-17T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-17T09": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -685,7 +686,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2015-08-18T20:11:19+00:00",
-"rss_hasta": "2026-11-17T09:01:00+00:00"
+"rss_hasta": "2026-11-17T09:14:38+00:00"
 },
 "euronews": {
 "error": {},
@@ -1118,7 +1119,7 @@
 "2026-11-17T09"
 ],
 "rss_desde": "2026-11-09T18:44:03+00:00",
-"rss_hasta": "2026-11-17T02:30:28+00:00"
+"rss_hasta": "2026-11-17T09:21:24+00:00"
 },
 "rtve": {
 "error": {},
