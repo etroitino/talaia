@@ -1227,7 +1227,7 @@
 "2026-11-18T00"
 ],
 "rss_desde": "2025-05-15T11:27:51+00:00",
-"rss_hasta": "2026-11-17T22:35:58+00:00"
+"rss_hasta": "2026-11-17T23:30:00+00:00"
 },
 "maldita": {
 "error": {},
@@ -1402,7 +1402,8 @@
 },
 "politico-europe": {
 "error": {
-"2026-11-17T22": "HTTP Error 429: Too Many Requests"
+"2026-11-17T22": "HTTP Error 429: Too Many Requests",
+"2026-11-18T00": "HTTP Error 429: Too Many Requests"
 },
 "ok": [
 "2026-11-15T23",
@@ -1747,7 +1748,7 @@
 "2026-11-18T00"
 ],
 "rss_desde": "2026-11-03T15:24:53+00:00",
-"rss_hasta": "2026-11-17T23:41:08+00:00"
+"rss_hasta": "2026-11-17T23:53:58+00:00"
 },
 "verificat": {
 "error": {},
