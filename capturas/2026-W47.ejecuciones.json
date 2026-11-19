@@ -160,7 +160,7 @@
 "2026-11-19T00"
 ],
 "rss_desde": "2026-11-15T13:39:06+00:00",
-"rss_hasta": "2026-11-18T22:42:27+00:00"
+"rss_hasta": "2026-11-19T00:19:12+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -1158,7 +1158,8 @@
 "2026-11-18T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-18T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-18T15": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-18T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-18T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-19T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -1739,7 +1740,7 @@
 "2026-11-19T00"
 ],
 "rss_desde": "2025-05-15T11:27:51+00:00",
-"rss_hasta": "2026-11-18T23:05:00+00:00"
+"rss_hasta": "2026-11-18T23:30:00+00:00"
 },
 "maldita": {
 "error": {},
@@ -1989,7 +1990,8 @@
 "politico-europe": {
 "error": {
 "2026-11-17T22": "HTTP Error 429: Too Many Requests",
-"2026-11-18T00": "HTTP Error 429: Too Many Requests"
+"2026-11-18T00": "HTTP Error 429: Too Many Requests",
+"2026-11-19T00": "HTTP Error 429: Too Many Requests"
 },
 "ok": [
 "2026-11-15T23",
