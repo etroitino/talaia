@@ -270,7 +270,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2026-11-15T13:39:06+00:00",
-"rss_hasta": "2026-11-21T07:18:06+00:00"
+"rss_hasta": "2026-11-21T07:34:41+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -680,7 +680,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2026-11-13T15:09:40+00:00",
-"rss_hasta": "2026-11-21T07:24:45+00:00"
+"rss_hasta": "2026-11-21T07:31:05+00:00"
 },
 "cgtn": {
 "error": {},
@@ -1498,7 +1498,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2026-11-12T09:59:10+00:00",
-"rss_hasta": "2026-11-21T06:41:11+00:00"
+"rss_hasta": "2026-11-21T07:40:17+00:00"
 },
 "el-nacional": {
 "error": {},
@@ -1634,7 +1634,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2026-11-15T04:30:00+00:00",
-"rss_hasta": "2026-11-21T07:05:00+00:00"
+"rss_hasta": "2026-11-21T07:40:00+00:00"
 },
 "el-pais": {
 "error": {},
@@ -1944,7 +1944,8 @@
 "2026-11-20T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-21T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-21T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-21T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-21T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-21T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -2216,7 +2217,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2015-08-18T20:11:19+00:00",
-"rss_hasta": "2026-11-21T07:11:39+00:00"
+"rss_hasta": "2026-11-21T07:30:46+00:00"
 },
 "euronews": {
 "error": {},
@@ -2352,7 +2353,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2026-11-14T14:40:40+00:00",
-"rss_hasta": "2026-11-21T07:29:26+00:00"
+"rss_hasta": "2026-11-21T07:30:45+00:00"
 },
 "france-24": {
 "error": {
@@ -2784,7 +2785,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2026-11-12T14:25:46+00:00",
-"rss_hasta": "2026-11-21T07:18:10+00:00"
+"rss_hasta": "2026-11-21T07:36:10+00:00"
 },
 "la-vanguardia": {
 "error": {},
@@ -2920,7 +2921,7 @@
 "2026-11-21T07"
 ],
 "rss_desde": "2025-05-15T11:27:51+00:00",
-"rss_hasta": "2026-11-21T05:59:45+00:00"
+"rss_hasta": "2026-11-21T07:10:53+00:00"
 },
 "maldita": {
 "error": {},
