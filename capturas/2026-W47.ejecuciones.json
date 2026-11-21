@@ -1,7 +1,9 @@
 {
 "fuentes": {
 "3cat-324": {
-"error": {},
+"error": {
+"2026-11-21T16": "<urlopen error [Errno 104] Connection reset by peer>"
+},
 "ok": [
 "2026-11-15T23",
 "2026-11-16T00",
@@ -288,7 +290,7 @@
 "2026-11-21T16"
 ],
 "rss_desde": "2026-11-15T13:39:06+00:00",
-"rss_hasta": "2026-11-21T16:02:07+00:00"
+"rss_hasta": "2026-11-21T16:15:33+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -433,7 +435,7 @@
 "2026-11-21T16"
 ],
 "rss_desde": "2026-11-15T15:16:29+00:00",
-"rss_hasta": "2026-11-21T15:49:32+00:00"
+"rss_hasta": "2026-11-21T16:03:16+00:00"
 },
 "ara": {
 "error": {
@@ -725,7 +727,7 @@
 "2026-11-21T16"
 ],
 "rss_desde": "2026-11-13T15:09:40+00:00",
-"rss_hasta": "2026-11-21T14:54:24+00:00"
+"rss_hasta": "2026-11-21T16:27:14+00:00"
 },
 "cgtn": {
 "error": {},
@@ -1597,7 +1599,7 @@
 "2026-11-21T16"
 ],
 "rss_desde": "2026-11-12T09:59:10+00:00",
-"rss_hasta": "2026-11-21T15:51:41+00:00"
+"rss_hasta": "2026-11-21T16:23:48+00:00"
 },
 "el-nacional": {
 "error": {},
@@ -1887,7 +1889,7 @@
 "2026-11-21T16"
 ],
 "rss_desde": "2026-10-19T14:01:20+00:00",
-"rss_hasta": "2026-11-21T16:03:54+00:00"
+"rss_hasta": "2026-11-21T16:17:26+00:00"
 },
 "el-periodico": {
 "error": {
@@ -2075,7 +2077,8 @@
 "2026-11-21T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-21T10": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-21T11": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-21T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-21T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-21T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
