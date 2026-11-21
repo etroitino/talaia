@@ -1421,7 +1421,7 @@
 "2026-11-21T00"
 ],
 "rss_desde": "2026-11-12T09:59:10+00:00",
-"rss_hasta": "2026-11-20T23:00:22+00:00"
+"rss_hasta": "2026-11-20T23:19:19+00:00"
 },
 "el-nacional": {
 "error": {},
@@ -1843,7 +1843,8 @@
 "2026-11-19T21": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-20T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-20T19": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-20T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-20T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-21T00": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
