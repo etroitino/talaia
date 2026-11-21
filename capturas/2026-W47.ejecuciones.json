@@ -450,7 +450,7 @@
 "2026-11-21T21"
 ],
 "rss_desde": "2026-11-15T15:16:29+00:00",
-"rss_hasta": "2026-11-21T20:56:35+00:00"
+"rss_hasta": "2026-11-21T21:11:54+00:00"
 },
 "ara": {
 "error": {
@@ -752,7 +752,7 @@
 "2026-11-21T21"
 ],
 "rss_desde": "2026-11-13T15:09:40+00:00",
-"rss_hasta": "2026-11-21T19:33:49+00:00"
+"rss_hasta": "2026-11-21T21:05:29+00:00"
 },
 "cgtn": {
 "error": {},
@@ -1954,7 +1954,7 @@
 "2026-11-21T21"
 ],
 "rss_desde": "2026-10-19T14:01:20+00:00",
-"rss_hasta": "2026-11-21T21:00:00+00:00"
+"rss_hasta": "2026-11-21T21:12:57+00:00"
 },
 "el-periodico": {
 "error": {
@@ -2150,7 +2150,8 @@
 "2026-11-21T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-21T16": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-21T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-21T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-21T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-21T21": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-15T23",
@@ -2450,7 +2451,7 @@
 "2026-11-21T21"
 ],
 "rss_desde": "2015-08-18T20:11:19+00:00",
-"rss_hasta": "2026-11-21T20:38:30+00:00"
+"rss_hasta": "2026-11-21T21:10:56+00:00"
 },
 "euronews": {
 "error": {},
@@ -4290,7 +4291,7 @@
 "2026-11-21T21"
 ],
 "rss_desde": "2026-11-14T23:02:19+00:00",
-"rss_hasta": "2026-11-21T20:25:31+00:00"
+"rss_hasta": "2026-11-21T21:12:18+00:00"
 },
 "tehran-times": {
 "error": {},
