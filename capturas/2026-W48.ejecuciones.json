@@ -90,7 +90,7 @@
 "2026-11-23T14"
 ],
 "rss_desde": "2022-05-13T13:56:22+00:00",
-"rss_hasta": "2026-11-23T14:13:04+00:00"
+"rss_hasta": "2026-11-23T14:44:25+00:00"
 },
 "bbc-news": {
 "error": {},
@@ -274,7 +274,7 @@
 "2026-11-23T14"
 ],
 "rss_desde": "2026-11-22T04:30:00+00:00",
-"rss_hasta": "2026-11-23T14:45:00+00:00"
+"rss_hasta": "2026-11-23T14:48:42+00:00"
 },
 "el-pais": {
 "error": {},
@@ -328,7 +328,8 @@
 "2026-11-23T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-23T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-23T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-23T10": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-23T10": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-23T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -703,7 +704,7 @@
 "2026-11-23T14"
 ],
 "rss_desde": "2026-11-18T09:58:28+00:00",
-"rss_hasta": "2026-11-23T14:38:52+00:00"
+"rss_hasta": "2026-11-23T14:41:12+00:00"
 },
 "verificat": {
 "error": {},
