@@ -28,7 +28,7 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-11-22T13:59:35+00:00",
-"rss_hasta": "2026-11-23T06:32:40+00:00"
+"rss_hasta": "2026-11-23T06:36:19+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -163,7 +163,7 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-11-21T20:29:02+00:00",
-"rss_hasta": "2026-11-23T01:10:40+00:00"
+"rss_hasta": "2026-11-23T06:32:41+00:00"
 },
 "el-nacional": {
 "error": {},
@@ -208,13 +208,14 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-11-19T14:07:25+00:00",
-"rss_hasta": "2026-11-23T05:45:00+00:00"
+"rss_hasta": "2026-11-23T05:50:00+00:00"
 },
 "el-punt-avui-girona": {
 "error": {
 "2026-11-23T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-23T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-23T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-23T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-23T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -242,7 +243,7 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-10-04T10:42:43+00:00",
-"rss_hasta": "2026-11-23T06:20:47+00:00"
+"rss_hasta": "2026-11-23T06:34:46+00:00"
 },
 "euronews": {
 "error": {},
@@ -257,7 +258,7 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-11-21T20:25:14+00:00",
-"rss_hasta": "2026-11-23T06:44:57+00:00"
+"rss_hasta": "2026-11-23T06:47:38+00:00"
 },
 "france-24": {
 "error": {},
@@ -317,7 +318,7 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-09-03T08:50:18+00:00",
-"rss_hasta": "2026-11-23T05:00:00+00:00"
+"rss_hasta": "2026-11-23T06:14:59+00:00"
 },
 "maldita": {
 "error": {},
@@ -422,7 +423,7 @@
 "2026-11-23T06"
 ],
 "rss_desde": "2026-11-21T23:05:45+00:00",
-"rss_hasta": "2026-11-23T05:05:14+00:00"
+"rss_hasta": "2026-11-23T06:46:01+00:00"
 },
 "tehran-times": {
 "error": {},
