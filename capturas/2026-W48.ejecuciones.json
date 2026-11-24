@@ -92,7 +92,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-22T13:59:35+00:00",
-"rss_hasta": "2026-11-24T13:39:28+00:00"
+"rss_hasta": "2026-11-24T13:51:10+00:00"
 },
 "al-jazeera": {
 "error": {},
@@ -327,7 +327,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-22T15:14:42+00:00",
-"rss_hasta": "2026-11-24T13:30:09+00:00"
+"rss_hasta": "2026-11-24T14:12:53+00:00"
 },
 "dw": {
 "error": {},
@@ -562,7 +562,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-22T04:30:00+00:00",
-"rss_hasta": "2026-11-24T14:00:00+00:00"
+"rss_hasta": "2026-11-24T14:10:00+00:00"
 },
 "el-pais": {
 "error": {},
@@ -609,7 +609,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-02T04:30:00+00:00",
-"rss_hasta": "2026-11-24T13:47:55+00:00"
+"rss_hasta": "2026-11-24T14:10:00+00:00"
 },
 "el-periodico": {
 "error": {},
@@ -656,7 +656,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-19T14:07:25+00:00",
-"rss_hasta": "2026-11-24T12:02:15+00:00"
+"rss_hasta": "2026-11-24T13:09:38+00:00"
 },
 "el-punt-avui-girona": {
 "error": {
@@ -677,7 +677,8 @@
 "2026-11-24T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-24T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-24T12": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-24T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-24T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-24T14": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -769,7 +770,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2023-06-01T18:07:28+00:00",
-"rss_hasta": "2026-11-24T13:43:55+00:00"
+"rss_hasta": "2026-11-24T14:02:46+00:00"
 },
 "euronews": {
 "error": {},
@@ -816,7 +817,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-21T20:25:14+00:00",
-"rss_hasta": "2026-11-24T13:58:53+00:00"
+"rss_hasta": "2026-11-24T14:13:20+00:00"
 },
 "france-24": {
 "error": {
@@ -1200,7 +1201,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-22T06:30:00+00:00",
-"rss_hasta": "2026-11-24T13:30:17+00:00"
+"rss_hasta": "2026-11-24T13:36:11+00:00"
 },
 "rt": {
 "error": {
@@ -1349,7 +1350,7 @@
 "2026-11-24T14"
 ],
 "rss_desde": "2026-11-21T23:05:45+00:00",
-"rss_hasta": "2026-11-24T13:59:09+00:00"
+"rss_hasta": "2026-11-24T14:12:24+00:00"
 },
 "tehran-times": {
 "error": {},
