@@ -560,7 +560,8 @@
 "2026-11-24T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-24T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-24T04": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-24T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-24T05": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-24T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -1195,7 +1196,7 @@
 "2026-11-24T06"
 ],
 "rss_desde": "2026-11-18T09:58:28+00:00",
-"rss_hasta": "2026-11-24T06:10:34+00:00"
+"rss_hasta": "2026-11-24T06:24:16+00:00"
 },
 "verificat": {
 "error": {
