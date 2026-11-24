@@ -515,7 +515,8 @@
 "2026-11-23T17": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-23T20": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-23T22": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-24T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-24T02": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-24T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -1030,7 +1031,7 @@
 "2026-11-24T03"
 ],
 "rss_desde": "2026-11-21T23:05:45+00:00",
-"rss_hasta": "2026-11-24T02:46:14+00:00"
+"rss_hasta": "2026-11-24T03:23:18+00:00"
 },
 "tehran-times": {
 "error": {},
@@ -1102,7 +1103,7 @@
 "2026-11-24T03"
 ],
 "rss_desde": "2026-11-18T09:58:28+00:00",
-"rss_hasta": "2026-11-24T03:08:03+00:00"
+"rss_hasta": "2026-11-24T03:22:17+00:00"
 },
 "verificat": {
 "error": {
