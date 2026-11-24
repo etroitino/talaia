@@ -182,7 +182,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2022-05-13T13:56:22+00:00",
-"rss_hasta": "2026-11-24T13:16:44+00:00"
+"rss_hasta": "2026-11-24T13:36:57+00:00"
 },
 "bbc-news": {
 "error": {},
@@ -366,7 +366,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2026-10-24T10:33:00+00:00",
-"rss_hasta": "2026-11-24T13:32:00+00:00"
+"rss_hasta": "2026-11-24T13:37:00+00:00"
 },
 "efe-verifica": {
 "error": {},
@@ -458,7 +458,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2026-09-05T03:00:00+00:00",
-"rss_hasta": "2026-11-24T13:22:00+00:00"
+"rss_hasta": "2026-11-24T13:39:00+00:00"
 },
 "el-mundo": {
 "error": {},
@@ -550,7 +550,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2026-11-22T04:30:00+00:00",
-"rss_hasta": "2026-11-24T13:35:00+00:00"
+"rss_hasta": "2026-11-24T13:36:47+00:00"
 },
 "el-pais": {
 "error": {},
@@ -596,7 +596,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2026-11-02T04:30:00+00:00",
-"rss_hasta": "2026-11-24T13:29:29+00:00"
+"rss_hasta": "2026-11-24T13:39:43+00:00"
 },
 "el-periodico": {
 "error": {},
@@ -662,7 +662,8 @@
 "2026-11-24T06": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-24T07": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-24T08": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-24T12": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-24T12": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-24T13": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -944,7 +945,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2026-11-19T11:57:48+00:00",
-"rss_hasta": "2026-11-24T13:07:41+00:00"
+"rss_hasta": "2026-11-24T13:35:55+00:00"
 },
 "la-vanguardia": {
 "error": {},
@@ -1177,7 +1178,9 @@
 "rss_hasta": "2026-11-24T13:04:25+00:00"
 },
 "rt": {
-"error": {},
+"error": {
+"2026-11-24T13": "<urlopen error timed out>"
+},
 "ok": [
 "2026-11-22T23",
 "2026-11-23T00",
@@ -1318,7 +1321,7 @@
 "2026-11-24T13"
 ],
 "rss_desde": "2026-11-21T23:05:45+00:00",
-"rss_hasta": "2026-11-24T13:29:11+00:00"
+"rss_hasta": "2026-11-24T13:39:10+00:00"
 },
 "tehran-times": {
 "error": {},
