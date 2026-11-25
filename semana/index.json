@@ -8,7 +8,7 @@
    "period_start": "2026-11-16T00:00:00+01:00",
    "period_end_exclusive": "2026-11-23T00:00:00+01:00",
    "cutoff_at": "2026-11-22T23:00:00+00:00",
-   "generated_at": "2026-11-25T12:02:49+00:00",
+   "generated_at": "2026-11-25T18:16:58+00:00",
    "input_hash": "sha256:9d966c182341478e3f47ec5f933d6af506d186ea151aa9b72b565a60c1dfe79e",
    "events": 8,
    "json": "semana/2026-W47.json",
