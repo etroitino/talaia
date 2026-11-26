@@ -593,7 +593,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-11-22T15:14:42+00:00",
-"rss_hasta": "2026-11-26T02:49:50+00:00"
+"rss_hasta": "2026-11-26T04:31:58+00:00"
 },
 "dw": {
 "error": {},
@@ -678,7 +678,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-10-24T10:33:00+00:00",
-"rss_hasta": "2026-11-26T04:12:00+00:00"
+"rss_hasta": "2026-11-26T04:36:00+00:00"
 },
 "efe-verifica": {
 "error": {},
@@ -1103,7 +1103,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-11-02T04:30:00+00:00",
-"rss_hasta": "2026-11-25T23:14:02+00:00"
+"rss_hasta": "2026-11-26T04:30:01+00:00"
 },
 "el-periodico": {
 "error": {
@@ -1190,7 +1190,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-11-19T14:07:25+00:00",
-"rss_hasta": "2026-11-25T18:21:41+00:00"
+"rss_hasta": "2026-11-26T03:30:00+00:00"
 },
 "el-punt-avui-girona": {
 "error": {
@@ -1230,7 +1230,8 @@
 "2026-11-25T21": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-25T23": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
 "2026-11-26T01": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
-"2026-11-26T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
+"2026-11-26T03": "sin entradas (<unknown>:18:88: not well-formed (invalid token))",
+"2026-11-26T04": "sin entradas (<unknown>:18:88: not well-formed (invalid token))"
 },
 "ok": [
 "2026-11-22T23",
@@ -1483,7 +1484,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-11-21T20:25:14+00:00",
-"rss_hasta": "2026-11-25T21:47:19+00:00"
+"rss_hasta": "2026-11-26T04:30:41+00:00"
 },
 "france-24": {
 "error": {
@@ -2263,7 +2264,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-11-16T14:02:28+00:00",
-"rss_hasta": "2026-11-26T03:29:12+00:00"
+"rss_hasta": "2026-11-26T04:38:15+00:00"
 },
 "rtve": {
 "error": {},
@@ -2611,7 +2612,7 @@
 "2026-11-26T04"
 ],
 "rss_desde": "2026-11-18T09:58:28+00:00",
-"rss_hasta": "2026-11-26T04:19:20+00:00"
+"rss_hasta": "2026-11-26T04:34:13+00:00"
 },
 "verificat": {
 "error": {
