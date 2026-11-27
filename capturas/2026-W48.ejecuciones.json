@@ -2764,7 +2764,8 @@
 "maldita": {
 "error": {
 "2026-11-25T21": "HTTP Error 502: Bad Gateway",
-"2026-11-26T22": "HTTP Error 503: Service Unavailable"
+"2026-11-26T22": "HTTP Error 503: Service Unavailable",
+"2026-11-27T23": "HTTP Error 502: Bad Gateway"
 },
 "ok": [
 "2026-11-22T23",
@@ -3927,7 +3928,7 @@
 "2026-11-27T23"
 ],
 "rss_desde": "2026-11-18T09:58:28+00:00",
-"rss_hasta": "2026-11-27T23:02:04+00:00"
+"rss_hasta": "2026-11-27T23:34:55+00:00"
 },
 "verificat": {
 "error": {
